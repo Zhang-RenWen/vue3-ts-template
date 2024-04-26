@@ -1,10 +1,10 @@
 <script setup>
-import { ref, computed } from "vue";
-import { RouterView, useRoute, useRouter } from "vue-router";
-import { useAlertsStore } from "@/stores/alerts";
+import { ref, computed } from 'vue';
+import { RouterView, useRoute, useRouter } from 'vue-router';
+import { useAlertsStore } from '@/stores/alerts';
 
-import menus from "@/assets/nav-menu.json";
-import logo from "@/assets/logo.png";
+import menus from '@/assets/nav-menu.json';
+import logo from '@/assets/logo.png';
 
 const route = useRoute();
 const router = useRouter();

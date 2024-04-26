@@ -9,6 +9,7 @@ import { fileURLToPath, URL } from "node:url";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/my-app/",
   plugins: [
     vue({
       template: { transformAssetUrls },
@@ -38,5 +39,25 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     port: 3000,
+    proxy: {
+      "/api": {
+        target: "https://www.wanandroid.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+        cookiePathRewrite: {
+          "/KYCS/api": "/",
+        },
+      },
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: "assets/[name].[hash:8].[ext]",
+        chunkFileNames: "chunks/[name].[hash:8].js",
+        entryFileNames: "entries/[name].[hash:8].js",
+      },
+    },
+    sourcemap: false,
   },
 });
