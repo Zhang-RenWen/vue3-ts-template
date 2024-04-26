@@ -5,6 +5,7 @@ import { useAlertsStore } from '@/stores/alerts';
 
 import menus from '@/assets/nav-menu.json';
 import logo from '@/assets/logo.png';
+import HelloWorldCss from '@/assets/styles/helloWorld.module.scss';
 
 const route = useRoute();
 const router = useRouter();
@@ -37,6 +38,8 @@ function navIconClicked() {
 
 <template>
   <v-app>
+    <p :class="HelloWorldCss['read-the-docs']">Click on the Vite and Vue logos to learn more</p>
+    <v-icon>mdi-eye</v-icon>
     <!-- Drawer -->
     <v-navigation-drawer v-model="drawer" app>
       <v-card color="primary" dark tile flat>
@@ -148,3 +151,10 @@ function navIconClicked() {
     </v-dialog>
   </v-app>
 </template>
+<style lang="scss">
+body {
+  padding: 40px;
+  z-index: 10;
+  background: red;
+}
+</style>

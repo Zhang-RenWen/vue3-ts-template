@@ -1,15 +1,15 @@
 // Plugins
-import vue from "@vitejs/plugin-vue";
-import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
-import ViteFonts from "unplugin-fonts/vite";
+import vue from '@vitejs/plugin-vue';
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
+import ViteFonts from 'unplugin-fonts/vite';
 
 // Utilities
-import { defineConfig } from "vite";
-import { fileURLToPath, URL } from "node:url";
+import { defineConfig } from 'vite';
+import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/my-app/",
+  base: '/my-app/',
   plugins: [
     vue({
       template: { transformAssetUrls },
@@ -22,30 +22,35 @@ export default defineConfig({
       google: {
         families: [
           {
-            name: "Roboto",
-            styles: "wght@100;300;400;500;700;900",
+            name: 'Roboto',
+            styles: 'wght@100;300;400;500;700;900',
           },
         ],
       },
     }),
   ],
-  define: { "process.env": {} },
+  define: { 'process.env': {} },
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-    extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
+    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
+  },
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
+    },
   },
   server: {
-    host: "0.0.0.0",
+    host: '0.0.0.0',
     port: 3000,
     proxy: {
-      "/api": {
-        target: "https://www.wanandroid.com",
+      '/api': {
+        target: 'https://www.wanandroid.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/api/, ''),
         cookiePathRewrite: {
-          "/KYCS/api": "/",
+          '/KYCS/api': '/',
         },
       },
     },
@@ -53,9 +58,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        assetFileNames: "assets/[name].[hash:8].[ext]",
-        chunkFileNames: "chunks/[name].[hash:8].js",
-        entryFileNames: "entries/[name].[hash:8].js",
+        assetFileNames: 'assets/[name].[hash:8].[ext]',
+        chunkFileNames: 'chunks/[name].[hash:8].js',
+        entryFileNames: 'entries/[name].[hash:8].js',
       },
     },
     sourcemap: false,
