@@ -9,7 +9,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/my-app/',
+  base: '/',
   plugins: [
     vue({
       template: { transformAssetUrls },
@@ -46,11 +46,12 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://www.wanandroid.com',
-        changeOrigin: true,
+        target: 'https://pokeapi.co/api/',
+        changeOrigin: true, // 是否跨域
+        secure: false, // target https 要開啟
         rewrite: (path) => path.replace(/^\/api/, ''),
         cookiePathRewrite: {
-          '/KYCS/api': '/',
+          '/api': '/',
         },
       },
     },

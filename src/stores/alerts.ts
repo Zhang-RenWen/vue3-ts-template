@@ -9,14 +9,14 @@ export const useAlertsStore = defineStore('alerts', () => {
     button: 'OK',
     type: 'primary',
     timeout: 10000,
-    visible: true,
+    visible: false,
   });
 
   const message = reactive({
     title: '',
     content: '',
     button: 'OK',
-    visible: true,
+    visible: false,
   });
 
   function showProgress() {

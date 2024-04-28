@@ -63,6 +63,7 @@ function navIconClicked() {
           :prepend-icon="menu.icon"
           :title="menu.title"
           :value="menu.path"
+          @click="router.push('/')"
         />
       </v-list>
     </v-navigation-drawer>
