@@ -4,7 +4,7 @@ import { Pokemon } from '@/model/Pokemon';
 
 export const usePokemonStore = defineStore('pokemon', {
   state: () => ({
-    pokemons: [],
+    pokemons: [] as Pokemon[],
   }),
   getters: {
     pokemonsNames: (state) => state.pokemons,
