@@ -3,6 +3,13 @@
     <h3>About page</h3>
     <p>Pokemons list:</p>
     <p>{{ pokemonsNames }}</p>
+    <v-btn @click="pokemon.addItem({ name: 'unknow' })">push item</v-btn>
+    <v-row v-for="(item, index) in pokemonsNames" :key="index" class="my-3 mx-3">
+      <v-btn @click="pokemon.deleteItem(item)" :color="'primary'">delete {{ item['name'] }}</v-btn>
+    </v-row>
+
+    Pinia pokemon.text:
+    <p>{{ pokemon.text }}</p>
   </v-card>
 </template>
 
@@ -14,14 +21,6 @@ import { onMounted, reactive, ref } from 'vue';
 
 const pokemon = usePokemonStore();
 const { pokemonsNames } = storeToRefs(pokemon);
-
-onMounted(async () => {
-  try {
-    await pokemon.getPokemons();
-  } catch (error) {
-    console.log(error);
-  }
-});
 </script>
 <!--/********************************Script-End*********************************************/-->
 

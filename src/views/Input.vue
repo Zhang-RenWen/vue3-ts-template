@@ -1,8 +1,16 @@
 <template>
   <v-card>
     <h3>About page</h3>
-    <p>Pokemons list:</p>
-    <p>{{ pokemonsNames }}</p>
+    <v-container>
+      <InputLabel label="Enter your text" />
+      <InputTextField v-model="pokemon.text" />
+      <InputLabel label="Enter your text2" />
+      <InputTextField v-model="pokemon.text" />
+      Pinia pokemon.text:
+      <p>{{ pokemon.text }}</p>
+      App.vue data text :
+      <p>{{ text }}</p>
+    </v-container>
   </v-card>
 </template>
 
@@ -12,16 +20,9 @@ import { usePokemonStore } from '@/stores/pokemon';
 import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
 
-const pokemon = usePokemonStore();
-const { pokemonsNames } = storeToRefs(pokemon);
-
-onMounted(async () => {
-  try {
-    await pokemon.getPokemons();
-  } catch (error) {
-    console.log(error);
-  }
-});
+const pokemon = usePokemonStore(); // 綁定資料在 pinia store
+const text = ref('固定1111'); // 綁定資料在本組件;
+onMounted(async () => {});
 </script>
 <!--/********************************Script-End*********************************************/-->
 

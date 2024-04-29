@@ -6,5 +6,29 @@
     "icon": "mdi-view-dashboard",
     "path": "/",
     "title": "Home"
+  },
+  {
+    "color": "#9f897a",
+    "disabled": false,
+    "hidden": true,
+    "icon": "mdi-view-dashboard",
+    "path": "/icon",
+    "title": "Icon"
+  },
+  {
+    "color": "#9f897a",
+    "disabled": false,
+    "hidden": true,
+    "icon": "mdi-view-dashboard",
+    "path": "/input",
+    "title": "Input"
+  },
+  {
+    "color": "#9f897a",
+    "disabled": false,
+    "hidden": true,
+    "icon": "mdi-view-dashboard",
+    "path": "/dataFlow",
+    "title": "DataFlow"
   }
 ]

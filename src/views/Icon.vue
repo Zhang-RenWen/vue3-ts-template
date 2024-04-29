@@ -1,8 +1,7 @@
 <template>
   <v-card>
     <h3>About page</h3>
-    <p>Pokemons list:</p>
-    <p>{{ pokemonsNames }}</p>
+    <v-icon>mdi-eye</v-icon>
   </v-card>
 </template>
 

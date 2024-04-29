@@ -1,6 +1,9 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
+import Icon from '@/views/Icon.vue';
+import Input from '@/views/Input.vue';
+import DataFlow from '@/views/DataFlow.vue';
 
 const routes = [
   {
@@ -11,6 +14,33 @@ const routes = [
       title: 'Home',
     },
     component: HomeView,
+  },
+  {
+    path: '/icon',
+    name: 'icon',
+    meta: {
+      hidden: true,
+      title: 'Icon',
+    },
+    component: Icon,
+  },
+  {
+    path: '/input',
+    name: 'input',
+    meta: {
+      hidden: true,
+      title: 'Input',
+    },
+    component: Input,
+  },
+  {
+    path: '/dataFlow',
+    name: 'dataFlow',
+    meta: {
+      hidden: true,
+      title: 'DataFlow',
+    },
+    component: DataFlow,
   },
 ];
 

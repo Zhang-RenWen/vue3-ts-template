@@ -1,45 +1,5 @@
-<script setup>
-import { ref, computed } from 'vue';
-import { RouterView, useRoute, useRouter } from 'vue-router';
-import { useAlertsStore } from '@/stores/alerts';
-
-import menus from '@/assets/nav-menu.json';
-import logo from '@/assets/logo.png';
-import HelloWorldCss from '@/assets/styles/helloWorld.module.scss';
-
-const route = useRoute();
-const router = useRouter();
-
-const alert = useAlertsStore();
-
-const drawer = ref(false);
-const user = ref(null);
-
-const title = computed(() => {
-  return route.meta?.title || route.name;
-});
-
-const showAppBar = computed(() => {
-  return true;
-});
-
-const showNav = computed(() => {
-  return true; //!!route.meta?.parent;
-});
-
-function navIconClicked() {
-  if (!route.meta?.parent) {
-    drawer.value = !drawer.value;
-  } else {
-    router.back();
-  }
-}
-</script>
-
 <template>
   <v-app>
-    <p :class="HelloWorldCss['read-the-docs']">Click on the Vite and Vue logos to learn more</p>
-    <v-icon>mdi-eye</v-icon>
     <!-- Drawer -->
     <v-navigation-drawer v-model="drawer" app>
       <v-card color="primary" dark tile flat>
@@ -63,7 +23,7 @@ function navIconClicked() {
           :prepend-icon="menu.icon"
           :title="menu.title"
           :value="menu.path"
-          @click="router.push('/')"
+          @click="router.push({ path: menu.path })"
         />
       </v-list>
     </v-navigation-drawer>
@@ -152,6 +112,42 @@ function navIconClicked() {
     </v-dialog>
   </v-app>
 </template>
+<script setup>
+import { ref, computed } from 'vue';
+import { RouterView, useRoute, useRouter } from 'vue-router';
+import { useAlertsStore } from '@/stores/alerts';
+
+import menus from '@/assets/nav-menu.json';
+import logo from '@/assets/logo.png';
+
+const route = useRoute();
+const router = useRouter();
+
+const alert = useAlertsStore();
+
+const drawer = ref(false);
+const user = ref(null);
+
+const title = computed(() => {
+  return route.meta?.title || route.name;
+});
+
+const showAppBar = computed(() => {
+  return true;
+});
+
+const showNav = computed(() => {
+  return true; //!!route.meta?.parent;
+});
+
+function navIconClicked() {
+  if (!route.meta?.parent) {
+    drawer.value = !drawer.value;
+  } else {
+    router.back();
+  }
+}
+</script>
 <style lang="scss">
 body {
   padding: 40px;

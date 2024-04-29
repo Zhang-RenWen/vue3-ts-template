@@ -5,6 +5,7 @@ import { Pokemon } from '@/model/Pokemon';
 export const usePokemonStore = defineStore('pokemon', {
   state: () => ({
     pokemons: [] as Pokemon[],
+    text: '',
   }),
   getters: {
     pokemonsNames: (state) => state.pokemons,
@@ -13,13 +14,13 @@ export const usePokemonStore = defineStore('pokemon', {
     async getPokemons() {
       return await httpRequest
         .get({
-          url: '/v2/pokemon/?offset=20&limit=20',
+          url: '/v2/pokemon/?offset=100&limit=100',
+          // url: '/v2/pokemon',
           //   checkLoginState: true,
           //   needJumpToLogin: true,
-          //   showLoading: true,
+          showLoading: true,
         })
         .then((pokemons) => {
-          console.log(pokemons);
           return (this.pokemons = pokemons.results);
         });
     },
