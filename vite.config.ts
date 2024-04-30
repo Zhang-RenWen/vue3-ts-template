@@ -6,6 +6,8 @@ import ViteFonts from 'unplugin-fonts/vite';
 // Utilities
 import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
+import 'dotenv/config';
+console.log(process);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -46,7 +48,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://pokeapi.co/api/',
+        target: `${process.env.VITE_APP_BASE_URL}/api/`,
         changeOrigin: true, // 是否跨域
         secure: false, // target https 要開啟
         rewrite: (path) => path.replace(/^\/api/, ''),
