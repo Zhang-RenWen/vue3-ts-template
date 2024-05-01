@@ -21,8 +21,13 @@ export const usePokemonStore = defineStore('pokemon', {
           showLoading: true,
         })
         .then((pokemons) => {
-          return (this.pokemons = pokemons.results);
+          this.pokemons = pokemons.results;
+          this.text = 'got API!!!!!!!';
+          return this.pokemons;
         });
+    },
+    setText(value: string) {
+      this.text = value;
     },
     addItem(item: Pokemon) {
       this.pokemons.push(item);

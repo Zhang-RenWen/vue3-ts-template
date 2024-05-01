@@ -3,40 +3,31 @@
   <v-text-field
     v-model="internalValue"
     :label="label"
-    class="inputTextField"
+    :class="{ inputTextField: true, hasChanged: hasChanged }"
+    :rules="localRules"
     density="compact"
     variant="outlined"
-    hide-details
     single-line
-    @input="$emit('update:value', internalValue)"
+    @input="updateParent"
   />
 </template>
 
 <script setup lang="ts">
 import { ref, toRefs, computed } from 'vue';
-interface Props {
-  value?: string;
-  label?: string;
-  type?: string;
-}
-const props = withDefaults(defineProps<Props>(), {
-  // props
-  value: '',
-  label: '',
-  type: '', // 外部標記用，若未來有需要改變寫法時方便批量調整   ['text','email','id','name','address'...]
+import { Props, propsBase, InputRules } from '@/model/InputModel';
+
+const props = withDefaults(defineProps<Props>(), propsBase);
+const localRules = computed(() => {
+  return props.rules.concat(new InputRules(props).getRulesFromProps());
 });
-const emits = defineEmits(['update:value']);
 
-const internalValue = toRefs(props);
-
+/*******************************和外部做雙向綁定-Start**********************************************/
+const emits = defineEmits(['update:value', 'change']);
+let internalValue = toRefs(props);
 const updateParent = () => {
   emits('update:value', internalValue.value);
+  emits('change', internalValue.value);
 };
+/*******************************和外部做雙向綁定-End**********************************************/
 </script>
-<style scoped lang="scss">
-.inputTextField :deep(.v-field__input) {
-  max-height: 30px;
-  min-height: 30px;
-  padding: 0 6px;
-}
-</style>
+<style scoped lang="scss" src="@/assets/styles/inputBase.scss"></style>

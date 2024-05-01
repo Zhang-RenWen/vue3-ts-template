@@ -1,0 +1,13 @@
+.inputTextField :deep(.v-field__input) {
+  max-height: 30px;
+  min-height: 30px;
+  padding: 0 6px;
+}
+
+.inputTextField.hasChanged :deep(.v-field__input) {
+  color: red;
+}
+
+.inputTextField :deep(.v-input__details) {
+  padding: 0;
+}
