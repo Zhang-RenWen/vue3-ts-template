@@ -3,6 +3,7 @@ import { ref, toRefs, withDefaults, defineEmits, computed, defineProps } from 'v
 export interface Props {
   value?: string;
   label?: string;
+  type?: string;
   inputType?: string;
   hasChanged?: boolean;
   rules?: Array<T>;
@@ -13,6 +14,7 @@ export const propsBase = {
   // props
   value: '',
   label: '',
+  type: 'text',
   inputType: '', // 外部標記用，若未來有需要改變寫法時方便批量調整   ['text','email','id','name','address'...]
   hasChanged: false,
   rules: [],

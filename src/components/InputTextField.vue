@@ -5,11 +5,25 @@
     :label="label"
     :class="{ inputTextField: true, hasChanged: hasChanged }"
     :rules="localRules"
+    :type="type"
     density="compact"
     variant="outlined"
     single-line
     @input="updateParent"
-  />
+  >
+    <!-- <template #prepend>
+      <slot name="prepend" />
+    </template>
+    <template #prepend-inner>
+      <slot name="prepend-inner" />
+    </template>
+    <template #append>
+      <slot name="append" />
+    </template>
+    <template #append-outer>
+      <slot name="append-outer" />
+    </template> -->
+  </v-text-field>
 </template>
 
 <script setup lang="ts">
