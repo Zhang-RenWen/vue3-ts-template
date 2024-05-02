@@ -72,5 +72,6 @@ function format(value: any) {
 
 .realInput :deep(input) {
   opacity: 0;
+  margin: 0;
 }
 </style>
