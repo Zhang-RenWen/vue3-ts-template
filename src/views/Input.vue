@@ -63,7 +63,7 @@
         <InputLabel label="Format Input" />
         <InputFormat :value="pokemon.text">
           <template #format-value>
-            <InputTextField v-model="pokemon.text" required />
+            <InputTextField v-model="pokemon.text" checkTaiwanPhoneNumber toCurrency required />
           </template>
         </InputFormat>
         Pinia pokemon.text:

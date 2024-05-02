@@ -28,17 +28,22 @@
 
 <script setup lang="ts">
 import { ref, toRefs, computed } from 'vue';
-import { Props, propsBase, InputRules } from '@/model/InputModel';
+import { Props, propsBase, InputRules, InputFormat } from '@/model/InputModel';
 
 const props = withDefaults(defineProps<Props>(), propsBase);
 const localRules = computed(() => {
   return props.rules.concat(new InputRules(props).getRulesFromProps());
 });
 
+const inputFormat = new InputFormat(props);
+const formatValue = inputFormat.formatValue;
+
 /*******************************和外部做雙向綁定-Start**********************************************/
 const emits = defineEmits(['update:value', 'change']);
 let internalValue = toRefs(props);
+
 const updateParent = () => {
+  console.log(internalValue.value, formatValue(internalValue.value));
   emits('update:value', internalValue.value);
   emits('change', internalValue.value);
 };
