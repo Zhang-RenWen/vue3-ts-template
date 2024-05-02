@@ -94,11 +94,11 @@
 
 <!--/*******************************Script-Start**********************************************/-->
 <script setup lang="ts">
-import { usePokemonStore } from '@/stores/pokemon';
+import { useTestStore } from '@/stores/test';
 import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
 
-const pokemon = usePokemonStore(); // 綁定資料在 pinia store
+const pokemon = useTestStore(); // 綁定資料在 pinia store
 
 const text = ref('固定1111'); // 綁定資料在本組件;
 const disabled = ref(false); // 綁定資料在本組件;

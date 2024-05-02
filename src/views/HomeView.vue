@@ -2,22 +2,22 @@
   <v-card>
     <h3>About page</h3>
     <p>Pokemons list:</p>
-    <p>{{ pokemonsNames }}</p>
+    <p>{{ testNames }}</p>
   </v-card>
 </template>
 
 <!--/*******************************Script-Start**********************************************/-->
 <script setup lang="ts">
-import { usePokemonStore } from '@/stores/pokemon';
+import { useTestStore } from '@/stores/test';
 import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
 
-const pokemon = usePokemonStore();
-const { pokemonsNames } = storeToRefs(pokemon);
+const test = useTestStore();
+const { testNames } = storeToRefs(test);
 
 onMounted(async () => {
   try {
-    await pokemon.getPokemons();
+    await test.getPokemons();
   } catch (error) {
     console.log(error);
   }

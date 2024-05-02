@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
 import httpRequest from '@/plugins/request';
-import { Pokemon } from '@/model/Pokemon';
+import { Test } from '@/model/TestModel';
 
-export const usePokemonStore = defineStore('pokemon', {
+export const useTestStore = defineStore('test', {
   state: () => ({
-    pokemons: [] as Pokemon[],
+    test: [] as Test[],
     text: '',
   }),
   getters: {
-    pokemonsNames: (state) => state.pokemons,
+    testNames: (state) => state.test,
   },
   actions: {
     async getPokemons() {
@@ -20,21 +20,21 @@ export const usePokemonStore = defineStore('pokemon', {
           //   needJumpToLogin: true,
           showLoading: true,
         })
-        .then((pokemons) => {
-          this.pokemons = pokemons.results;
+        .then((test) => {
+          this.test = test.results;
           this.text = 'got API!!!!!!!';
-          return this.pokemons;
+          return this.test;
         });
     },
     setText(value: string) {
       this.text = value;
     },
-    addItem(item: Pokemon) {
-      this.pokemons.push(item);
+    addItem(item: Test) {
+      this.test.push(item);
     },
-    deleteItem(item: Pokemon) {
-      this.pokemons.splice(
-        this.pokemons.findIndex((o: Pokemon) => o.name === item.name),
+    deleteItem(item: Test) {
+      this.test.splice(
+        this.test.findIndex((o: Test) => o.name === item.name),
         1
       );
     },

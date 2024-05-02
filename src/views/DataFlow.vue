@@ -2,25 +2,25 @@
   <v-card>
     <h3>About page</h3>
     <p>Pokemons list:</p>
-    <p>{{ pokemonsNames }}</p>
-    <v-btn @click="pokemon.addItem({ name: 'unknow' })">push item</v-btn>
-    <v-row v-for="(item, index) in pokemonsNames" :key="index" class="my-3 mx-3">
-      <v-btn @click="pokemon.deleteItem(item)" :color="'primary'">delete {{ item['name'] }}</v-btn>
+    <p>{{ testNames }}</p>
+    <v-btn @click="test.addItem({ name: 'unknow' })">push item</v-btn>
+    <v-row v-for="(item, index) in testNames" :key="index" class="my-3 mx-3">
+      <v-btn @click="test.deleteItem(item)" :color="'primary'">delete {{ item['name'] }}</v-btn>
     </v-row>
 
-    Pinia pokemon.text:
-    <p>{{ pokemon.text }}</p>
+    Pinia test.text:
+    <p>{{ test.text }}</p>
   </v-card>
 </template>
 
 <!--/*******************************Script-Start**********************************************/-->
 <script setup lang="ts">
-import { usePokemonStore } from '@/stores/pokemon';
+import { useTestStore } from '@/stores/test';
 import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
 
-const pokemon = usePokemonStore();
-const { pokemonsNames } = storeToRefs(pokemon);
+const test = useTestStore();
+const { testNames } = storeToRefs(test);
 </script>
 <!--/********************************Script-End*********************************************/-->
 

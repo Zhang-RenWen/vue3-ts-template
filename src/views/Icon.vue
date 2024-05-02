@@ -7,12 +7,12 @@
 
 <!--/*******************************Script-Start**********************************************/-->
 <script setup lang="ts">
-import { usePokemonStore } from '@/stores/pokemon';
+import { useTestStore } from '@/stores/test';
 import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
 
-const pokemon = usePokemonStore();
-const { pokemonsNames } = storeToRefs(pokemon);
+const pokemon = useTestStore();
+const { testNames } = storeToRefs(pokemon);
 
 onMounted(async () => {
   try {
