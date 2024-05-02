@@ -50,6 +50,8 @@ import {
   toCurrency,
   toHalfWidth,
   toFullWidth,
+  toUpperCase,
+  toLowerCase,
 } from '@/utils/format';
 
 export interface Props {
@@ -107,6 +109,8 @@ export interface Props {
   toCurrency?: boolean;
   toHalfWidth?: boolean;
   toFullWidth?: boolean;
+  toUpperCase?: boolean;
+  toLowerCase?: boolean;
   /*******************************Format-End**********************************************/
 }
 
@@ -376,10 +380,6 @@ export class InputFormat {
     return String(value).replaceAll(' ', '');
   }
 
-  toUpperCase(value: any) {
-    return String(value).toUpperCase();
-  }
-
   toHalfWidth(value: any) {
     return toHalfWidth(value);
   }
@@ -414,9 +414,15 @@ export class InputFormat {
     return toCurrency(value);
   }
 
-  getFormatFromProps() {
-    console.log(this);
+  toUpperCase(value: any) {
+    return toUpperCase(value);
+  }
 
+  toLowerCase(value: any) {
+    return toLowerCase(value);
+  }
+
+  getFormatFromProps() {
     const defaultFormat = [];
     Object.keys(this.inputProps).forEach((key) => {
       if (this[key] && this.inputProps[key]) {
@@ -427,8 +433,6 @@ export class InputFormat {
   }
 
   formatValue(value: any) {
-    console.log(value);
-
     const defaultFormat = this.getFormatFromProps();
     const result = defaultFormat.reduce((curResult, fn) => {
       if (!fn) return curResult;

@@ -1,16 +1,16 @@
 <!-- 保持無狀態，format 和 validate 用 option 傳入 -->
 <template>
-  <div class="text-subtitle-1 text-medium-emphasis">{{ label }}</div>
+  <div class="text-subtitle-1 text-medium-emphasis">{{ name }}</div>
 </template>
 
 <script setup lang="ts">
 import { ref, toRefs, computed } from 'vue';
 interface Props {
-  label?: string;
+  name?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   // props
-  label: '',
+  name: '',
 });
 
 const internalValue = toRefs(props);

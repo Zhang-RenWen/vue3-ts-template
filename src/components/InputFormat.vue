@@ -45,7 +45,7 @@
 </template>
 <script setup lang="ts">
 import { ref, toRefs, computed } from 'vue';
-import { Props, propsBase, InputRules } from '@/model/InputModel';
+import { Props, propsBase, InputFormat } from '@/model/InputModel';
 
 const props = withDefaults(defineProps<Props>(), propsBase);
 
@@ -54,8 +54,10 @@ const localValue = computed(() => {
 });
 
 let internalValue = toRefs(props);
+const inputFormat = new InputFormat(props);
+const formatValue = inputFormat.formatValue;
 function format(value: any) {
-  return `ssssss${value}`;
+  return formatValue(value);
 }
 </script>
 <style scoped lang="scss" src="@/assets/styles/inputBase.scss"></style>

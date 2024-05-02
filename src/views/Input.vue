@@ -4,11 +4,11 @@
     <v-container>
       <v-form ref="Form" v-model="valid">
         <p>valid:{{ valid }}</p>
-        <InputLabel label="Pure" />
+        <InputLabel name="Pure" />
         <InputTextField v-model="pokemon.text" />
-        <InputLabel label="With Label" />
-        <InputTextField v-model="pokemon.text" label="Enter your text" />
-        <InputLabel label="has-changed detector" />
+        <InputLabel name="With Label" />
+        <InputTextField v-model="pokemon.text" name="Enter your text" />
+        <InputLabel name="has-changed detector" />
         <InputTextField
           v-model="pokemon.text"
           :has-changed="hasChange"
@@ -16,11 +16,21 @@
           @blur="eventTest"
           @change="change"
         />
-        <InputLabel label="Disabled Input" />
-        <InputTextField v-model="pokemon.text" :disabled="disabled" />
-        <InputLabel label="Required Input" />
-        <InputTextField v-model="pokemon.text" :required="required" />
-        <InputLabel label="Slot Input" />
+        <InputLabel name="Disabled Input" />
+        <InputTextField
+          v-model="pokemon.text"
+          :disabled="disabled"
+          toUpperCase
+          @format="(v) => pokemon.setText(v)"
+        />
+        <InputLabel name="Required Input" />
+        <InputTextField
+          v-model="text"
+          :required="required"
+          toUpperCase
+          @format="(v) => (text = v)"
+        />
+        <InputLabel name="Slot Input" />
         <InputTextField v-model="pokemon.text">
           >
           <template #prepend>
@@ -60,10 +70,10 @@
           </template>
         </InputTextField>
 
-        <InputLabel label="Format Input" />
-        <InputFormat :value="pokemon.text">
+        <InputLabel name="Format Input" />
+        <InputFormat :value="pokemon.text" toCurrency>
           <template #format-value>
-            <InputTextField v-model="pokemon.text" checkTaiwanPhoneNumber toCurrency required />
+            <InputTextField v-model="pokemon.text" checkTaiwanPhoneNumber required />
           </template>
         </InputFormat>
         Pinia pokemon.text:
@@ -127,11 +137,9 @@ function reset() {
 function clear() {
   pokemon.setText('');
 }
-
 function format() {
   pokemon.setText('10,000');
 }
-
 onMounted(async () => {});
 </script>
 <!--/********************************Script-End*********************************************/-->

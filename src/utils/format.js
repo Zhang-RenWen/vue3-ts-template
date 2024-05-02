@@ -148,14 +148,6 @@ export const toClearPrefix0 = (value) => {
  * @returns
  */
 export const toCurrency = (value, precision = 0) => {
-  console.log(
-    value,
-
-    Number(value).toLocaleString(undefined, {
-      maximumFractionDigits: precision,
-      minimumFractionDigits: precision,
-    })
-  );
   return Number(value).toLocaleString(undefined, {
     maximumFractionDigits: precision,
     minimumFractionDigits: precision,
@@ -176,4 +168,12 @@ export const toHalfWidth = (value) => {
 
 export const toFullWidth = (value) => {
   return String(value).replace(/[!-~]/g, shiftCharCode(-0xfee0));
+};
+
+export const toUpperCase = (value) => {
+  return String(value).toUpperCase();
+};
+
+export const toLowerCase = (value) => {
+  return String(value).toLowerCase();
 };
