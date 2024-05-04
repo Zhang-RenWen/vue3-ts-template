@@ -112,6 +112,9 @@ export interface Props {
   toUpperCase?: boolean;
   toLowerCase?: boolean;
   /*******************************Format-End**********************************************/
+  /*******************************InputAutoComplete-Start**********************************************/
+  items?: Array<T>;
+  /*******************************InputAutoComplete-Start**********************************************/
 }
 
 export const propsBase = {
@@ -122,6 +125,7 @@ export const propsBase = {
   inputType: '', // 外部標記用，若未來有需要改變寫法時方便批量調整   ['text','email','id','name','address'...]
   hasChanged: false,
   rules: [],
+  items: [],
 };
 
 export class InputRules {

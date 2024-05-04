@@ -150,8 +150,6 @@ function navIconClicked() {
 </script>
 <style lang="scss">
 body {
-  padding: 40px;
   z-index: 10;
-  background: red;
 }
 </style>
