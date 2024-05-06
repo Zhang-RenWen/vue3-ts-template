@@ -1,0 +1,32 @@
+@import '@/assets/styles/main.scss';
+.custom-table.v-table {
+  > .v-table__wrapper > table {
+    border-collapse: collapse;
+    > thead > tr > th {
+      font-size: 1rem;
+      height: 30px;
+      border: 1px solid #ccc;
+      color: #fff;
+      background-color: $color-primary;
+    }
+
+    > tbody > tr > td {
+      height: 30px;
+      vertical-align: baseline;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+    .btn {
+      font-size: 0.7rem;
+      border-radius: 50px;
+      height: 20px;
+      min-height: 20px;
+      min-width: 20px;
+      width: 20px;
+      padding: 0;
+    }
+    .btn:deep(.v-input__details) {
+      padding: 0;
+    }
+  }
+}

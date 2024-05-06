@@ -11,7 +11,7 @@ export const useTestStore = defineStore('test', {
     testNames: (state) => state.test,
   },
   actions: {
-    async getPokemons() {
+    async getApiData() {
       return await httpRequest
         .get({
           url: '/v2/pokemon/?offset=100&limit=100',

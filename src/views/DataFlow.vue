@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="pa-6">
     <h3>About page</h3>
     <p>Pokemons list:</p>
     <p>{{ testNames }}</p>
@@ -24,35 +24,4 @@ const { testNames } = storeToRefs(test);
 </script>
 <!--/********************************Script-End*********************************************/-->
 
-<style scoped lang="scss">
-.list-name {
-  font-size: 14px;
-  color: #777;
-  margin-left: 15px;
-}
-
-.list-data {
-  font-size: 14px;
-  color: #777;
-  margin-right: 15px;
-}
-
-.list-title {
-  text-align: left;
-  font-size: 16px;
-  color: #000;
-  margin: 8px 15px;
-}
-
-.list-type {
-  font-size: 14px;
-  color: #777;
-  margin-left: 15px;
-}
-
-.list-icon {
-  height: 20px;
-  width: 20px;
-  margin-right: 15px;
-}
-</style>
+<style scoped lang="scss"></style>

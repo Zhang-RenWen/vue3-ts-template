@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="pa-6">
     <h1>Input</h1>
     <v-container>
       <h2>InputTextField</h2>
@@ -92,7 +92,12 @@
         <h2>InputAutoComplete</h2>
         <p>items 一律只接受 [{text:'XXX',value:'XXX'}] 才不會亂</p>
         {{ inputAutoCompleteValue }}
-        <InputAutoComplete v-model="inputAutoCompleteValue" :items="items" required>
+        <InputAutoComplete
+          v-model="inputAutoCompleteValue"
+          :items="items"
+          :has-changed="hasChange"
+          required
+        >
           <template #append-inner>
             <v-fade-transition leave-absolute>
               <v-progress-circular color="info" size="24" indeterminate></v-progress-circular>

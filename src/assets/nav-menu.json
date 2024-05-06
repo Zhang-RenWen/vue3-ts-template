@@ -28,6 +28,14 @@
     "disabled": false,
     "hidden": true,
     "icon": "mdi-view-dashboard",
+    "path": "/table",
+    "title": "Table"
+  },
+  {
+    "color": "#9f897a",
+    "disabled": false,
+    "hidden": true,
+    "icon": "mdi-view-dashboard",
     "path": "/dataFlow",
     "title": "DataFlow"
   }
