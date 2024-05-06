@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs, computed, watch, nextTick } from 'vue';
+import { ref, toRefs, computed, nextTick } from 'vue';
 import { Props, propsBase, InputRules, InputFormat } from '@/model/InputModel';
 
 const props = withDefaults(defineProps<Props>(), propsBase);

@@ -1996,10 +1996,10 @@ vue@^3.3.4:
     "@vue/server-renderer" "3.3.6"
     "@vue/shared" "3.3.6"
 
-vuetify@^3.3.16:
-  version "3.3.22"
-  resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.3.22.tgz"
-  integrity sha512-+X7IBnlvmj/3h2hgnGXWWKNM/N0ioi7xMEoBC5gPQnlaUPMvzXFG70BP9YlhYyUQhi05sD6n/BirImKur1gOEw==
+vuetify@^3.5.18:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.6.3.tgz#3818a9176198480302ec0aac359c47cb71a75f13"
+  integrity sha512-OBYYJYnNeUYA7kwrv8Rag1EBFbGWAQxJpp0s98U2KQ6SPU7MzzcrvNn7t69vcDbj7mR7Dcf9/jvFapfranXZvA==
 
 webpack-sources@^3.2.3:
   version "3.2.3"

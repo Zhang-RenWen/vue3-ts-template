@@ -8,26 +8,24 @@
       </a>
     </p>
     <p>data length: {{ testNames.length }}</p>
-    <!-- /*******************************Table-Start**********************************************/-->
+    <!-- /*******************************純前端 Table-Start**********************************************/-->
     <v-table class="custom-table" :style="'max-height: 1000px'" fixed-header>
       <thead>
         <tr>
-          <!-- action -->
-          <th :style="'width:30px'">
-            <div class="d-flex justify-center">
+          <th v-for="head in headers" :key="head.value" :class="head.className" :style="head.style">
+            <div v-if="head.key === 'action'" class="d-flex justify-center">
               <v-btn @click="test.addItem({ name: 'unknown' })" :color="'success'" class="btn">
                 <v-icon icon="mdi-plus-thick"></v-icon>
               </v-btn>
             </div>
-          </th>
-          <!-- others -->
-          <th v-for="head in headers" :key="head.name" :class="head.className" :style="head.style">
-            {{ head.text }}
+            <div v-else>
+              {{ head.title }}
+            </div>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in testNames" :key="item.name">
+        <tr v-for="item in testNames" :key="item.key">
           <!-- action -->
           <td>
             <div class="d-flex justify-center">
@@ -47,11 +45,40 @@
         <!-- append -->
         <tr v-if="testNames.length === 0">
           <!-- +1 代表有 action -->
-          <td class="text-center" :colspan="headers.length + 1">沒有資料</td>
+          <td class="text-center" :colspan="headers.length">沒有資料</td>
         </tr>
       </tbody>
     </v-table>
-    <!-- /*******************************Table-End**********************************************/-->
+    <!-- /*******************************純前端 Table-End**********************************************/-->
+    <!-- /*******************************Server端 Table-Start**********************************************/-->
+    <Table :headers="headers" :items="testNames" :itemValue="'name'">
+      <template #top>
+        {{ 'space of pagination' }}
+      </template>
+      <template #[`header.action`]>
+        <div class="d-flex justify-center">
+          <v-btn @click="test.addItem({ name: 'unknown' })" :color="'success'" class="btn">
+            <v-icon icon="mdi-plus-thick"></v-icon>
+          </v-btn>
+        </div>
+      </template>
+      <template #[`item.action`]="{ item }">
+        <div class="d-flex justify-center">
+          <v-btn @click="test.deleteItem(item)" :color="'error'" class="btn mr-1">
+            <v-icon icon="mdi-trash-can"></v-icon>
+          </v-btn>
+          <v-btn :color="'info'" class="btn">
+            <v-icon icon="mdi-square-edit-outline"></v-icon>
+          </v-btn>
+        </div>
+      </template>
+      <template #expanded-row="{ columns, index, item, isExpanded, toggleExpand }">
+        <td class="pa-4 py-6" @click="toggleExpand(item)" :colspan="headers.length">
+          <span>{{ columns }}{{ index }}{{ item }}{{ isExpanded }}{{ toggleExpand }}</span>
+        </td>
+      </template>
+    </Table>
+    <!-- /*******************************Server端 Table-Start**********************************************/-->
   </v-card>
 </template>
 
@@ -65,14 +92,21 @@ const test = useTestStore();
 const { testNames } = storeToRefs(test);
 const headers = reactive([
   {
-    value: 'name',
-    text: 'Name',
+    key: 'action',
+    title: '',
+    className: 'text-center',
+    style: 'width:30px', // v-table setting
+    width: 30, // v-data-table-server setting
+  },
+  {
+    key: 'name',
+    title: 'Name',
     className: 'text-left',
     style: '',
   },
   {
-    value: 'url',
-    text: 'Url',
+    key: 'url',
+    title: 'Url',
     className: 'text-left',
     style: '',
   },

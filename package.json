@@ -21,7 +21,7 @@
     "vant": "^4.0.10",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
-    "vuetify": "^3.3.16"
+    "vuetify": "^3.5.18"
   },
   "devDependencies": {
     "@babel/types": "^7.21.4",
