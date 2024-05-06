@@ -3,6 +3,7 @@ export interface Props {
   items?: Array<T>;
   itemValue?: string;
   defaultExpanded?: string[];
+  showExpand?: boolean;
 }
 
 export const propsBase = {
@@ -10,4 +11,5 @@ export const propsBase = {
   items: [],
   itemValue: '',
   defaultExpanded: [],
+  showExpand: false,
 };

@@ -8,6 +8,7 @@
       </a>
     </p>
     <p>data length: {{ testNames.length }}</p>
+    <h2>.v-table</h2>
     <!-- /*******************************純前端 Table-Start**********************************************/-->
     <v-table class="custom-table" :style="'max-height: 1000px'" fixed-header>
       <thead>
@@ -50,8 +51,18 @@
       </tbody>
     </v-table>
     <!-- /*******************************純前端 Table-End**********************************************/-->
+    <h2>.v-data-table-server</h2>
     <!-- /*******************************Server端 Table-Start**********************************************/-->
-    <Table :headers="headers" :items="testNames" :itemValue="'name'">
+    <v-btn @click="setExpanded" class="mr-1">toggle 單一項目</v-btn>
+    <v-btn @click="setAllExpanded" class="mr-1">全部打開</v-btn>
+    <v-btn @click="clearAllExpanded">全部關閉</v-btn>
+    <Table
+      :headers="headers"
+      :items="testNames"
+      :itemValue="'name'"
+      :showExpand="showExpand"
+      :defaultExpanded="defaultExpanded"
+    >
       <template #top>
         {{ 'space of pagination' }}
       </template>
@@ -72,11 +83,22 @@
           </v-btn>
         </div>
       </template>
-      <template #expanded-row="{ columns, index, item, isExpanded, toggleExpand }">
-        <td class="pa-4 py-6" @click="toggleExpand(item)" :colspan="headers.length">
-          <span>{{ columns }}{{ index }}{{ item }}{{ isExpanded }}{{ toggleExpand }}</span>
+      <template #expanded-row="{ columns, index, item, isExpanded }">
+        <td class="pa-4 py-6" :colspan="columns.length">
+          <div>{{ columns }}</div>
+          <div>{{ index }}</div>
+          <div>{{ item }}</div>
+          <div>{{ isExpanded(item) }}</div>
         </td>
       </template>
+      <!-- 客製化 item row 範例-->
+      <!-- <template #item="{ columns, index, item, isExpanded(item),toggleExpand }">
+        <tr>
+          <td :colspan="columns.length">
+            <v-btn @click="toggleExpand(item)">Toggle</v-btn>
+          </td>
+        </tr>
+      </template> -->
     </Table>
     <!-- /*******************************Server端 Table-Start**********************************************/-->
   </v-card>
@@ -111,6 +133,25 @@ const headers = reactive([
     style: '',
   },
 ]);
+const defaultExpanded = ref(['electrode']);
+const showExpand = ref(true);
+
+function setExpanded() {
+  const testItemName = 'exeggcute';
+  if (!defaultExpanded.value.includes(testItemName)) {
+    defaultExpanded.value.push(testItemName);
+  } else {
+    const index = defaultExpanded.value.find((key: string) => key === testItemName);
+    defaultExpanded.value.splice(index, 1);
+  }
+}
+
+function setAllExpanded() {
+  defaultExpanded.value = test.testNames.map((o: any) => o.name);
+}
+function clearAllExpanded() {
+  defaultExpanded.value = [];
+}
 
 onMounted(async () => {
   try {
