@@ -1,21 +1,29 @@
 <template>
+  {{ itemsPerPage }}{{ itemsLength }}
   <v-data-table-server
     v-model:expanded="expanded"
-    class="custom-table"
     :headers="headers"
     :items="items"
     density="compact"
+    class="custom-table"
     no-data-text="無資料"
     fixed-header
+    :items-per-page="itemsPerPage"
+    :items-length="itemsLength"
     :item-value="itemValue"
     :show-expand="showExpand"
     expand-on-click
     @update:expanded="expandedFn"
+    @update:items-per-page="itemsPerPageFn"
+    @update:options="loadItems"
   >
     <!-- expand-on-click 點擊整條 row 觸發toggle-expand-->
     <template v-for="(_, slot) of $slots" #[slot]="scope">
       <slot :name="slot" v-bind="scope" />
     </template>
+
+    <!-- hide-default-pagination -->
+    <template v-slot:bottom></template>
   </v-data-table-server>
   <!-- 代替 WATCH 監聽/更新狀態 -->
   <div class="d-none">{{ expandedListener }}</div>
@@ -26,18 +34,26 @@ import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
 import { Props, propsBase } from '@/model/TableModel';
 const props = withDefaults(defineProps<Props>(), propsBase);
 let expanded = ref([]); // 綁定資料在本組件;
-const emits = defineEmits(['updateExpanded']);
+const emits = defineEmits(['updateExpanded', 'updateItemsPerPage']);
 function expandedFn(newExpandedItem: any) {
   emits('updateExpanded', newExpandedItem);
 }
+function itemsPerPageFn(newItemsPerPage: any) {
+  emits('updateItemsPerPage', newItemsPerPage);
+}
+
 function setExpanded() {
   // 設定 初始化 expanded 項目
   expanded.value = JSON.parse(JSON.stringify(props.defaultExpanded));
+}
+function loadItems(aaa: any) {
+  console.log(aaa);
 }
 const expandedListener = computed(() => {
   setExpanded();
   return props.defaultExpanded;
 });
+
 onMounted(async () => {
   setExpanded();
 });

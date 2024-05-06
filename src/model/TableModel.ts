@@ -4,6 +4,8 @@ export interface Props {
   itemValue?: string;
   defaultExpanded?: string[];
   showExpand?: boolean;
+  itemsLength?: number;
+  itemsPerPage?: number;
 }
 
 export const propsBase = {
@@ -12,4 +14,6 @@ export const propsBase = {
   itemValue: '',
   defaultExpanded: [],
   showExpand: false,
+  itemsLength: 0,
+  itemsPerPage: 10,
 };

@@ -3,6 +3,7 @@ import InputTextField from './InputTextField.vue';
 import InputFormat from './InputFormat.vue';
 import InputAutoComplete from './InputAutoComplete.vue';
 import Table from './Table.vue';
+import Pagination from './Pagination.vue';
 
 import type { App } from 'vue';
 
@@ -12,4 +13,5 @@ export function registerComponents(app: App) {
   app.component('InputFormat', InputFormat);
   app.component('InputAutoComplete', InputAutoComplete);
   app.component('Table', Table);
+  app.component('Pagination', Pagination);
 }

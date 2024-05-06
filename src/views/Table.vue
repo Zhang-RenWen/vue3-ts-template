@@ -59,12 +59,14 @@
     <Table
       :headers="headers"
       :items="testNames"
+      :items-length="testNames.length"
+      :items-per-page="itemPerPage"
       :itemValue="'name'"
       :showExpand="showExpand"
       :defaultExpanded="defaultExpanded"
     >
       <template #top>
-        {{ 'space of pagination' }}
+        <Pagination :totalCount="testNames.length" />
       </template>
       <template #[`header.action`]>
         <div class="d-flex justify-center">
@@ -135,6 +137,7 @@ const headers = reactive([
 ]);
 const defaultExpanded = ref(['electrode']);
 const showExpand = ref(true);
+const itemPerPage = ref(10);
 
 function setExpanded() {
   const testItemName = 'exeggcute';
