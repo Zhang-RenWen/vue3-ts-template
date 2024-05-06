@@ -20,16 +20,16 @@
         <InputLabel name="Disabled Input" />
         <InputTextField
           v-model="pokemon.text"
+          @format="(v) => pokemon.setText(v)"
           :disabled="disabled"
           toUpperCase
-          @format="(v) => pokemon.setText(v)"
         />
         <InputLabel name="Required Input" />
         <InputTextField
           v-model="text"
+          @format="(v) => (text = v)"
           :required="required"
           toUpperCase
-          @format="(v) => (text = v)"
         />
         <InputLabel name="Slot Input" />
         <InputTextField v-model="pokemon.text">
@@ -74,36 +74,65 @@
         <InputLabel name="Format Input" />
         <InputFormat :value="pokemon.text" toCurrency>
           <template #format-value>
-            <InputTextField v-model="pokemon.text" checkTaiwanPhoneNumber required />
+            <InputTextField v-model="pokemon.text" checkTaiwanPhoneNumber :required="required" />
           </template>
         </InputFormat>
         Pinia pokemon.text:
         <p>{{ pokemon.text }}</p>
         Input.vue data text :
         <p>{{ text }}</p>
-        <v-btn @click="toggleHasChange">toggleHasChange {{ hasChange }}</v-btn>
-        <v-btn @click="toggleDisabled">toggleDisabled {{ disabled }}</v-btn>
-        <v-btn @click="toggleRequired">toggleRequired {{ required }}</v-btn>
-        <v-btn @click="submit">validate</v-btn>
-        <v-btn @click="reset">resetValidation</v-btn>
-        <v-btn @click="clear">clearData</v-btn>
-        <v-btn @click="format">formatData</v-btn>
+        <v-row class="mb-1">
+          <v-col cols="12" sm="3">
+            <v-btn @click="toggleHasChange">hasChange {{ hasChange }}</v-btn>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <v-btn @click="toggleDisabled">disabled {{ disabled }}</v-btn>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <v-btn @click="toggleRequired">required {{ required }}</v-btn>
+          </v-col>
+        </v-row>
+        <v-row class="mb-1">
+          <v-col cols="12" sm="3">
+            <v-btn @click="submit">validate</v-btn>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <v-btn @click="reset">reset</v-btn>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <v-btn @click="clear">clearData</v-btn>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <v-btn @click="format">formatData</v-btn>
+          </v-col>
+        </v-row>
 
         <h2>InputAutoComplete</h2>
-        <p>items 一律只接受 [{text:'XXX',value:'XXX'}] 才不會亂</p>
-        {{ inputAutoCompleteValue }}
+        <p>items 一律只接受格式： [{text:'XXX',value:'XXX'}] 才不會亂</p>
+        <p>Bind value: {{ inputAutoCompleteValue }}</p>
+        <InputLabel name="has-changed,required" />
         <InputAutoComplete
           v-model="inputAutoCompleteValue"
           :items="items"
           :has-changed="hasChange"
           required
-        >
+        ></InputAutoComplete>
+        <InputLabel name="progress-circular,no-data" />
+        <InputAutoComplete v-model="inputAutoCompleteValue" :items="[]">
           <template #append-inner>
             <v-fade-transition leave-absolute>
               <v-progress-circular color="info" size="24" indeterminate></v-progress-circular>
             </v-fade-transition>
           </template>
         </InputAutoComplete>
+        <InputLabel name="chips" />
+        <InputAutoComplete
+          v-model="inputAutoCompleteValue"
+          :items="items"
+          chips
+          clearable
+          multiple
+        ></InputAutoComplete>
       </v-form>
     </v-container>
   </v-card>
