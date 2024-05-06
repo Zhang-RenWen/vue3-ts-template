@@ -6,9 +6,12 @@
     :class="{ inputTextField: true, hasChanged: hasChanged }"
     :rules="localRules"
     :items="localItems"
+    item-title="text"
+    item-value="value"
     density="compact"
     variant="outlined"
     single-line
+    no-data-text="沒有資料"
     @blur="emits('blur', internalValue)"
   >
     <template v-for="(_, slot) of $slots" #[slot]="scope">
@@ -29,5 +32,6 @@ const localItems = computed(() => {
   return props.items;
 });
 let internalValue = toRefs(props);
+const emits = defineEmits(['update:value', 'change', 'format', 'blur', 'input']);
 </script>
 <style scoped lang="scss" src="@/assets/styles/inputBase.scss"></style>

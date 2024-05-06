@@ -91,13 +91,13 @@
 
         <h2>InputAutoComplete</h2>
         <p>items 一律只接受 [{text:'XXX',value:'XXX'}] 才不會亂</p>
-        <InputAutoComplete v-model="inputAutoCompleteValue" :items="items">
+        {{ inputAutoCompleteValue }}
+        <InputAutoComplete v-model="inputAutoCompleteValue" :items="items" required>
           <template #append-inner>
             <v-fade-transition leave-absolute>
               <v-progress-circular color="info" size="24" indeterminate></v-progress-circular>
             </v-fade-transition>
           </template>
-          <template #no-data>NO DATA</template>
         </InputAutoComplete>
       </v-form>
     </v-container>
@@ -121,7 +121,7 @@ const valid = ref(false); // 綁定資料在本組件;
 const Form = ref();
 
 const inputAutoCompleteValue = ref('');
-const items = reactive([]); // 綁定資料在本組件;
+const items = reactive([{ text: '選項1', value: '1' }]); // 綁定資料在本組件;
 
 function eventTest($event: Event) {
   console.log(pokemon.text, $event);
