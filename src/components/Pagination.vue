@@ -5,9 +5,9 @@
       <strong>{{ totalCount }}</strong>
       筆
     </span>
-    <div>page: {{ page }}</div>
     <v-pagination
       v-model="page"
+      class="pagination"
       :length="totalPageCount"
       variant="text"
       :total-visible="totalVisible"
@@ -86,6 +86,29 @@ onMounted(async () => {});
 <!--/********************************Script-End*********************************************/-->
 
 <style lang="scss" scoped>
-.v-data-table-footer__items-per-page :deep(.v-data-table-footer__items-per-page > .v-select) {
+.v-data-table-footer__items-per-page :deep(.v-field__field) {
+  height: 26px;
+}
+.v-data-table-footer__items-per-page :deep(.v-field__input) {
+  height: 26px;
+  min-height: 26px;
+  display: block;
+  padding: 0 0 0 6px;
+}
+
+.pagination :deep(.v-pagination-item) {
+  display: flex;
+  align-items: center;
+}
+
+.pagination :deep(.v-btn) {
+  background-color: #ffffff;
+  /* color: honeydew; */
+  height: 26px;
+  width: 26px;
+  box-shadow:
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    01px 2px 0 rgba(0, 0, 0, 0.12);
 }
 </style>
