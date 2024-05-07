@@ -36,6 +36,14 @@
     "disabled": false,
     "hidden": true,
     "icon": "mdi-view-dashboard",
+    "path": "/dialog",
+    "title": "Dialog"
+  },
+  {
+    "color": "#9f897a",
+    "disabled": false,
+    "hidden": true,
+    "icon": "mdi-view-dashboard",
     "path": "/dataFlow",
     "title": "DataFlow"
   }

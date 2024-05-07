@@ -116,27 +116,6 @@ import { onMounted, reactive, ref } from 'vue';
 
 const test = useTestStore();
 const { testNames } = storeToRefs(test);
-const headers = reactive([
-  {
-    key: 'action',
-    title: '',
-    className: 'text-center',
-    style: 'width:30px', // v-table setting
-    width: 30, // v-data-table-server setting
-  },
-  {
-    key: 'name',
-    title: 'Name',
-    className: 'text-left',
-    style: '',
-  },
-  {
-    key: 'url',
-    title: 'Url',
-    className: 'text-left',
-    style: '',
-  },
-]);
 
 /*******************************Table Expanded-Start**********************************************/
 const defaultExpanded = ref(['electrode']);
@@ -161,7 +140,28 @@ function clearAllExpanded() {
 /*******************************Table Expanded-Start**********************************************/
 
 /*******************************Table Pagination binding-Start**********************************************/
-const itemPerPage = ref(10);
+const headers = reactive([
+  {
+    key: 'action',
+    title: '',
+    className: 'text-center',
+    style: 'width:30px', // v-table setting
+    width: 30, // v-data-table-server setting
+  },
+  {
+    key: 'name',
+    title: 'Name',
+    className: 'text-left',
+    style: '',
+  },
+  {
+    key: 'url',
+    title: 'Url',
+    className: 'text-left',
+    style: '',
+  },
+]);
+
 const pagination = ref({
   itemsPerPage: 100, // 一頁幾筆
   page: 10, // 當前頁數

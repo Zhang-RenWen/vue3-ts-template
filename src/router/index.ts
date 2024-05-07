@@ -4,6 +4,7 @@ import HomeView from '@/views/HomeView.vue';
 import Icon from '@/views/Icon.vue';
 import Input from '@/views/Input.vue';
 import Table from '@/views/Table.vue';
+import Dialog from '@/views/Dialog.vue';
 import DataFlow from '@/views/DataFlow.vue';
 
 const routes = [
@@ -42,6 +43,16 @@ const routes = [
       title: 'Table',
     },
     component: Table,
+  },
+
+  {
+    path: '/dialog',
+    name: 'dialog',
+    meta: {
+      hidden: true,
+      title: 'Dialog',
+    },
+    component: Dialog,
   },
   {
     path: '/dataFlow',

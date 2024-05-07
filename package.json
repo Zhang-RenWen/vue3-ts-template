@@ -20,6 +20,7 @@
     "roboto-fontface": "*",
     "vant": "^4.0.10",
     "vue": "^3.3.4",
+    "vue-draggable-resizable": "^3.0.0",
     "vue-router": "^4.2.4",
     "vuetify": "^3.5.18"
   },
