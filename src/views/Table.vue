@@ -8,6 +8,60 @@
       </a>
     </p>
     <p>data length: {{ testNames.length }}</p>
+
+    <h2>.v-data-table-server</h2>
+    <!-- /*******************************Server端 Table-Start**********************************************/-->
+    <v-btn @click="setExpanded" class="mr-1">toggle 單一項目</v-btn>
+    <v-btn @click="setAllExpanded" class="mr-1">全部打開</v-btn>
+    <v-btn @click="clearAllExpanded">全部關閉</v-btn>
+    <Table
+      :headers="headers"
+      :items="testNames"
+      :items-length="testNames.length"
+      :items-per-page="pagination.itemsPerPage"
+      :itemValue="'name'"
+      :showExpand="showExpand"
+      :defaultExpanded="defaultExpanded"
+      @updateSortCondition="updateSortCondition"
+    >
+      <template #top>
+        <Pagination :value="pagination" :totalCount="testNames.length" @input="updatePagination" />
+      </template>
+      <template #[`header.action`]>
+        <div class="d-flex justify-center">
+          <v-btn @click="test.addItem({ name: 'unknown' })" :color="'success'" class="btn">
+            <v-icon icon="mdi-plus-thick"></v-icon>
+          </v-btn>
+        </div>
+      </template>
+      <template #[`item.action`]="{ item }">
+        <div class="d-flex justify-center">
+          <v-btn @click="test.deleteItem(item)" :color="'error'" class="btn mr-1">
+            <v-icon icon="mdi-trash-can"></v-icon>
+          </v-btn>
+          <v-btn :color="'info'" class="btn">
+            <v-icon icon="mdi-square-edit-outline"></v-icon>
+          </v-btn>
+        </div>
+      </template>
+      <template #expanded-row="{ columns, index, item, isExpanded }">
+        <td class="pa-4 py-6" :colspan="columns.length">
+          <div>{{ columns }}</div>
+          <div>{{ index }}</div>
+          <div>{{ item }}</div>
+          <div>{{ isExpanded(item) }}</div>
+        </td>
+      </template>
+      <!-- 客製化 item row 範例-->
+      <!-- <template #item="{ columns, index, item, isExpanded(item),toggleExpand }">
+        <tr>
+          <td :colspan="columns.length">
+            <v-btn @click="toggleExpand(item)">Toggle</v-btn>
+          </td>
+        </tr>
+      </template> -->
+    </Table>
+    <!-- /*******************************Server端 Table-Start**********************************************/-->
     <h2>.v-table</h2>
     <!-- /*******************************純前端 Table-Start**********************************************/-->
     <v-table class="custom-table" :style="'max-height: 1000px'" fixed-header>
@@ -51,58 +105,6 @@
       </tbody>
     </v-table>
     <!-- /*******************************純前端 Table-End**********************************************/-->
-    <h2>.v-data-table-server</h2>
-    <!-- /*******************************Server端 Table-Start**********************************************/-->
-    <v-btn @click="setExpanded" class="mr-1">toggle 單一項目</v-btn>
-    <v-btn @click="setAllExpanded" class="mr-1">全部打開</v-btn>
-    <v-btn @click="clearAllExpanded">全部關閉</v-btn>
-    <Table
-      :headers="headers"
-      :items="testNames"
-      :items-length="testNames.length"
-      :items-per-page="itemPerPage"
-      :itemValue="'name'"
-      :showExpand="showExpand"
-      :defaultExpanded="defaultExpanded"
-    >
-      <template #top>
-        <Pagination :totalCount="testNames.length" />
-      </template>
-      <template #[`header.action`]>
-        <div class="d-flex justify-center">
-          <v-btn @click="test.addItem({ name: 'unknown' })" :color="'success'" class="btn">
-            <v-icon icon="mdi-plus-thick"></v-icon>
-          </v-btn>
-        </div>
-      </template>
-      <template #[`item.action`]="{ item }">
-        <div class="d-flex justify-center">
-          <v-btn @click="test.deleteItem(item)" :color="'error'" class="btn mr-1">
-            <v-icon icon="mdi-trash-can"></v-icon>
-          </v-btn>
-          <v-btn :color="'info'" class="btn">
-            <v-icon icon="mdi-square-edit-outline"></v-icon>
-          </v-btn>
-        </div>
-      </template>
-      <template #expanded-row="{ columns, index, item, isExpanded }">
-        <td class="pa-4 py-6" :colspan="columns.length">
-          <div>{{ columns }}</div>
-          <div>{{ index }}</div>
-          <div>{{ item }}</div>
-          <div>{{ isExpanded(item) }}</div>
-        </td>
-      </template>
-      <!-- 客製化 item row 範例-->
-      <!-- <template #item="{ columns, index, item, isExpanded(item),toggleExpand }">
-        <tr>
-          <td :colspan="columns.length">
-            <v-btn @click="toggleExpand(item)">Toggle</v-btn>
-          </td>
-        </tr>
-      </template> -->
-    </Table>
-    <!-- /*******************************Server端 Table-Start**********************************************/-->
   </v-card>
 </template>
 
@@ -135,9 +137,10 @@ const headers = reactive([
     style: '',
   },
 ]);
+
+/*******************************Table Expanded-Start**********************************************/
 const defaultExpanded = ref(['electrode']);
 const showExpand = ref(true);
-const itemPerPage = ref(10);
 
 function setExpanded() {
   const testItemName = 'exeggcute';
@@ -155,6 +158,30 @@ function setAllExpanded() {
 function clearAllExpanded() {
   defaultExpanded.value = [];
 }
+/*******************************Table Expanded-Start**********************************************/
+
+/*******************************Table Pagination binding-Start**********************************************/
+const itemPerPage = ref(10);
+const pagination = ref({
+  itemsPerPage: 100, // 一頁幾筆
+  page: 10, // 當前頁數
+});
+
+function updateSortCondition(options: any) {
+  console.log(options);
+  // 由 table sort 負責觸發請求
+  // 重新呼叫 API 記得在此綁上 pagination 條件。
+  // table sort 邏輯不要跟 pagination 混到。
+  // 會很難 debug。
+}
+function updatePagination(value: any) {
+  pagination.value = value;
+  // 由 pagination 負責觸發請求
+  // 重新呼叫 API 記得在此綁上 sort 條件。
+  // table sort 邏輯不要跟 pagination 混到。
+  // 會很難 debug。
+}
+/*******************************Table Pagination binding-End**********************************************/
 
 onMounted(async () => {
   try {

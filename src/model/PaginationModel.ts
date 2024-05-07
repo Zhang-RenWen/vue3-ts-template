@@ -1,15 +1,16 @@
 export interface Props {
-  totalCount?: number;
-  value?: object;
-  itemsPerPage?: number;
-  itemsPerPageOptions?: string | number[];
+  totalCount?: number; // 總筆數
+  value?: object; // 綁定資料
+  itemsPerPageOptions?: string | number[]; // 一頁幾筆選項
+  totalVisible?: number; // 最少顯示多少頁碼
 }
 
 export const propsBase = {
   totalCount: 0,
   value: {
-    page: 1,
+    itemsPerPage: 10, // 一頁幾筆
+    page: 1, // 當前頁數
   },
-  itemsPerPage: 10,
   itemsPerPageOptions: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+  totalVisible: 5,
 };

@@ -1,5 +1,4 @@
 <template>
-  {{ itemsPerPage }}{{ itemsLength }}
   <v-data-table-server
     v-model:expanded="expanded"
     :headers="headers"
@@ -14,8 +13,7 @@
     :show-expand="showExpand"
     expand-on-click
     @update:expanded="expandedFn"
-    @update:items-per-page="itemsPerPageFn"
-    @update:options="loadItems"
+    @update:options="onSortConditionChanged"
   >
     <!-- expand-on-click 點擊整條 row 觸發toggle-expand-->
     <template v-for="(_, slot) of $slots" #[slot]="scope">
@@ -34,20 +32,17 @@ import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
 import { Props, propsBase } from '@/model/TableModel';
 const props = withDefaults(defineProps<Props>(), propsBase);
 let expanded = ref([]); // 綁定資料在本組件;
-const emits = defineEmits(['updateExpanded', 'updateItemsPerPage']);
+const emits = defineEmits(['updateExpanded', 'updateSortCondition']);
 function expandedFn(newExpandedItem: any) {
   emits('updateExpanded', newExpandedItem);
-}
-function itemsPerPageFn(newItemsPerPage: any) {
-  emits('updateItemsPerPage', newItemsPerPage);
 }
 
 function setExpanded() {
   // 設定 初始化 expanded 項目
   expanded.value = JSON.parse(JSON.stringify(props.defaultExpanded));
 }
-function loadItems(aaa: any) {
-  console.log(aaa);
+function onSortConditionChanged(options: any) {
+  emits('updateSortCondition', options);
 }
 const expandedListener = computed(() => {
   setExpanded();
