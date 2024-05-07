@@ -7,18 +7,13 @@ import '@/assets/styles/main.scss';
 import App from './App.vue';
 // Plugins
 import { createApp, nextTick } from 'vue';
-import piniaPersist from 'pinia-plugin-persist';
 import { registerPlugins } from '@/plugins';
 import { registerComponents } from '@/components';
-
 import { Lazyload, showFailToast } from 'vant';
-import { createPinia } from 'pinia';
 import router from '@/router';
 
+import pinia from '@/stores/index';
 import { useUserStore } from '@/stores/useUserStore';
-
-const pinia = createPinia();
-pinia.use(piniaPersist);
 
 const app = createApp(App);
 registerPlugins(app);
@@ -26,7 +21,7 @@ registerComponents(app);
 app.use(Lazyload);
 app.use(pinia);
 app.mount('#app');
-
+export { pinia };
 /**
  * 登入攔截器
  */

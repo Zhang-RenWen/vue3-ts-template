@@ -11,15 +11,20 @@
 import { useTestStore } from '@/stores/test';
 import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
+import { useLoadingStore } from '@/stores/loading';
+const loading = useLoadingStore();
 
 const test = useTestStore();
 const { testNames } = storeToRefs(test);
 
 onMounted(async () => {
   try {
+    loading.toggleLoading(true);
     await test.getApiData();
   } catch (error) {
     console.log(error);
+  } finally {
+    loading.toggleLoading(false);
   }
 });
 </script>

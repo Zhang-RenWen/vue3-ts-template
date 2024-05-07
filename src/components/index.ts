@@ -7,6 +7,8 @@ import InputAutoComplete from './InputAutoComplete.vue';
 import Table from './Table.vue';
 import Pagination from './Pagination.vue';
 import Dialog from './Dialog.vue';
+import Alert from './Alert.vue';
+import Loading from './Loading.vue';
 import type { App } from 'vue';
 
 export function registerComponents(app: App) {
@@ -17,5 +19,7 @@ export function registerComponents(app: App) {
   app.component('Table', Table);
   app.component('Pagination', Pagination);
   app.component('Dialog', Dialog);
+  app.component('Alert', Alert);
+  app.component('Loading', Loading);
   app.component('VueDraggableResizable', VueDraggableResizable);
 }

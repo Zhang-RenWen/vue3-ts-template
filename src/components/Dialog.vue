@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :max-width="maxWidth" v-model="internalValue">
+  <v-dialog :max-width="maxWidth" v-model="internalValue" persistent>
     <vue-draggable-resizable
       w="auto"
       h="auto"

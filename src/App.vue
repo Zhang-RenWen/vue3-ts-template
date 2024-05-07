@@ -73,57 +73,21 @@
     <v-main>
       <router-view></router-view>
     </v-main>
-
-    <!-- Progress -->
-    <v-overlay :value="alert.progress">
-      <v-progress-circular indeterminate size="64" />
-    </v-overlay>
-
-    <!-- Snackbar -->
-    <v-snackbar
-      v-model="alert.snackbar.visible"
-      :color="alert.snackbar.type"
-      :timeout="alert.snackbar.timeout"
-      bottom
-    >
-      {{ alert.snackbar.content }}
-      <template v-slot:action="{ attrs }">
-        <v-btn text v-bind="attrs" @click="alert.hideSnackbar()">{{ alert.snackbar.button }}</v-btn>
-      </template>
-    </v-snackbar>
-
+    <!-- Loading  -->
+    <Loading />
     <!-- Alert Dialog -->
-    <v-dialog v-model="alert.message.visible" max-width="400">
-      <v-card>
-        <v-card-title class="title">
-          {{ alert.message.title }}
-        </v-card-title>
-
-        <v-card-text>{{ alert.message.content }}</v-card-text>
-
-        <v-card-actions>
-          <v-spacer />
-
-          <v-btn text color="primary" @click="alert.hideMessage()">
-            {{ alert.message.button }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <Alert />
   </v-app>
 </template>
 <script setup>
 import { ref, computed } from 'vue';
 import { RouterView, useRoute, useRouter } from 'vue-router';
-import { useAlertsStore } from '@/stores/alerts';
 
 import menus from '@/assets/nav-menu.json';
 import logo from '@/assets/logo.png';
 
 const route = useRoute();
 const router = useRouter();
-
-const alert = useAlertsStore();
 
 const drawer = ref(false);
 const user = ref(null);

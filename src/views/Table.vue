@@ -183,11 +183,17 @@ function updatePagination(value: any) {
 }
 /*******************************Table Pagination binding-End**********************************************/
 
+import { useLoadingStore } from '@/stores/loading';
+const loading = useLoadingStore();
+
 onMounted(async () => {
   try {
+    loading.toggleLoading(true);
     await test.getApiData();
   } catch (error) {
     console.log(error);
+  } finally {
+    loading.toggleLoading(false);
   }
 });
 </script>
