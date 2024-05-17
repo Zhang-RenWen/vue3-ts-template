@@ -7,7 +7,6 @@ import ViteFonts from 'unplugin-fonts/vite';
 import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
 import 'dotenv/config';
-console.log(process);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -47,14 +46,14 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3000,
     proxy: {
-      '/api': {
-        target: `${process.env.VITE_APP_BASE_URL}/api/`,
+      '/KYCSW': {
+        target: `${process.env.VITE_APP_BASE_URL}/`,
         changeOrigin: true, // 是否跨域
         secure: false, // target https 要開啟
-        rewrite: (path) => path.replace(/^\/api/, ''),
-        cookiePathRewrite: {
-          '/api': '/',
-        },
+        // rewrite: (path) => path.replace(/^\/KYCSW/, ''),
+        // cookiePathRewrite: {
+        //   '/KYCSW': '/',
+        // },
       },
     },
   },

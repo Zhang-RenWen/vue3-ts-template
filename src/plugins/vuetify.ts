@@ -8,6 +8,7 @@
 import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify/styles';
 import '@/assets/styles/main.scss';
+import { VNumberInput } from 'vuetify/labs/VNumberInput';
 // Composables
 import { createVuetify } from 'vuetify';
 
@@ -36,8 +37,12 @@ export default createVuetify({
           cancel: '#ca5c53',
           error: '#dc3548',
           info: '#145488',
+          white: '#ffffff',
         },
       },
     },
+  },
+  components: {
+    VNumberInput,
   },
 });

@@ -1,13 +1,46 @@
+.inputTextField {
+  width: 100%;
+}
+
 .inputTextField :deep(.v-field__input) {
   max-height: 30px;
   min-height: 30px;
   padding: 0 6px;
 }
 
+.inputTextField :deep(.v-input__details) {
+  padding: 0;
+}
+
 .inputTextField.hasChanged :deep(.v-field__input) {
   color: red;
 }
+.inputTextField .hasChanged :deep(input) {
+  color: red;
+}
 
-.inputTextField :deep(.v-input__details) {
+.inputTextField.text-end :deep(input),
+.inputTextField .text-end :deep(input) {
+  text-align: end;
+}
+.inputTextField.text-center :deep(input),
+.inputTextField .text-center :deep(input) {
+  text-align: center;
+}
+
+.inputTextArea {
+  width: 100%;
+}
+
+.inputTextArea :deep(.v-field__input) {
+  padding: 0 6px;
+  -webkit-mask-image: unset;
+}
+
+.inputTextArea.hasChanged :deep(.v-field__input input) {
+  color: red;
+}
+
+.inputTextArea :deep(.v-input__details) {
   padding: 0;
 }

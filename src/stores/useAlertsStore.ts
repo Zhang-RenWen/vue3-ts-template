@@ -1,19 +1,16 @@
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useAlertsStore = defineStore('alerts', () => {
   const message = reactive({
     title: '',
     content: '',
-    button: 'OK',
+    buttonText: 'OK',
     visible: false,
   });
 
-  function showMessage(content: string, title: string, button: string) {
-    message.content = content || '';
-    message.title = title || '';
-    message.button = button || 'OK';
-    message.visible = true;
+  function showMessage(option: AlertOption) {
+    Object.assign(message, { ...defaultOption, ...option, visible: true });
   }
 
   function hideMessage() {

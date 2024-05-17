@@ -1,0 +1,19 @@
+.main-section {
+  padding: 24px !important;
+  overflow-y: auto !important;
+  height: calc(100vh -130px) !important;
+  margin: 0 12px !important;
+}
+
+.storybook-demo-code {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 12px;
+}
+
+.demo-high-light-color {
+  color: greenyellow;
+}

@@ -1,4 +1,4 @@
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useLoadingStore = defineStore('loading', () => {

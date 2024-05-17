@@ -122,7 +122,7 @@ export const toRound = (value, precision = 0) => {
  * @param { Number } precision 位數
  * @returns
  */
-export const toPad0AfterPoint = (value, precision) => {
+export const toPad0AfterPoint = (value, precision = 0) => {
   if (precision && precision > 0) {
     let parts = value.split('.');
     parts[0] = parts[0] ? parts[0].replace(/^(0+(?!(\.$)))/g, '') : '0';

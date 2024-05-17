@@ -68,4 +68,10 @@
       }
     }
   }
+  :deep(.v-table__wrapper > table > thead > tr > th.v-data-table__th--sortable):hover {
+    color: #ffffff;
+  }
+  :deep(.v-table__wrapper > table tbody > tr > th.v-data-table__th--sortable):hover {
+    color: #ffffff;
+  }
 }

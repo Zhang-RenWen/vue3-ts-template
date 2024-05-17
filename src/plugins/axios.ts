@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import 'vant/es/toast/style';
 import { errorHandler } from '@/plugins/request';
 
 /**

@@ -1,3 +1,8 @@
+export interface SortByOptions {
+  key: string;
+  order?: string;
+}
+
 export interface Props {
   headers?: Array<T>;
   items?: Array<T>;
@@ -6,6 +11,7 @@ export interface Props {
   showExpand?: boolean;
   itemsLength?: number;
   itemsPerPage?: number;
+  sortBy?: Array<SortByOptions>;
 }
 
 export const propsBase = {

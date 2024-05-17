@@ -1,5 +1,5 @@
 // 類似 Vue2 mixin.js 的功能
-import { ref, toRefs, withDefaults, defineEmits, computed, defineProps } from 'vue';
+
 // 註冊通用規則
 import {
   checkEnglish,
@@ -25,7 +25,6 @@ import {
   // checkIntegerRange,
   // check100WithFloat,
   // checkIntegerDecimal,
-  checkPositiveNumber,
   checkPositiveInteger,
   checkOver6Decimals,
   checkSymbol,
@@ -56,10 +55,14 @@ import {
 
 export interface Props {
   value?: string;
+  modelValue?: string | number | object;
   label?: string;
   type?: string;
   inputType?: string;
   hasChanged?: boolean;
+  textEnd?: boolean;
+  textCenter?: boolean;
+  placeholder?: string;
   rules?: Array<T>;
   /*******************************Rules-Start**********************************************/
   required?: boolean;
@@ -86,7 +89,6 @@ export interface Props {
   // checkIntegerRange?: boolean;
   // check100WithFloat?: boolean;
   // checkIntegerDecimal?: boolean;
-  checkPositiveNumber?: boolean;
   checkPositiveInteger?: boolean;
   checkOver6Decimals?: boolean;
   checkSymbol?: boolean;
@@ -111,7 +113,16 @@ export interface Props {
   toFullWidth?: boolean;
   toUpperCase?: boolean;
   toLowerCase?: boolean;
+  decimal?: number;
   /*******************************Format-End**********************************************/
+  /*******************************Limit-Start**********************************************/
+  maxLength?: number;
+  minLength?: number;
+  max?: number;
+  min?: number;
+  checkMinLength?: boolean;
+  checkMaxLength?: boolean;
+  /*******************************Limit-End**********************************************/
   /*******************************InputAutoComplete-Start**********************************************/
   items?: Array<T>;
   /*******************************InputAutoComplete-Start**********************************************/
@@ -126,6 +137,7 @@ export const propsBase = {
   hasChanged: false,
   rules: [],
   items: [],
+  decimal: 0,
 };
 
 export class InputRules {
@@ -136,29 +148,20 @@ export class InputRules {
   required(value: any) {
     return !!value || '請輸入!';
   }
-  // checkMinLength(value: any) {
-  //   if (['', 0, '0', null, 'null', undefined, false].includes(value)) return true
-  //   if (['', 0, '0', null, 'null', undefined, false].includes(this.minLength)) return true
+  checkMinLength(value: any) {
+    const minLength = this.inputProps['minLength'];
+    if (!value) return true;
+    if (!minLength) return true;
 
-  //   return String(value).length >= this.minLength || `此欄位請輸入至少${this.minLength}個字`
-  //}
+    return String(value).length >= minLength || `此欄位請輸入至少${minLength}個字`;
+  }
 
-  // checkMaxLength(value: any) {
-  //   if (['', 0, '0', null, 'null', undefined, false].includes(value)) return true
-  //   if (['', 0, '0', null, 'null', undefined, false].includes(this.maxLength)) return true
-  //   if (
-  //     this.format.includes('toCurrency') &&
-  //     this.type === 'number' &&
-  //     this.isFocused === false
-  //   ) {
-  //     const diff = [...String(value)].filter((text) => text === ',').length
-  //     return (
-  //       String(value).length <= Number(this.maxLength) + Number(diff) ||
-  //       '此欄位值超過可輸入之長度'
-  //     )
-  //   }
-  //   return String(value).length <= this.maxLength || '此欄位值超過可輸入之長度'
-  //}
+  checkMaxLength(value: any) {
+    const maxLength = this.inputProps['maxLength'];
+    if (!value) return true;
+    if (!maxLength) return true;
+    return String(value).length <= maxLength || '此欄位值超過可輸入之長度';
+  }
 
   checkEnglish(value: any) {
     if (!value) return true;
@@ -280,7 +283,7 @@ export class InputRules {
 
   checkIntegerZeroToNinetyNine(value: any) {
     if (!value) return true;
-    return checkIntegerZeroToNinetyNine || '輸入範圍0~99';
+    return checkIntegerZeroToNinetyNine(value) || '輸入範圍0~99';
   }
 
   // checkIntegerRange(value, min, max) {
@@ -299,11 +302,6 @@ export class InputRules {
   //     checkIntegerDecimal(value, integer, decimal) || `限制整數${integer}位及小數點${decimal}位`
   //   );
   // }
-
-  checkPositiveNumber(value: any) {
-    if (!value) return true;
-    return checkPositiveNumber(value) || '輸入正數';
-  }
 
   checkPositiveInteger(value: any) {
     if (!value) return true;
@@ -363,7 +361,7 @@ export class InputRules {
     const defaultRules = [];
     Object.keys(this.inputProps).forEach((key) => {
       if (this[key] && this.inputProps[key]) {
-        defaultRules.push(this[key]);
+        defaultRules.push(this[key].bind(this));
       }
     });
     return defaultRules;
@@ -406,8 +404,15 @@ export class InputFormat {
     return toRound(value);
   }
 
+  toFixed(value: any) {
+    if (isNaN(value)) {
+      return Number(0).toFixed(this.inputProps?.decimal);
+    }
+    return Number(value).toFixed(this.inputProps?.decimal);
+  }
+
   toPad0AfterPoint(value: any) {
-    return toPad0AfterPoint(value);
+    return toPad0AfterPoint(value, this.inputProps?.decimal);
   }
 
   toClearPrefix0(value: any) {
@@ -415,7 +420,7 @@ export class InputFormat {
   }
 
   toCurrency(value: any) {
-    return toCurrency(value);
+    return toCurrency(value, this.inputProps?.decimal);
   }
 
   toUpperCase(value: any) {
@@ -440,6 +445,7 @@ export class InputFormat {
     const defaultFormat = this.getFormatFromProps();
     const result = defaultFormat.reduce((curResult, fn) => {
       if (!fn) return curResult;
+      fn = fn.bind(this);
       return fn(curResult);
     }, value);
 
