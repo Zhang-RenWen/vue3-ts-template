@@ -1,5 +1,5 @@
+import Header from './Header';
 import VueDraggableResizable from 'vue-draggable-resizable';
-
 import InputLabel from './InputLabel.vue';
 import InputTextField from './InputTextField.vue';
 import InputFormat from './InputFormat.vue';
@@ -12,6 +12,7 @@ import Loading from './Loading.vue';
 import type { App } from 'vue';
 
 export function registerComponents(app: App) {
+  app.component('Header', Header);
   app.component('InputLabel', InputLabel);
   app.component('InputTextField', InputTextField);
   app.component('InputFormat', InputFormat);

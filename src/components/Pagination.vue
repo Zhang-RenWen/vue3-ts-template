@@ -55,6 +55,7 @@
 <script setup lang="ts">
 import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
 import { Props, propsBase } from '@/model/PaginationModel';
+import { deepClone } from '@/utils/deepClone';
 const props = withDefaults(defineProps<Props>(), propsBase);
 const page = ref(1); // 當前頁碼
 const itemsPerPage = ref(10); // 一頁幾筆
@@ -72,7 +73,7 @@ function onItemsPerPageChanged(itemsPerPage: number) {
 
 function setPagination() {
   // 設定 初始化 pagination 項目
-  const bindValue = JSON.parse(JSON.stringify(props.value));
+  const bindValue = deepClone(props.value);
   page.value = bindValue.page;
   itemsPerPage.value = bindValue.itemsPerPage;
 }

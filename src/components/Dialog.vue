@@ -1,9 +1,10 @@
 <template>
-  <v-dialog :max-width="maxWidth" v-model="internalValue" persistent>
+  <v-dialog v-model="internalValue" :max-width="maxWidth" persistent>
     <vue-draggable-resizable
       w="auto"
       h="auto"
       class-name-handle="my-handle-class"
+      v-bind="{ ...vueDraggableResizableOptions }"
       @-resize-start="function () {}"
     >
       <template v-for="(_, slot) of $slots" #[slot]="scope">

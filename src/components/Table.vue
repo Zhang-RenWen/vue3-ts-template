@@ -9,6 +9,7 @@
     fixed-header
     :items-per-page="itemsPerPage"
     :items-length="itemsLength"
+    :sort-by="sortByListener"
     :item-value="itemValue"
     :show-expand="showExpand"
     expand-on-click
@@ -21,7 +22,7 @@
     </template>
 
     <!-- hide-default-pagination -->
-    <template v-slot:bottom></template>
+    <template #bottom></template>
   </v-data-table-server>
   <!-- 代替 WATCH 監聽/更新狀態 -->
   <div class="d-none">{{ expandedListener }}</div>
@@ -30,25 +31,29 @@
 <script setup lang="ts">
 import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
 import { Props, propsBase } from '@/model/TableModel';
+import { deepClone } from '@/utils/deepClone';
 const props = withDefaults(defineProps<Props>(), propsBase);
 let expanded = ref([]); // 綁定資料在本組件;
-const emits = defineEmits(['updateExpanded', 'updateSortCondition']);
+const emits = defineEmits(['updateExpanded', 'updateSortBy']);
 function expandedFn(newExpandedItem: any) {
   emits('updateExpanded', newExpandedItem);
 }
 
 function setExpanded() {
   // 設定 初始化 expanded 項目
-  expanded.value = JSON.parse(JSON.stringify(props.defaultExpanded));
+  expanded.value = deepClone(props.defaultExpanded);
 }
 function onSortConditionChanged(options: any) {
-  emits('updateSortCondition', options);
+  emits('updateSortBy', options);
 }
 const expandedListener = computed(() => {
   setExpanded();
   return props.defaultExpanded;
 });
 
+const sortByListener = computed(() => {
+  return deepClone(props.sortBy);
+});
 onMounted(async () => {
   setExpanded();
 });

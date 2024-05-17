@@ -15,7 +15,7 @@
 <!--/********************************Script-Start*********************************************/-->
 <script setup lang="ts">
 import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
-import { useLoadingStore } from '@/stores/loading';
+import { useLoadingStore } from '@/stores/useLoadingStore';
 const loading = useLoadingStore();
 onMounted(async () => {});
 </script>

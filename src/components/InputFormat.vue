@@ -24,12 +24,36 @@
           </div>
         </div>
         <div class="v-field__field" data-no-activator="">
-          <label class="v-label v-field-label" for="input-18"></label>
-          <div class="v-field__input formatInput" data-no-activator="">
-            <input v-model="localValue" />
+          <div
+            ref="FormatInput"
+            class="v-field__input formatInput"
+            data-no-activator=""
+            :class="{
+              'disabled-input': !displayFormat,
+            }"
+          >
+            <input
+              v-model="localValue"
+              :class="{
+                hasChanged: hasChanged,
+                'text-center': textCenter,
+                'text-end': textEnd,
+              }"
+              :placeholder="localPlaceholder"
+            />
           </div>
-          <div class="v-field__input pa-0 realInput" data-no-activator="">
-            <slot name="format-value" />
+          <div
+            ref="RealInput"
+            class="v-field__input pa-0 realInput"
+            data-no-activator=""
+            :class="{
+              hasChanged: hasChanged,
+              'text-center': textCenter,
+              'text-end': textEnd,
+              'disabled-input': displayFormat,
+            }"
+          >
+            <slot />
           </div>
         </div>
         <div class="v-field__outline">
@@ -44,12 +68,17 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, toRefs, computed } from 'vue';
+import { ref, toRefs, computed, onMounted, onBeforeUnmount } from 'vue';
 import { Props, propsBase, InputFormat } from '@/model/InputModel';
 
 const props = withDefaults(defineProps<Props>(), propsBase);
-
+const localPlaceholder = computed(() => {
+  return props.placeholder || '請輸入';
+});
 const localValue = computed(() => {
+  if (typeof internalValue.value.value.value === 'object') {
+    return format(internalValue.value.value.value.value);
+  }
   return format(internalValue.value.value);
 });
 
@@ -59,19 +88,53 @@ const formatValue = inputFormat.formatValue;
 function format(value: any) {
   return formatValue(value);
 }
+
+const FormatInput = ref(null);
+const RealInput = ref(null);
+const displayFormat = ref(true);
+
+function show() {
+  displayFormat.value = false;
+}
+
+function hide() {
+  displayFormat.value = true;
+}
+
+onMounted(async () => {
+  RealInput.value.querySelector('input').addEventListener('focus', show);
+  RealInput.value.querySelector('input').addEventListener('blur', hide);
+});
+
+onBeforeUnmount(async () => {
+  RealInput.value.querySelector('input').removeEventListener('focus', show);
+  RealInput.value.querySelector('input').removeEventListener('blur', hide);
+});
 </script>
 <style scoped lang="scss" src="@/assets/styles/inputBase.scss"></style>
 <style scoped lang="scss">
-.formatInput {
+.hasChanged :deep(input),
+input.hasChanged {
+  color: red;
+}
+
+.disabled-input :deep(input),
+.disabled-input.hasChanged :deep(input),
+.disabled-input .hasChanged :deep(input) {
+  color: transparent;
   pointer-events: none;
+}
+
+.formatInput {
   background-color: #ffffff;
+}
+.formatInput :deep(input) {
+  opacity: 1;
 }
 .realInput {
   position: absolute;
 }
-
 .realInput :deep(input) {
-  opacity: 0;
   margin: 0;
 }
 </style>
