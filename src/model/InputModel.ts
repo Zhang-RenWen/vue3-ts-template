@@ -54,7 +54,7 @@ import {
 } from '@/utils/format';
 
 export interface Props {
-  value?: string;
+  value?: string | number | object;
   modelValue?: string | number | object;
   label?: string;
   type?: string;
@@ -108,6 +108,7 @@ export interface Props {
   toRound?: boolean;
   toPad0AfterPoint?: boolean;
   toClearPrefix0?: boolean;
+  toFixed?: boolean;
   toCurrency?: boolean;
   toHalfWidth?: boolean;
   toFullWidth?: boolean;

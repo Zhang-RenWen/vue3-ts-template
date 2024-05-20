@@ -2,7 +2,6 @@
   <v-card class="main-section">
     <h1>輸入框/表單</h1>
     <InputNumber v-model="numberFormat" />
-    <InputTextField v-model="numberFormat" toFixed />
     <v-container></v-container>
   </v-card>
 </template>

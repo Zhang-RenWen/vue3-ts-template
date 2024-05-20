@@ -12,7 +12,7 @@
       type="number"
       v-bind="{ ...props }"
       to-fixed
-      to-clear-prefix
+      to-clear-prefix-0
       @blur="updateParent"
       @input="updateParent"
     />

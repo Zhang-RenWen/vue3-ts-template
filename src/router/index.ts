@@ -28,6 +28,7 @@ const routes = [
         name: 'icon',
         meta: {
           hidden: true,
+          icon: 'mdi-view-dashboard',
           title: 'Icon',
         },
         component: Icon,
@@ -37,6 +38,7 @@ const routes = [
         name: 'input',
         meta: {
           hidden: true,
+          icon: 'mdi-view-dashboard',
           title: 'Input',
         },
         component: Input,
@@ -46,6 +48,7 @@ const routes = [
         name: 'table',
         meta: {
           hidden: true,
+          icon: 'mdi-view-dashboard',
           title: 'Table',
         },
         component: Table,
@@ -56,6 +59,7 @@ const routes = [
         name: 'dialog',
         meta: {
           hidden: true,
+          icon: 'mdi-view-dashboard',
           title: 'Dialog',
         },
         component: Dialog,
@@ -65,6 +69,7 @@ const routes = [
         name: 'dataFlow',
         meta: {
           hidden: true,
+          icon: 'mdi-view-dashboard',
           title: 'DataFlow',
         },
         component: DataFlow,
