@@ -11,8 +11,6 @@
       </div>
     </div>
   </div>
-  <!-- 代替 WATCH 監聽/更新狀態 -->
-  <div class="d-none">{{ routerListener }}</div>
 </template>
 <script setup lang="ts">
 import { useUIStore } from '@/stores/useUIStore';

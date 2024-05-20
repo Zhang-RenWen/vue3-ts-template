@@ -18,19 +18,9 @@
           @change="change"
         />
         <InputLabel name="Disabled Input" />
-        <InputTextField
-          v-model="pokemon.text"
-          :disabled="disabled"
-          to-upper-case
-          @format="(v) => pokemon.setText(v)"
-        />
+        <InputTextField v-model="pokemon.text" :disabled="disabled" to-upper-case />
         <InputLabel name="Required Input" />
-        <InputTextField
-          v-model="text"
-          :required="required"
-          to-upper-case
-          @format="(v) => (text = v)"
-        />
+        <InputTextField v-model="text" :required="required" to-upper-case />
         <InputLabel name="Slot Input" />
         <InputTextField v-model="pokemon.text">
           >
@@ -73,9 +63,7 @@
 
         <InputLabel name="Format Input" />
         <InputFormat :value="pokemon.text" to-currency>
-          <template #format-value>
-            <InputTextField v-model="pokemon.text" check-taiwan-phone-number :required="required" />
-          </template>
+          <InputTextField v-model="pokemon.text" check-taiwan-phone-number :required="required" />
         </InputFormat>
         Pinia pokemon.text:
         <p>{{ pokemon.text }}</p>

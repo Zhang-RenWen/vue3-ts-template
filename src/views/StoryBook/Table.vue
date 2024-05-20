@@ -19,10 +19,11 @@
       :items="testNames"
       :items-length="testNames.length"
       :items-per-page="pagination.itemsPerPage"
+      :sort-by="sortBy"
       :item-value="'name'"
       :show-expand="showExpand"
       :default-expanded="defaultExpanded"
-      @updateSortCondition="updateSortCondition"
+      @updateSortBy="updateSortBy"
     >
       <template #top>
         <Pagination :value="pagination" :total-count="testNames.length" @input="updatePagination" />
@@ -167,7 +168,15 @@ const pagination = ref({
   page: 10, // 當前頁數
 });
 
-function updateSortCondition(options: any) {
+const sortBy1 = [
+  {
+    key: 'name',
+    order: 'asc',
+  },
+];
+const sortBy = reactive(deepClone(sortBy1));
+
+function updateSortBy(options: any) {
   console.log(options);
   // 由 table sort 負責觸發請求
   // 重新呼叫 API 記得在此綁上 pagination 條件。
@@ -184,6 +193,7 @@ function updatePagination(value: any) {
 /*******************************Table Pagination binding-End**********************************************/
 
 import { useLoadingStore } from '@/stores/useLoadingStore';
+import { deepClone } from '@/utils/deepClone';
 const loading = useLoadingStore();
 
 onMounted(async () => {
