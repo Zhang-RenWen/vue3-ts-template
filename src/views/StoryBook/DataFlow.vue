@@ -1,11 +1,11 @@
 <template>
-  <v-card class="pa-6">
+  <v-card class="main-section">
     <h3>About page</h3>
     <p>Pokemons list:</p>
     <p>{{ testNames }}</p>
     <v-btn @click="test.addItem({ name: 'unknow' })">push item</v-btn>
     <v-row v-for="(item, index) in testNames" :key="index" class="my-3 mx-3">
-      <v-btn @click="test.deleteItem(item)" :color="'primary'">delete {{ item['name'] }}</v-btn>
+      <v-btn :color="'primary'" @click="test.deleteItem(item)">delete {{ item['name'] }}</v-btn>
     </v-row>
 
     Pinia test.text:

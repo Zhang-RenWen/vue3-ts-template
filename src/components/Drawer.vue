@@ -32,7 +32,9 @@ let menus = toRefs(reactive([]));
 
 function getStoryBookRouteList() {
   if (router?.options?.routes) {
-    const storyBookRoute = router.options.routes.find((r) => (r.name = 'storyBook'));
+    console.log(router?.options?.routes);
+    const storyBookRoute = router.options.routes.find((r) => r.name === 'storyBook');
+
     if (storyBookRoute) {
       menus = reactive(storyBookRoute.children);
     }

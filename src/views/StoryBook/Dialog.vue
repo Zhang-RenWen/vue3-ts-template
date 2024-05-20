@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-6">
+  <v-card class="main-section">
     <h3 class="mb-6">Dialog</h3>
     <v-btn @click="dialog = !dialog">toggle-dialog</v-btn>
     <Dialog v-model="dialog">

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-6">
+  <v-card class="main-section">
     <h1>Table</h1>
     <p>
       v-data-table is not part of vuetify 3 yet, you need to use the lab version (not stable)
@@ -11,32 +11,32 @@
 
     <h2>.v-data-table-server</h2>
     <!-- /*******************************Server端 Table-Start**********************************************/-->
-    <v-btn @click="setExpanded" class="mr-1">toggle 單一項目</v-btn>
-    <v-btn @click="setAllExpanded" class="mr-1">全部打開</v-btn>
+    <v-btn class="mr-1" @click="setExpanded">toggle 單一項目</v-btn>
+    <v-btn class="mr-1" @click="setAllExpanded">全部打開</v-btn>
     <v-btn @click="clearAllExpanded">全部關閉</v-btn>
     <Table
       :headers="headers"
       :items="testNames"
       :items-length="testNames.length"
       :items-per-page="pagination.itemsPerPage"
-      :itemValue="'name'"
-      :showExpand="showExpand"
-      :defaultExpanded="defaultExpanded"
+      :item-value="'name'"
+      :show-expand="showExpand"
+      :default-expanded="defaultExpanded"
       @updateSortCondition="updateSortCondition"
     >
       <template #top>
-        <Pagination :value="pagination" :totalCount="testNames.length" @input="updatePagination" />
+        <Pagination :value="pagination" :total-count="testNames.length" @input="updatePagination" />
       </template>
       <template #[`header.action`]>
         <div class="d-flex justify-center">
-          <v-btn @click="test.addItem({ name: 'unknown' })" :color="'success'" class="btn">
+          <v-btn :color="'success'" class="btn" @click="test.addItem({ name: 'unknown' })">
             <v-icon icon="mdi-plus-thick"></v-icon>
           </v-btn>
         </div>
       </template>
       <template #[`item.action`]="{ item }">
         <div class="d-flex justify-center">
-          <v-btn @click="test.deleteItem(item)" :color="'error'" class="btn mr-1">
+          <v-btn :color="'error'" class="btn mr-1" @click="test.deleteItem(item)">
             <v-icon icon="mdi-trash-can"></v-icon>
           </v-btn>
           <v-btn :color="'info'" class="btn">
@@ -69,7 +69,7 @@
         <tr>
           <th v-for="head in headers" :key="head.value" :class="head.className" :style="head.style">
             <div v-if="head.key === 'action'" class="d-flex justify-center">
-              <v-btn @click="test.addItem({ name: 'unknown' })" :color="'success'" class="btn">
+              <v-btn :color="'success'" class="btn" @click="test.addItem({ name: 'unknown' })">
                 <v-icon icon="mdi-plus-thick"></v-icon>
               </v-btn>
             </div>
@@ -84,7 +84,7 @@
           <!-- action -->
           <td>
             <div class="d-flex justify-center">
-              <v-btn @click="test.deleteItem(item)" :color="'error'" class="btn mr-1">
+              <v-btn :color="'error'" class="btn mr-1" @click="test.deleteItem(item)">
                 <v-icon icon="mdi-trash-can"></v-icon>
               </v-btn>
               <v-btn :color="'info'" class="btn">
@@ -183,7 +183,7 @@ function updatePagination(value: any) {
 }
 /*******************************Table Pagination binding-End**********************************************/
 
-import { useLoadingStore } from '@/stores/loading';
+import { useLoadingStore } from '@/stores/useLoadingStore';
 const loading = useLoadingStore();
 
 onMounted(async () => {

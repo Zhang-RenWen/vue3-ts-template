@@ -1,6 +1,6 @@
 import { reactive } from 'vue';
 import { defineStore } from 'pinia';
-import { ConfirmOption, defailtOption } from '@/model/ConfirmModel';
+import { ConfirmOption, defaultOption } from '@/model/ConfirmModel';
 
 interface Message {
   title: string;
@@ -36,7 +36,7 @@ export const useConfirmsStore = defineStore('confirm', () => {
 
   function showMessage(option: ConfirmOption) {
     setResult(null);
-    Object.assign(message, { ...defailtOption, ...option, visible: true });
+    Object.assign(message, { ...defaultOption, ...option, visible: true });
     return new Promise((resolve) => {
       watcher(resolve);
     });

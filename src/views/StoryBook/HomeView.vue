@@ -1,11 +1,8 @@
 <template>
-  <v-card class="pa-6">
+  <v-card class="main-section">
     <h3>About page</h3>
-    <v-icon>mdi-eye</v-icon>
-    <p>
-      For a list of all available icons, visit the official
-      <a href="https://pictogrammers.com/library/mdi/">Material Design Icons page.</a>
-    </p>
+    <p>Pokemons list:</p>
+    <p>{{ testNames }}</p>
   </v-card>
 </template>
 
@@ -14,11 +11,22 @@
 import { useTestStore } from '@/stores/test';
 import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
+import { useLoadingStore } from '@/stores/useLoadingStore';
+const loading = useLoadingStore();
 
-const pokemon = useTestStore();
-const { testNames } = storeToRefs(pokemon);
+const test = useTestStore();
+const { testNames } = storeToRefs(test);
 
-onMounted(async () => {});
+onMounted(async () => {
+  try {
+    loading.toggleLoading(true);
+    await test.getApiData();
+  } catch (error) {
+    console.log(error);
+  } finally {
+    loading.toggleLoading(false);
+  }
+});
 </script>
 <!--/********************************Script-End*********************************************/-->
 

@@ -1,5 +1,6 @@
 import { reactive } from 'vue';
 import { defineStore } from 'pinia';
+import { AlertOption, defaultOption } from '@/model/AlertModel';
 
 export const useAlertsStore = defineStore('alerts', () => {
   const message = reactive({
