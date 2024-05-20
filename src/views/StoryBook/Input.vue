@@ -1,8 +1,72 @@
 <template>
   <v-card class="main-section">
-    <h1>輸入框/表單</h1>
-    <InputNumber v-model="numberFormat" />
-    <v-container></v-container>
+    <h1>Form Elements</h1>
+    <v-container>
+      <v-card class="input-demo-page-card">
+        <h3>Type</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>type/status</th>
+              <th>default</th>
+              <th>disabled</th>
+              <th>readonly</th>
+              <th>hasChanged</th>
+              <th>error</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>InputLabel</td>
+              <td><InputLabel name="Title Name"></InputLabel></td>
+            </tr>
+            <tr>
+              <td>InputTextField</td>
+              <td><InputTextField></InputTextField></td>
+            </tr>
+            <tr>
+              <td>InputTextArea</td>
+              <td><InputTextArea></InputTextArea></td>
+            </tr>
+            <tr>
+              <td>InputNumber</td>
+              <td><!-- <InputNumber></InputNumber> --></td>
+            </tr>
+            <tr>
+              <td>InputNumberSteppers</td>
+              <td><InputNumberSteppers></InputNumberSteppers></td>
+            </tr>
+            <tr>
+              <td>inputAutoComplete</td>
+              <td><inputAutoComplete></inputAutoComplete></td>
+            </tr>
+            <tr>
+              <td>InputFormat</td>
+              <td><!-- <InputFormat></InputFormat> --></td>
+            </tr>
+          </tbody>
+        </table>
+      </v-card>
+      <v-card class="input-demo-page-card">
+        <h3>Align</h3>
+      </v-card>
+      <v-card class="input-demo-page-card">
+        <h3>Slot</h3>
+      </v-card>
+      <v-card class="input-demo-page-card">
+        <h3>Events</h3>
+      </v-card>
+      <v-card class="input-demo-page-card">
+        <h3>Bind Data</h3>
+      </v-card>
+      <v-card class="input-demo-page-card">
+        <h3>Format</h3>
+      </v-card>
+      <v-card class="input-demo-page-card">
+        <h3>Validate</h3>
+      </v-card>
+    </v-container>
   </v-card>
 </template>
 
