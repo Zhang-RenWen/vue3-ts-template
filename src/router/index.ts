@@ -1,8 +1,7 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router';
 import { getPage } from '@/utils/glob';
-console.log(getPage('Images'));
-
+import StoryBook from '@/views/StoryBook/index.vue';
 const routes = [
   {
     path: '/',
@@ -14,9 +13,9 @@ const routes = [
     component: getPage('HomeView'),
   },
   {
-    path: '/storyBook',
+    path: '/',
     name: 'storyBook',
-    component: getPage('StoryBook'),
+    component: StoryBook,
     children: [
       {
         path: '/icon',
@@ -59,7 +58,16 @@ const routes = [
         },
         component: getPage('Dialog'),
       },
-
+      {
+        path: '/loading',
+        name: 'loading',
+        meta: {
+          hidden: true,
+          icon: 'mdi-view-dashboard',
+          title: 'Loading',
+        },
+        component: getPage('Loading'),
+      },
       {
         path: '/images',
         name: 'images',

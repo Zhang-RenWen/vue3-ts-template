@@ -25,4 +25,6 @@
     ></v-img>
   </v-card>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// import { onMounted, reactive, ref } from 'vue';
+</script>

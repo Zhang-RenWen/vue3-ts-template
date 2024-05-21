@@ -21,8 +21,6 @@ export function register(app: App) {
 
 export function getPage(name: string) {
   let page = null;
-  console.log(pages);
-
   for (const key in pages) {
     if (Object.prototype.hasOwnProperty.call(pages, key)) {
       const element = pages[key];
