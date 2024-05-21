@@ -46,15 +46,24 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3000,
     proxy: {
-      '/KYCSW': {
-        target: `${process.env.VITE_APP_BASE_URL}/`,
+      '/api': {
+        target: `${process.env.VITE_APP_BASE_URL}/api/`,
         changeOrigin: true, // 是否跨域
         secure: false, // target https 要開啟
-        // rewrite: (path) => path.replace(/^\/KYCSW/, ''),
+        // rewrite: (path) => path.replace(/^\/api/, ''),
         // cookiePathRewrite: {
-        //   '/KYCSW': '/',
+        //   '/api': '/',
         // },
       },
+      // '/KYCSW': {
+      //   target: `${process.env.VITE_APP_BASE_URL}/`,
+      //   changeOrigin: true, // 是否跨域
+      //   secure: false, // target https 要開啟
+      //   // rewrite: (path) => path.replace(/^\/KYCSW/, ''),
+      //   // cookiePathRewrite: {
+      //   //   '/KYCSW': '/',
+      //   // },
+      // },
     },
   },
   build: {

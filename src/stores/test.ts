@@ -14,7 +14,7 @@ export const useTestStore = defineStore('test', {
     async getApiData() {
       return await httpRequest
         .get({
-          url: '/v2/pokemon/?offset=100&limit=100',
+          url: 'api/v2/pokemon/?offset=100&limit=100',
           // url: '/v2/pokemon',
           //   checkLoginState: true,
           //   needJumpToLogin: true,
