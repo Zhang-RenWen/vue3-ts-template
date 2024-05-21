@@ -1,19 +1,124 @@
 <template>
   <v-card class="main-section">
-    <h1>Table</h1>
-    <p>
-      v-data-table is not part of vuetify 3 yet, you need to use the lab version (not stable)
-      <a href="https://vuetifyjs.com/en/labs/introduction/">
-        https://vuetifyjs.com/en/labs/introduction/
-      </a>
-    </p>
-    <p>data length: {{ testNames.length }}</p>
+    <h1>Table 組件應用</h1>
+    <p>主要分成2種：</p>
+    <ul>
+      <li>第一種由後端資料控制數量、分頁、排序、篩選</li>
+      <li>第二種資料一次回傳全部，排序、篩選分頁由前端控制</li>
+    </ul>
+    <h2>Type1: v-data-table-server</h2>
+    <p class="mb-3">資料數量、分頁、排序、篩選完全由後端回傳值控制。</p>
+    <h3>v-data-table-server :Table + Pagination 綁定方法如下：</h3>
+    <code class="storybook-demo-code">
+      <div>&nbsp;&lt;template&gt;</div>
+      <div>&nbsp;&nbsp;&lt;Table</div>
+      <div>&nbsp;&nbsp;&nbsp;...</div>
+      <div class="demo-high-light-color">&nbsp;&nbsp;&nbsp;:items-length="testNames.length"</div>
+      <div class="demo-high-light-color">
+        &nbsp;&nbsp;&nbsp;:items-per-page="pagination.itemsPerPage"
+      </div>
+      <div>&nbsp;&nbsp;&nbsp;...</div>
+      <div>&nbsp;&nbsp;&gt;</div>
+      <div>
+        &nbsp;&nbsp;//
+        <span class="demo-high-light-color">#top</span>
+        改成
+        <span class="demo-high-light-color">#bottom</span>
+        可以將 Pagination 移置表格下方
+        <div>&nbsp;&nbsp;&lt;template #top &gt;</div>
+        <div>
+          &nbsp;&nbsp;&nbsp;&lt;Pagination
+          <span class="demo-high-light-color">
+            :value="pagination" :total-count="testNames.length" @input="updatePagination"
+          </span>
+          /&gt;
+        </div>
 
-    <h2>.v-data-table-server</h2>
+        <div>&nbsp;&nbsp;&lt;/template&gt;</div>
+      </div>
+      <div>&nbsp;&lt;/Table&gt;</div>
+      <div>&lt;/template&gt;</div>
+      <div>&lt;script setup lang="ts" &gt;</div>
+      <div>&nbsp;...</div>
+      <div>
+        &nbsp; const
+        <span class="demo-high-light-color">pagination =ref({itemsPerPage:10,page:10})</span>
+      </div>
+
+      <div>&nbsp;...</div>
+      <div>&lt;/script&gt;</div>
+    </code>
+    <p>
+      範例中的 testNames.length 指的是全部資料的總筆數，而非單頁總筆數。變數 pagination
+      為控制頁碼/每頁筆數用。
+    </p>
+    <h3>排序綁定方法如下：</h3>
+    <code class="storybook-demo-code">
+      <div>&lt;template&gt;</div>
+      <div>&nbsp;&nbsp;&lt;Table</div>
+      <div>&nbsp;&nbsp;&nbsp;...</div>
+      <div class="demo-high-light-color">&nbsp;&nbsp;&nbsp;:sortBy="sortBy"</div>
+      <div class="demo-high-light-color">&nbsp;&nbsp;&nbsp;@updateSortBy="updateSortBy"</div>
+      <div>&nbsp;&nbsp;&nbsp;...</div>
+      <div>&nbsp;&nbsp;&gt;</div>
+      <div>&nbsp;&lt;/Table&gt;</div>
+      <div>&lt;/template&gt;</div>
+      <br />
+      <div>&lt;script setup lang="ts" &gt;</div>
+      <div>&nbsp;// 設定排序初始值</div>
+      <div>&nbsp;const sortBy1 = [</div>
+      <div>&nbsp;&nbsp;{</div>
+      <div>&nbsp;&nbsp;&nbsp;key: 'name',</div>
+      <div>&nbsp;&nbsp;&nbsp;order: 'asc',</div>
+      <div>&nbsp;&nbsp;}</div>
+      <div>&nbsp;];</div>
+      <br />
+      <div>
+        &nbsp;const
+        <span class="demo-high-light-color">sortBy</span>
+        = reactive(deepClone(sortBy1));
+      </div>
+      <br />
+      <div>&nbsp;// 重新設定排序初始值</div>
+      <div>
+        &nbsp;function
+        <span class="demo-high-light-color">setSortBy</span>
+        (newOptions: Array&lt;SortByOptions&gt;){
+      </div>
+      <div>
+        &nbsp; Object.assign(
+        <span class="demo-high-light-color">sortBy</span>
+        , reactive(deepClone(newOptions)));
+      </div>
+      <div>&nbsp;}</div>
+      <br />
+      <div>&nbsp;&nbsp;// 當使用者自行選擇排序後，仍然要更新條件至母組件的響應式資料中。</div>
+      <div>&nbsp;&nbsp;// 由 table sort 負責觸發請求</div>
+      <div>
+        &nbsp;&nbsp;// 重新呼叫 table 資料的 API 。記得在此合併 pagination 條件一起發出請求。
+      </div>
+      <div>&nbsp;&nbsp;// table sort 邏輯不要跟 pagination 混到。</div>
+      <div>&nbsp;&nbsp;// 會很難 debug。</div>
+      <div>
+        &nbsp;function
+        <span class="demo-high-light-color">updateSortBy</span>
+        (options: any) {
+      </div>
+      <div>
+        &nbsp;&nbsp;
+        <span class="demo-high-light-color">setSortBy(options.sortBy);</span>
+      </div>
+      <div>&nbsp;}</div>
+      <div>&lt;/script&gt;</div>
+    </code>
+    <h3>v-data-table-server Demo</h3>
     <!-- /*******************************Server端 Table-Start**********************************************/-->
     <v-btn class="mr-1" @click="setExpanded">toggle 單一項目</v-btn>
     <v-btn class="mr-1" @click="setAllExpanded">全部打開</v-btn>
-    <v-btn @click="clearAllExpanded">全部關閉</v-btn>
+    <v-btn class="mr-1" @click="clearAllExpanded">全部關閉</v-btn>
+    <v-btn class="mr-1" @click="setPagination">重設分頁</v-btn>
+    <v-btn class="mr-1" @click="setSortBy(sortBy1)">重設排序1</v-btn>
+    <v-btn @click="setSortBy(sortBy2)">重設排序2</v-btn>
     <Table
       :headers="headers"
       :items="testNames"
@@ -23,6 +128,7 @@
       :item-value="'name'"
       :show-expand="showExpand"
       :default-expanded="defaultExpanded"
+      :style="'max-height:300px'"
       @updateSortBy="updateSortBy"
     >
       <template #top>
@@ -63,9 +169,13 @@
       </template> -->
     </Table>
     <!-- /*******************************Server端 Table-Start**********************************************/-->
-    <h2>.v-table</h2>
+
+    <h2>Type2: v-table</h2>
+    <p class="mb-3">資料一次回傳全部，排序、篩選分頁由前端控制。</p>
+    <p>為前端高度客製化時可以考慮的方案。</p>
+    <h3>v-table Demo</h3>
     <!-- /*******************************純前端 Table-Start**********************************************/-->
-    <v-table class="custom-table" :style="'max-height: 1000px'" fixed-header>
+    <v-table class="custom-table" :style="'max-height: 300px'" fixed-header>
       <thead>
         <tr>
           <th v-for="head in headers" :key="head.key" :class="head.className" :style="head.style">
@@ -106,41 +216,25 @@
       </tbody>
     </v-table>
     <!-- /*******************************純前端 Table-End**********************************************/-->
+
+    <p>
+      v-data-table is not part of vuetify 3 yet, you need to use the lab version (not stable)
+      <a href="https://vuetifyjs.com/en/labs/introduction/">
+        https://vuetifyjs.com/en/labs/introduction/
+      </a>
+    </p>
   </v-card>
 </template>
 
-<!--/*******************************Script-Start**********************************************/-->
 <script setup lang="ts">
-import { useTestStore } from '@/stores/test';
-import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useTestStore } from '@/stores/test';
+import { SortByOptions } from '@/model/TableModel';
 
 const test = useTestStore();
 const { testNames } = storeToRefs(test);
 
-/*******************************Table Expanded-Start**********************************************/
-const defaultExpanded = ref(['electrode']);
-const showExpand = ref(true);
-
-function setExpanded() {
-  const testItemName = 'exeggcute';
-  if (!defaultExpanded.value.includes(testItemName)) {
-    defaultExpanded.value.push(testItemName);
-  } else {
-    const index = defaultExpanded.value.find((key: string) => key === testItemName);
-    defaultExpanded.value.splice(index, 1);
-  }
-}
-
-function setAllExpanded() {
-  defaultExpanded.value = test.testNames.map((o: any) => o.name);
-}
-function clearAllExpanded() {
-  defaultExpanded.value = [];
-}
-/*******************************Table Expanded-Start**********************************************/
-
-/*******************************Table Pagination binding-Start**********************************************/
 const headers = reactive([
   {
     key: 'action',
@@ -163,26 +257,41 @@ const headers = reactive([
   },
 ]);
 
-const pagination = ref({
-  itemsPerPage: 100, // 一頁幾筆
-  page: 10, // 當前頁數
-});
+/*******************************Table Expanded-Start**********************************************/
+const defaultExpanded = ref(['electrode']);
+const showExpand = ref(true);
 
-const sortBy1 = [
-  {
-    key: 'name',
-    order: 'asc',
-  },
-];
-const sortBy = reactive(deepClone(sortBy1));
-
-function updateSortBy(options: any) {
-  console.log(options);
-  // 由 table sort 負責觸發請求
-  // 重新呼叫 API 記得在此綁上 pagination 條件。
-  // table sort 邏輯不要跟 pagination 混到。
-  // 會很難 debug。
+function setExpanded() {
+  const testItemName = 'exeggcute';
+  if (!defaultExpanded.value.includes(testItemName)) {
+    defaultExpanded.value.push(testItemName);
+  } else {
+    const index = defaultExpanded.value.find((key: string) => key === testItemName);
+    defaultExpanded.value.splice(index, 1);
+  }
 }
+
+function setAllExpanded() {
+  defaultExpanded.value = test.testNames.map((o: any) => o.name);
+}
+function clearAllExpanded() {
+  defaultExpanded.value = [];
+}
+/*******************************Table Expanded-End**********************************************/
+/*******************************Table Pagination binding-Start**********************************************/
+
+const paginationDefault = {
+  itemsPerPage: 10, // 一頁幾筆
+  page: 1, // 當前頁數
+};
+
+// 預設分頁
+const pagination = ref(deepClone(paginationDefault));
+
+function setPagination() {
+  pagination.value = deepClone(paginationDefault);
+}
+
 function updatePagination(value: any) {
   pagination.value = value;
   // 由 pagination 負責觸發請求
@@ -191,6 +300,33 @@ function updatePagination(value: any) {
   // 會很難 debug。
 }
 /*******************************Table Pagination binding-End**********************************************/
+/*******************************Table Sortby Start**********************************************/
+const sortBy1 = [
+  {
+    key: 'name',
+    order: 'asc',
+  },
+];
+const sortBy2 = [
+  {
+    key: 'url',
+    order: 'asc',
+  },
+];
+const sortBy = reactive(deepClone(sortBy1));
+
+function setSortBy(newOptions: Array<SortByOptions>) {
+  Object.assign(sortBy, reactive(deepClone(newOptions)));
+}
+
+function updateSortBy(options: any) {
+  console.log(options);
+  // 由 table sort 負責觸發請求
+  // 重新呼叫 API 記得在此綁上 pagination 條件。
+  // table sort 邏輯不要跟 pagination 混到。
+  // 會很難 debug。
+}
+/*******************************Table Sortby End**********************************************/
 
 import { useLoadingStore } from '@/stores/useLoadingStore';
 import { deepClone } from '@/utils/deepClone';
@@ -207,7 +343,6 @@ onMounted(async () => {
   }
 });
 </script>
-<!--/********************************Script-End*********************************************/-->
 
 <style lang="scss" scoped>
 @import '@/assets/styles/tableBase.scss';

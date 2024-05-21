@@ -1,6 +1,7 @@
 <template>
   <v-data-table-server
     v-model:expanded="expanded"
+    v-bind="{ ...attr }"
     :headers="headers"
     :items="items"
     density="compact"
@@ -32,6 +33,8 @@
 import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
 import { Props, propsBase } from '@/model/TableModel';
 import { deepClone } from '@/utils/deepClone';
+import { useAttrs } from 'vue';
+const attr = useAttrs();
 const props = withDefaults(defineProps<Props>(), propsBase);
 let expanded = ref([]); // 綁定資料在本組件;
 const emits = defineEmits(['updateExpanded', 'updateSortBy']);

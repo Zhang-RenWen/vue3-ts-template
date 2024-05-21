@@ -7,7 +7,7 @@ import { errorHandler } from '@/plugins/requestSettings';
 export interface BaseResponse {
   errorCode: number;
   errorMsg: string;
-  //拓展xxx-API响应体
+  //擴展 xxx-API 響應體
 }
 
 /**
@@ -16,7 +16,7 @@ export interface BaseResponse {
 export interface ApiResponse<T = any> extends BaseResponse {
   data: T | any;
   results: T | any;
-  //拓展 xxx-API 響應體
+  //擴展 xxx-API 響應體
 }
 
 /**
