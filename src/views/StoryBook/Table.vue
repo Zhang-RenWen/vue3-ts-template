@@ -68,7 +68,7 @@
     <v-table class="custom-table" :style="'max-height: 1000px'" fixed-header>
       <thead>
         <tr>
-          <th v-for="head in headers" :key="head.value" :class="head.className" :style="head.style">
+          <th v-for="head in headers" :key="head.key" :class="head.className" :style="head.style">
             <div v-if="head.key === 'action'" class="d-flex justify-center">
               <v-btn :color="'success'" class="btn" @click="test.addItem({ name: 'unknown' })">
                 <v-icon icon="mdi-plus-thick"></v-icon>
@@ -81,7 +81,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in testNames" :key="item.key">
+        <tr v-for="item in testNames" :key="JSON.stringify(item)">
           <!-- action -->
           <td>
             <div class="d-flex justify-center">

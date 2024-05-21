@@ -1,12 +1,7 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '@/views/StoryBook/HomeView.vue';
-import StoryBook from '@/views/StoryBook/index.vue';
-import Icon from '@/views/StoryBook/Icon.vue';
-import Input from '@/views/StoryBook/Input.vue';
-import Table from '@/views/StoryBook/Table.vue';
-import Dialog from '@/views/StoryBook/Dialog.vue';
-import DataFlow from '@/views/StoryBook/DataFlow.vue';
+import { getPage } from '@/utils/glob';
+console.log(getPage('Images'));
 
 const routes = [
   {
@@ -16,12 +11,12 @@ const routes = [
       hidden: true,
       title: 'Home',
     },
-    component: HomeView,
+    component: getPage('HomeView'),
   },
   {
     path: '/storyBook',
     name: 'storyBook',
-    component: StoryBook,
+    component: getPage('StoryBook'),
     children: [
       {
         path: '/icon',
@@ -31,7 +26,7 @@ const routes = [
           icon: 'mdi-view-dashboard',
           title: 'Icon',
         },
-        component: Icon,
+        component: getPage('Icon'),
       },
       {
         path: '/input',
@@ -41,7 +36,7 @@ const routes = [
           icon: 'mdi-view-dashboard',
           title: 'Input',
         },
-        component: Input,
+        component: getPage('Input'),
       },
       {
         path: '/table',
@@ -51,7 +46,7 @@ const routes = [
           icon: 'mdi-view-dashboard',
           title: 'Table',
         },
-        component: Table,
+        component: getPage('Table'),
       },
 
       {
@@ -62,7 +57,18 @@ const routes = [
           icon: 'mdi-view-dashboard',
           title: 'Dialog',
         },
-        component: Dialog,
+        component: getPage('Dialog'),
+      },
+
+      {
+        path: '/images',
+        name: 'images',
+        meta: {
+          hidden: true,
+          icon: 'mdi-view-dashboard',
+          title: 'Images',
+        },
+        component: getPage('Images'),
       },
       {
         path: '/dataFlow',
@@ -72,7 +78,7 @@ const routes = [
           icon: 'mdi-view-dashboard',
           title: 'DataFlow',
         },
-        component: DataFlow,
+        component: getPage('DataFlow'),
       },
     ],
   },
