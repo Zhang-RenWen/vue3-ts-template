@@ -89,6 +89,16 @@ const routes = [
         component: getPage('Loading'),
       },
       {
+        path: '/button',
+        name: 'button',
+        meta: {
+          hidden: true,
+          icon: 'mdi-view-dashboard',
+          title: 'Button',
+        },
+        component: getPage('Button'),
+      },
+      {
         path: '/images',
         name: 'images',
         meta: {

@@ -18,3 +18,9 @@
 .demo-high-light-color {
   color: greenyellow;
 }
+
+#app {
+  .v-application__wrap {
+    min-height: calc(100dvh - 50px);
+  }
+}
