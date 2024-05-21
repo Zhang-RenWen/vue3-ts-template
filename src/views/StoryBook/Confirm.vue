@@ -26,7 +26,7 @@
       <div>&nbsp; const confirm = useConfirmsStore();</div>
       <div>&lt;/script&gt;</div>
     </code>
-    <h3>自定義 Title</h3>
+    <h3>自定義 buttonText</h3>
     <v-btn class="mb-6" color="primary" @click="openConfirm3">打開 Confirm</v-btn>
     <code class="storybook-demo-code">
       <div>&lt;template&gt;</div>
