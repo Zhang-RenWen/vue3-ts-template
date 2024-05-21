@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import httpRequest from '@/plugins/request';
+import httpRequest from '@/plugins/requestPokeapi';
 import { Test } from '@/model/TestModel';
 
 export const useTestStore = defineStore('test', {
@@ -21,7 +21,7 @@ export const useTestStore = defineStore('test', {
           showLoading: true,
         })
         .then((test) => {
-          this.test = test.results;
+          this.test = test.results ? test.results : [];
           this.text = 'got API!!!!!!!';
           return this.test;
         });

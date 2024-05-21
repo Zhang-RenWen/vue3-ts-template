@@ -59,6 +59,26 @@ const routes = [
         component: getPage('Dialog'),
       },
       {
+        path: '/alert',
+        name: 'alert',
+        meta: {
+          hidden: true,
+          icon: 'mdi-view-dashboard',
+          title: 'Alert',
+        },
+        component: getPage('Alert'),
+      },
+      {
+        path: '/confirm',
+        name: 'confirm',
+        meta: {
+          hidden: true,
+          icon: 'mdi-view-dashboard',
+          title: 'Confirm',
+        },
+        component: getPage('Confirm'),
+      },
+      {
         path: '/loading',
         name: 'loading',
         meta: {
@@ -77,6 +97,16 @@ const routes = [
           title: 'Images',
         },
         component: getPage('Images'),
+      },
+      {
+        path: '/color',
+        name: 'color',
+        meta: {
+          hidden: true,
+          icon: 'mdi-view-dashboard',
+          title: 'Color',
+        },
+        component: getPage('Color'),
       },
       {
         path: '/dataFlow',

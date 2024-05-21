@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { errorHandler } from '@/plugins/request';
+import { errorHandler } from '@/plugins/requestSettings';
 
 /**
  * 定義接口響應包裝類型

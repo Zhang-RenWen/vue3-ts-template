@@ -26,7 +26,7 @@ import {
  */
 
 const httpRequest = new HttpRequest({
-  baseURL: import.meta.env.VITE_APP_BASE_URL || '/',
+  baseURL: import.meta.env.VITE_APP_POKEAPI_URL || '/',
   timeout: 10 * 1000,
   checkResultCode: true,
   interceptorHooks: {

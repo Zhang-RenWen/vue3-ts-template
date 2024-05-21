@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="alert.message.visible" max-width="400">
+  <v-dialog v-model="alert.message.visible" persistent max-width="400">
     <v-card>
       <v-card-title
         :style="{

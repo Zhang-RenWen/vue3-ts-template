@@ -42,12 +42,13 @@ export default defineConfig({
       localsConvention: 'camelCase',
     },
   },
+  // 僅 Dev 環境生效
   server: {
     host: '0.0.0.0',
     port: 3000,
     proxy: {
       '/api': {
-        target: `${process.env.VITE_APP_BASE_URL}/`,
+        target: `${process.env.VITE_APP_POKEAPI_URL}/`,
         changeOrigin: true, // 是否跨域
         secure: false, // target https 要開啟
         // rewrite: (path) => path.replace(/^\/api/, ''),
