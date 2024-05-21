@@ -47,7 +47,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: `${process.env.VITE_APP_BASE_URL}/api/`,
+        target: `${process.env.VITE_APP_BASE_URL}/`,
         changeOrigin: true, // 是否跨域
         secure: false, // target https 要開啟
         // rewrite: (path) => path.replace(/^\/api/, ''),
