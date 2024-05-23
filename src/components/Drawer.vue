@@ -7,14 +7,62 @@
     @update:modelValue="setDrawerStatus"
   >
     <v-list density="compact" nav>
-      <v-list-item
-        v-for="(menu, i) in menus"
-        :key="i"
-        :prepend-icon="menu.meta.icon"
-        :title="menu.meta.title"
-        :value="menu.meta.title"
-        @click="router.push({ path: menu.path })"
-      ></v-list-item>
+      <template v-for="firstGroup in menus">
+        <v-list-group
+          v-if="firstGroup.children"
+          :key="`v-list-group-${firstGroup}`"
+          :value="firstGroup?.meta?.isOpened"
+        >
+          <template #activator="{ props }">
+            <v-list-item v-bind="mergeProps(props)">
+              <v-list-item-title :title="firstGroup?.meta?.title">
+                <v-icon class="mr-7">{{ firstGroup?.meta?.icon }}</v-icon>
+                {{ firstGroup?.meta?.title }}
+              </v-list-item-title>
+            </v-list-item>
+          </template>
+          <template v-for="secondGroup in firstGroup.children">
+            <v-list-group
+              v-if="secondGroup.children"
+              :key="`v-list-group-${secondGroup}`"
+              :value="secondGroup?.meta?.isOpened"
+            >
+              <template #activator="{ props }">
+                <v-list-item v-bind="mergeProps(props)">
+                  <v-list-item-title :title="secondGroup?.meta?.title">
+                    <v-icon class="mr-7">{{ secondGroup?.meta?.icon }}</v-icon>
+                    {{ secondGroup?.meta?.title }}
+                  </v-list-item-title>
+                </v-list-item>
+              </template>
+              <template v-for="thirdGroup in secondGroup.children">
+                {{ thirdGroup }}
+              </template>
+            </v-list-group>
+
+            <v-list-item
+              v-else
+              :key="`v-list-item-${secondGroup}`"
+              @click="router.push({ path: secondGroup.path })"
+            >
+              <v-list-item-title :title="secondGroup?.meta?.title">
+                <v-icon class="mr-7">{{ secondGroup?.meta?.icon }}</v-icon>
+                {{ secondGroup?.meta?.title }}
+              </v-list-item-title>
+            </v-list-item>
+          </template>
+        </v-list-group>
+        <v-list-item
+          v-else
+          :key="`v-list-item-${firstGroup}`"
+          @click="router.push({ path: firstGroup.path })"
+        >
+          <v-list-item-title :title="firstGroup?.meta?.title">
+            <v-icon class="mr-7">{{ firstGroup?.meta?.icon }}</v-icon>
+            {{ firstGroup?.meta?.title }}
+          </v-list-item-title>
+        </v-list-item>
+      </template>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -22,20 +70,18 @@
 import { useUIStore } from '@/stores/useUIStore';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
-import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
+import { ref, toRefs, computed, nextTick, onMounted, reactive, mergeProps } from 'vue';
 import { deepClone } from '@/utils/deepClone';
 
 const uiStatus = useUIStore();
 const router = useRouter();
 
 let menus = toRefs(reactive([]));
-
-function getStoryBookRouteList() {
+function getAllRouteList() {
   if (router?.options?.routes) {
-    const storyBookRoute = router.options.routes.find((r) => r.name === 'storyBook');
-
-    if (storyBookRoute) {
-      menus = reactive(storyBookRoute.children);
+    const routes = router.options.routes;
+    if (routes) {
+      menus = reactive(routes);
     }
   }
 }
@@ -45,7 +91,7 @@ function setDrawerStatus(value: boolean) {
 }
 
 onMounted(async () => {
-  getStoryBookRouteList();
+  getAllRouteList();
 });
 
 const { getDrawer } = storeToRefs(uiStatus);
@@ -55,6 +101,11 @@ const { getDrawer } = storeToRefs(uiStatus);
 .drawer {
   margin-top: 50px;
 }
+
+.drawer :deep(.v-list .v-icon) {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .drawer :deep(.v-list .v-list-item--active) {
   color: lighten($color-primary, 10);
 }

@@ -7,42 +7,69 @@
         <table>
           <thead>
             <tr>
-              <th>type/status</th>
-              <th>default</th>
-              <th>disabled</th>
-              <th>readonly</th>
-              <th>hasChanged</th>
-              <th>error</th>
+              <th>Type/Status</th>
+              <th>Default</th>
+              <th>Disabled</th>
+              <th>Readonly</th>
+              <th>HasChanged</th>
             </tr>
           </thead>
 
           <tbody>
             <tr>
-              <td>InputLabel</td>
+              <td>Usage</td>
+              <td>&lt;Input... /&gt;</td>
+              <td>&lt;Input... disabled /&gt;</td>
+              <td>&lt;Input... readonly /&gt;</td>
+              <td>&lt;Input... hasChanged /&gt;</td>
+            </tr>
+            <tr>
+              <td>&lt;InputLabel /&gt;</td>
+              <td><InputLabel name="Title Name"></InputLabel></td>
+              <td><InputLabel name="Title Name"></InputLabel></td>
+              <td><InputLabel name="Title Name"></InputLabel></td>
               <td><InputLabel name="Title Name"></InputLabel></td>
             </tr>
             <tr>
-              <td>InputTextField</td>
+              <td>&lt;InputTextField /&gt;</td>
               <td><InputTextField></InputTextField></td>
+              <td><InputTextField disabled></InputTextField></td>
+              <td><InputTextField readonly></InputTextField></td>
+              <td><InputTextField has-changed></InputTextField></td>
             </tr>
             <tr>
-              <td>InputTextArea</td>
+              <td>&lt;InputTextArea/&gt;</td>
               <td><InputTextArea></InputTextArea></td>
+              <td><InputTextArea disabled></InputTextArea></td>
+              <td><InputTextArea readonly></InputTextArea></td>
+              <td><InputTextArea has-changed></InputTextArea></td>
             </tr>
             <tr>
-              <td>InputNumber</td>
+              <td>&lt;InputNumber/&gt;</td>
               <td><!-- <InputNumber></InputNumber> --></td>
+              <td><!-- <InputNumber disabled></InputNumber> --></td>
+              <td><!-- <InputNumber readonly></InputNumber> --></td>
+              <td><!-- <InputNumber has-changed></InputNumber> --></td>
             </tr>
             <tr>
-              <td>InputNumberSteppers</td>
+              <td>&lt;InputNumberSteppers/&gt;</td>
               <td><InputNumberSteppers></InputNumberSteppers></td>
+              <td><InputNumberSteppers disabled></InputNumberSteppers></td>
+              <td><InputNumberSteppers readonly></InputNumberSteppers></td>
+              <td><InputNumberSteppers has-changed></InputNumberSteppers></td>
             </tr>
             <tr>
-              <td>inputAutoComplete</td>
+              <td>&lt;InputAutoComplete/&gt;</td>
               <td><inputAutoComplete></inputAutoComplete></td>
+              <td><inputAutoComplete disabled></inputAutoComplete></td>
+              <td><inputAutoComplete readonly></inputAutoComplete></td>
+              <td><inputAutoComplete has-changed></inputAutoComplete></td>
             </tr>
             <tr>
-              <td>InputFormat</td>
+              <td>&lt;InputFormat/&gt;</td>
+              <td><!-- <InputFormat></InputFormat> --></td>
+              <td><!-- <InputFormat></InputFormat> --></td>
+              <td><!-- <InputFormat></InputFormat> --></td>
               <td><!-- <InputFormat></InputFormat> --></td>
             </tr>
           </tbody>
@@ -135,5 +162,16 @@ const numberStepper3 = ref(0);
   margin: 24px;
   padding: 24px;
   border: 1px solid #000000;
+}
+
+table {
+  border-collapse: collapse;
+}
+table th,
+table td {
+  border: 1px solid rgba(#000000, 0.5);
+  padding: 12px;
+  border-spacing: 0;
+  margin: 0;
 }
 </style>

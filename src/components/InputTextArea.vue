@@ -4,7 +4,7 @@
     v-model="proxy"
     :label="label"
     :class="{
-      inputTextField: true,
+      inputTextArea: true,
       hasChanged: hasChanged,
       'text-center': textCenter,
       'text-end': textEnd,

@@ -8,6 +8,7 @@ const routes = [
     name: 'home',
     meta: {
       hidden: true,
+      icon: 'mdi-view-dashboard',
       title: 'Home',
     },
     component: getPage('HomeView'),
@@ -15,6 +16,12 @@ const routes = [
   {
     path: '/',
     name: 'storyBook',
+    meta: {
+      hidden: true,
+      icon: 'mdi-view-dashboard',
+      title: 'storyBook',
+      isOpened: false,
+    },
     component: StoryBook,
     children: [
       {

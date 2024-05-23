@@ -37,7 +37,10 @@
   -webkit-mask-image: unset;
 }
 
-.inputTextArea.hasChanged :deep(.v-field__input input) {
+.inputTextArea.hasChanged :deep(.v-field__input) {
+  color: red;
+}
+.inputTextArea .hasChanged :deep(textarea) {
   color: red;
 }
 
