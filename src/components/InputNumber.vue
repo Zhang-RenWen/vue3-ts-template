@@ -11,7 +11,7 @@
     <InputTextField
       v-model="internalValue.modelValue"
       type="number"
-      v-bind="{ ...props }"
+      v-bind="{ ...localProps, ...$attrs }"
       to-fixed
       to-clear-prefix-0
       @blur="updateParent"
@@ -22,7 +22,19 @@
 <script setup lang="ts">
 import { ref, toRefs, computed, nextTick, onMounted } from 'vue';
 import { Props, propsBase, InputRules } from '@/model/InputModel';
+import { deepClone } from '@/utils/deepClone';
+
 const props = withDefaults(defineProps<Props>(), propsBase);
+const localProps = computed(() => {
+  let selectedProps = {};
+  Object.keys(props).forEach((key: string) => {
+    if (!['value', 'modelValue'].includes(key)) {
+      selectedProps[key] = deepClone(props[key]);
+    }
+  });
+
+  return selectedProps;
+});
 const localRules = computed(() => {
   return props.rules.concat(new InputRules(props).getRulesFromProps());
 });

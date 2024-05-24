@@ -1,7 +1,7 @@
 <template>
   <v-number-input
     v-model="proxy"
-    v-bind="{ ...localProps }"
+    v-bind="{ ...localProps, ...$attrs }"
     :label="label"
     :class="{
       inputTextField: true,
