@@ -5,6 +5,7 @@
     to-currency
     text-end
     :decimal="decimal"
+    :has-changed="hasChanged"
     type="number"
   >
     <InputTextField

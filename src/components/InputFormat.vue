@@ -4,7 +4,7 @@
   >
     <div class="v-input__control">
       <div
-        class="v-field v-field--center-affix v-field--single-line v-field--no-label v-theme--light v-locale--is-ltr aaa"
+        class="v-field v-field--center-affix v-field--single-line v-field--no-label v-theme--light v-locale--is-ltr"
       >
         <div class="v-field__overlay"></div>
         <div class="v-field__loader">
@@ -76,7 +76,10 @@ const localPlaceholder = computed(() => {
   return props.placeholder || '請輸入';
 });
 const localValue = computed(() => {
-  if (typeof internalValue.value.value.value === 'object') {
+  if (!internalValue?.value?.value) {
+    return null;
+  }
+  if (typeof internalValue?.value?.value?.value === 'object') {
     return format(internalValue.value.value.value.value);
   }
   return format(internalValue.value.value);
@@ -101,14 +104,28 @@ function hide() {
   displayFormat.value = true;
 }
 
+function addInputDisplayFormatListener() {
+  const elementInput = RealInput.value.querySelector('input');
+  if (elementInput) {
+    RealInput.value.querySelector('input').addEventListener('focus', show);
+    RealInput.value.querySelector('input').addEventListener('blur', hide);
+  }
+}
+
+function removeInputDisplayFormatListener() {
+  const elementInput = RealInput.value.querySelector('input');
+  if (elementInput) {
+    RealInput.value.querySelector('input').removeEventListener('focus', show);
+    RealInput.value.querySelector('input').removeEventListener('blur', hide);
+  }
+}
+
 onMounted(async () => {
-  RealInput.value.querySelector('input').addEventListener('focus', show);
-  RealInput.value.querySelector('input').addEventListener('blur', hide);
+  addInputDisplayFormatListener();
 });
 
 onBeforeUnmount(async () => {
-  RealInput.value.querySelector('input').removeEventListener('focus', show);
-  RealInput.value.querySelector('input').removeEventListener('blur', hide);
+  removeInputDisplayFormatListener();
 });
 </script>
 <style scoped lang="scss" src="@/assets/styles/inputBase.scss"></style>
@@ -119,8 +136,8 @@ input.hasChanged {
 }
 
 .disabled-input :deep(input),
-.disabled-input.hasChanged :deep(input),
-.disabled-input .hasChanged :deep(input) {
+.formatInput.disabled-input .hasChanged input,
+.realInput.disabled-input.hasChanged :deep(.hasChanged input) {
   color: transparent;
   pointer-events: none;
 }

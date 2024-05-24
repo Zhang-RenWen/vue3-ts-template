@@ -7,7 +7,7 @@
         <table>
           <thead>
             <tr>
-              <th>Type/Status</th>
+              <th>Description/Status</th>
               <th>Default</th>
               <th>Disabled</th>
               <th>Readonly</th>
@@ -17,7 +17,7 @@
 
           <tbody>
             <tr>
-              <td>Usage</td>
+              <td>Set Status</td>
               <td>&lt;Input... /&gt;</td>
               <td>&lt;Input... disabled /&gt;</td>
               <td>&lt;Input... readonly /&gt;</td>
@@ -32,31 +32,50 @@
             </tr>
             <tr>
               <td>&lt;InputTextField /&gt;</td>
-              <td><InputTextField></InputTextField></td>
-              <td><InputTextField disabled></InputTextField></td>
-              <td><InputTextField readonly></InputTextField></td>
-              <td><InputTextField has-changed></InputTextField></td>
+              <td><InputTextField v-model="inputTextFieldBindData"></InputTextField></td>
+              <td><InputTextField v-model="inputTextFieldBindData" disabled></InputTextField></td>
+              <td><InputTextField v-model="inputTextFieldBindData" readonly></InputTextField></td>
+              <td>
+                <InputTextField v-model="inputTextFieldBindData" has-changed></InputTextField>
+              </td>
             </tr>
             <tr>
               <td>&lt;InputTextArea/&gt;</td>
-              <td><InputTextArea></InputTextArea></td>
-              <td><InputTextArea disabled></InputTextArea></td>
-              <td><InputTextArea readonly></InputTextArea></td>
-              <td><InputTextArea has-changed></InputTextArea></td>
+              <td><InputTextArea v-model="inputTextAreaBindData"></InputTextArea></td>
+              <td><InputTextArea v-model="inputTextAreaBindData" disabled></InputTextArea></td>
+              <td><InputTextArea v-model="inputTextAreaBindData" readonly></InputTextArea></td>
+              <td><InputTextArea v-model="inputTextAreaBindData" has-changed></InputTextArea></td>
             </tr>
             <tr>
               <td>&lt;InputNumber/&gt;</td>
-              <td><!-- <InputNumber></InputNumber> --></td>
-              <td><!-- <InputNumber disabled></InputNumber> --></td>
-              <td><!-- <InputNumber readonly></InputNumber> --></td>
-              <td><!-- <InputNumber has-changed></InputNumber> --></td>
+              <td><InputNumber v-model="inputNumberBindData"></InputNumber></td>
+              <td><InputNumber v-model="inputNumberBindData" disabled></InputNumber></td>
+              <td><InputNumber v-model="inputNumberBindData" readonly></InputNumber></td>
+              <td><InputNumber v-model="inputNumberBindData" has-changed></InputNumber></td>
             </tr>
             <tr>
               <td>&lt;InputNumberSteppers/&gt;</td>
-              <td><InputNumberSteppers></InputNumberSteppers></td>
-              <td><InputNumberSteppers disabled></InputNumberSteppers></td>
-              <td><InputNumberSteppers readonly></InputNumberSteppers></td>
-              <td><InputNumberSteppers has-changed></InputNumberSteppers></td>
+              <td>
+                <InputNumberSteppers v-model="inputNumberSteppersBindData"></InputNumberSteppers>
+              </td>
+              <td>
+                <InputNumberSteppers
+                  v-model="inputNumberSteppersBindData"
+                  disabled
+                ></InputNumberSteppers>
+              </td>
+              <td>
+                <InputNumberSteppers
+                  v-model="inputNumberSteppersBindData"
+                  readonly
+                ></InputNumberSteppers>
+              </td>
+              <td>
+                <InputNumberSteppers
+                  v-model="inputNumberSteppersBindData"
+                  has-changed
+                ></InputNumberSteppers>
+              </td>
             </tr>
             <tr>
               <td>&lt;InputAutoComplete/&gt;</td>
@@ -67,13 +86,16 @@
             </tr>
             <tr>
               <td>&lt;InputFormat/&gt;</td>
-              <td><!-- <InputFormat></InputFormat> --></td>
-              <td><!-- <InputFormat></InputFormat> --></td>
-              <td><!-- <InputFormat></InputFormat> --></td>
-              <td><!-- <InputFormat></InputFormat> --></td>
+              <td><InputFormat></InputFormat></td>
+              <td><InputFormat disabled></InputFormat></td>
+              <td><InputFormat readonly></InputFormat></td>
+              <td><InputFormat has-changed></InputFormat></td>
             </tr>
           </tbody>
         </table>
+      </v-card>
+      <v-card class="input-demo-page-card">
+        <h3>Bind Data</h3>
       </v-card>
       <v-card class="input-demo-page-card">
         <h3>Align</h3>
@@ -83,9 +105,6 @@
       </v-card>
       <v-card class="input-demo-page-card">
         <h3>Events</h3>
-      </v-card>
-      <v-card class="input-demo-page-card">
-        <h3>Bind Data</h3>
       </v-card>
       <v-card class="input-demo-page-card">
         <h3>Format</h3>
@@ -104,14 +123,11 @@ import { onMounted, reactive, ref } from 'vue';
 const test = useTestStore();
 import { useAlertsStore } from '@/stores/useAlertsStore';
 const alert = useAlertsStore();
-const text = ref('');
 const disabled = ref(false);
 const required = ref(false);
 const hasChange = ref(false);
 const valid = ref(false);
 const Form = ref();
-const testValue = ref('');
-const taiwanId = ref('');
 const inputAutoCompleteValue = ref('');
 const items = reactive([{ text: '選項1', value: '1' }]);
 function inputEventTest($event: Event) {
@@ -151,10 +167,11 @@ function clear() {
 function format() {
   test.setText('10,080');
 }
-const numberFormat = ref('');
-const numberStepper = ref(0);
-const numberStepper2 = ref(0);
-const numberStepper3 = ref(0);
+
+const inputTextFieldBindData = ref(null);
+const inputTextAreaBindData = ref(null);
+const inputNumberBindData = ref(null);
+const inputNumberSteppersBindData = ref(0);
 </script>
 
 <style scoped lang="scss">
