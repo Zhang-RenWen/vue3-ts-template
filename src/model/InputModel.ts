@@ -40,8 +40,6 @@ import {
 
 // 註冊通用 format
 import {
-  toDec,
-  toCDB,
   toRocDate,
   toRound,
   toPad0AfterPoint,
@@ -102,14 +100,13 @@ export interface Props {
   checkRegHttpUrl?: boolean;
   /*******************************Rules-End**********************************************/
   /*******************************Format-Start**********************************************/
-  toDec?: boolean;
-  toCDB?: boolean;
   toRocDate?: boolean;
   toRound?: boolean;
   toPad0AfterPoint?: boolean;
   toClearPrefix0?: boolean;
   toFixed?: boolean;
   toCurrency?: boolean;
+  toTrim?: boolean;
   toHalfWidth?: boolean;
   toFullWidth?: boolean;
   toUpperCase?: boolean;
@@ -391,12 +388,6 @@ export class InputFormat {
     return toFullWidth(value);
   }
 
-  ToDec(value: any) {
-    return toDec(value);
-  }
-  ToCDB(value: any) {
-    return toCDB(value);
-  }
   toRocDate() {
     console.log(rocDate);
   }

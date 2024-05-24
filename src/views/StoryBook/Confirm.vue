@@ -41,17 +41,17 @@
       <div>&lt;/script&gt;</div>
     </code>
     <h3>獲取使用者操作結果值</h3>
-    <v-btn class="mb-6" color="primary" @click="openConfirm1">打開 Confirm</v-btn>
+    <v-btn class="mb-6" color="primary" @click="openConfirm">打開 Confirm</v-btn>
     <code class="storybook-demo-code">
       <div>&lt;template&gt;</div>
-      <div>&nbsp; &lt;v-btn "@click="openConfirm1"&gt;</div>
+      <div>&nbsp; &lt;v-btn "@click="openConfirm"&gt;</div>
       <div>&lt;/template&gt;</div>
       <div>&lt;script setup lang="ts" &gt;</div>
       <div>&nbsp;import { useConfirmsStore } from '@/stores/useConfirmStore';</div>
       <br />
       <div>
         <span class="demo-high-light-color">&nbsp;async</span>
-        function openConfirm1() {
+        function openConfirm() {
       </div>
       <div>
         &nbsp;&nbsp;&nbsp;const
@@ -96,4 +96,17 @@ async function openConfirm3() {
   });
   console.log(value);
 }
+
+async function openConfirm() {
+  const value = await confirm.showMessage({
+    content: '選擇下方任一按鈕點擊！',
+  });
+  alert.showMessage({
+    content: `您選擇的是：${value ? '確定' : '取消'}`,
+    buttonText: 'ok',
+  });
+}
+
+import { useAlertsStore } from '@/stores/useAlertsStore';
+const alert = useAlertsStore();
 </script>

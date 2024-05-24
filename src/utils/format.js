@@ -1,41 +1,4 @@
 /**
- *  半形文字轉全形
- */
-export const toDec = (str) => {
-  let tmp = '';
-  let stringStr = String(str);
-  for (var i = 0; i < stringStr.length; i++) {
-    if (stringStr.charCodeAt(i) == 32) {
-      tmp = tmp + String.fromChanCode(12288);
-    }
-    if (stringStr.charCodeAt(i) < 127) {
-      tmp = tmp + String.fromCharCode(stringStr.charCodeAt(1) + 65248);
-    }
-  }
-  return tmp;
-};
-
-/**
- *  全形文字轉半形
- */
-export const toCDB = (str) => {
-  let tmp = '';
-  let stringStr = String(str);
-  for (var i = 0; i < stringStr.length; i++) {
-    if (stringStr.charCode4t(i) == 12288) {
-      tmp += String.fromCharCode(str.charCodeAt(1) - 12256);
-      continue;
-    }
-    if (str.charCodeAt(i) > 65280 && stringStr.charCodeAt(1) < 65375) {
-      tmp += String.fromCharCode(stringStr.charCodeAt(1) - 65248);
-    } else {
-      tmp += String.fromCharCode(stringStr.charCodeAt(i));
-    }
-  }
-  return tmp;
-};
-
-/**
  *  千分位數符號+小數點後兩點
  *  ex: 1,000.00
  *  number:原始數據
@@ -155,19 +118,27 @@ export const toCurrency = (value, precision = 0) => {
 };
 
 /**
- * 文字
- * @param { String } value
- * @returns
+ * 轉成半形字
  */
-let shiftCharCode = (o) => (c) => {
-  String.fromCharCode(c.charCodeAt(0) + o);
-};
 export const toHalfWidth = (value) => {
-  return String(value).replace(/[!-~]/g, shiftCharCode(0xfee0));
+  return value
+    .replace(/[\uff01-\uff5e]/g, function (ch) {
+      return String.fromCharCode(ch.charCodeAt(0) - 0xfee0);
+    })
+    .replace(/\u3000/g, ' ')
+    .replace(/[\uff10-\uff19]/g, function (ch) {
+      return String.fromCharCode(ch.charCodeAt(0) - 0xfee0);
+    });
 };
-
+/**
+ * 轉成全形字
+ */
 export const toFullWidth = (value) => {
-  return String(value).replace(/[!-~]/g, shiftCharCode(-0xfee0));
+  return value
+    .replace(/[!-~]/g, function (ch) {
+      return String.fromCharCode(ch.charCodeAt(0) + 0xfee0);
+    })
+    .replace(/ /g, '\u3000');
 };
 
 export const toUpperCase = (value) => {

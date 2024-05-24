@@ -3,6 +3,112 @@
     <h1>Form Elements</h1>
     <v-container>
       <v-card class="input-demo-page-card">
+        <h3>Format Text Value</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Format Type</th>
+              <th>Usage</th>
+              <th>&lt;InputTextField /&gt; Demo</th>
+              <th>&lt;InputTextArea /&gt; Demo</th>
+              <th>Real Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><InputLabel name="to-trim" /></td>
+              <td>
+                <div>&lt;Input... v-model="..." to-trim /&gt;</div>
+              </td>
+              <td>
+                <div>
+                  <InputTextField v-model="formatToTrim" to-trim />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <InputTextArea v-model="formatToTrim" to-trim />
+                </div>
+              </td>
+              <td>{{ formatToTrim }}</td>
+            </tr>
+            <tr>
+              <td><InputLabel name="to-upper-case" /></td>
+              <td>
+                <div>&lt;Input... v-model="..." to-upper-case /&gt;</div>
+              </td>
+              <td>
+                <div>
+                  <InputTextField v-model="formatToUpperCase" to-upper-case />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <InputTextArea v-model="formatToUpperCase" to-upper-case />
+                </div>
+              </td>
+              <td>{{ formatToUpperCase }}</td>
+            </tr>
+            <tr>
+              <td><InputLabel name="to-lower-case" /></td>
+              <td>
+                <div>&lt;Input... v-model="..." to-lower-case /&gt;</div>
+              </td>
+              <td>
+                <div>
+                  <InputTextField v-model="formatToLowerCase" to-lower-case />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <InputTextArea v-model="formatToLowerCase" to-lower-case />
+                </div>
+              </td>
+              <td>{{ formatToLowerCase }}</td>
+            </tr>
+            <tr>
+              <td><InputLabel name="to-half-width" /></td>
+              <td>
+                <div>&lt;Input... v-model="..." to-half-width /&gt;</div>
+              </td>
+              <td>
+                <div>
+                  <InputTextField v-model="formatToHalfWidth" to-half-width />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <InputTextArea v-model="formatToHalfWidth" to-half-width />
+                </div>
+              </td>
+              <td>{{ formatToHalfWidth }}</td>
+            </tr>
+            <tr>
+              <td><InputLabel name="to-full-width" /></td>
+              <td>
+                <div>&lt;Input... v-model="..." to-full-width /&gt;</div>
+              </td>
+              <td>
+                <div>
+                  <InputTextField v-model="formatToFullWidth" to-full-width />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <InputTextArea v-model="formatToFullWidth" to-full-width />
+                </div>
+              </td>
+              <td>{{ formatToFullWidth }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Format Number Value</h3>
+        <h3>Format Date Value</h3>
+        <h3>Format Text For Display</h3>
+        <h3>Format Number For Display</h3>
+        <h3>Format Date For Display</h3>
+      </v-card>
+      <v-card class="input-demo-page-card">
         <h3>Type</h3>
         <table>
           <thead>
@@ -193,9 +299,6 @@
         <h3>Events</h3>
       </v-card>
       <v-card class="input-demo-page-card">
-        <h3>Format</h3>
-      </v-card>
-      <v-card class="input-demo-page-card">
         <h3>Validate</h3>
       </v-card>
     </v-container>
@@ -258,6 +361,12 @@ const inputTextFieldBindData = ref(null);
 const inputTextAreaBindData = ref(null);
 const inputNumberBindData = ref(null);
 const inputNumberSteppersBindData = ref(null);
+
+const formatToTrim = ref(null);
+const formatToUpperCase = ref(null);
+const formatToLowerCase = ref(null);
+const formatToHalfWidth = ref(null);
+const formatToFullWidth = ref(null);
 </script>
 
 <style scoped lang="scss">
@@ -265,9 +374,11 @@ const inputNumberSteppersBindData = ref(null);
   margin: 24px;
   padding: 24px;
   border: 1px solid #000000;
+  overflow-x: auto;
 }
 
 table {
+  min-width: 1000px;
   border-collapse: collapse;
 }
 table th,
