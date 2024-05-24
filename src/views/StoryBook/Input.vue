@@ -99,6 +99,92 @@
       </v-card>
       <v-card class="input-demo-page-card">
         <h3>Align</h3>
+        <v-row>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div>
+              <InputLabel name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div>
+              <InputLabel name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div>
+              <InputLabel name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div class="d-flex">
+              <InputLabel name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div class="d-flex">
+              <InputLabel name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div class="d-flex">
+              <InputLabel name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div class="d-flex">
+              <InputLabel name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+          <v-col class="pl-0" cols="12" sm="8">
+            <div class="d-flex">
+              <InputLabel name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div class="d-flex">
+              <InputLabel :width="100" :units="'px'" name="Label" />
+              <InputTextField />
+            </div>
+            <div class="d-flex">
+              <InputLabel :width="100" :units="'px'" name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div class="d-flex">
+              <InputLabel :width="200" :units="'px'" name="Label" />
+              <InputTextField />
+            </div>
+            <div class="d-flex">
+              <InputLabel :width="200" :units="'px'" name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+          <v-col class="pl-0" cols="12" sm="4">
+            <div class="d-flex">
+              <InputLabel :width="250" :units="'px'" name="Label" />
+              <InputTextField />
+            </div>
+            <div class="d-flex">
+              <InputLabel :width="250" :units="'px'" name="Label" />
+              <InputTextField />
+            </div>
+          </v-col>
+        </v-row>
       </v-card>
       <v-card class="input-demo-page-card">
         <h3>Slot</h3>
