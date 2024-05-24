@@ -171,7 +171,7 @@ function format() {
 const inputTextFieldBindData = ref(null);
 const inputTextAreaBindData = ref(null);
 const inputNumberBindData = ref(null);
-const inputNumberSteppersBindData = ref(0);
+const inputNumberSteppersBindData = ref(null);
 </script>
 
 <style scoped lang="scss">

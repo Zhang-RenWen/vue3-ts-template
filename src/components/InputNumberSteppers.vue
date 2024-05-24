@@ -1,7 +1,7 @@
 <template>
   <v-number-input
     v-model="proxy"
-    v-bind="{ ...props }"
+    v-bind="{ ...localProps }"
     :label="label"
     :class="{
       inputTextField: true,
@@ -39,6 +39,15 @@ import { ref, toRefs, computed, nextTick } from 'vue';
 import { Props, propsBase, InputRules, InputFormat } from '@/model/InputModel';
 import { deepClone } from '@/utils/deepClone';
 const props = withDefaults(defineProps<Props>(), propsBase);
+const localProps = computed(() => {
+  let selectedProps = {};
+  Object.keys(props).forEach((key: string) => {
+    if (!['value', 'modelValue'].includes(key)) {
+      selectedProps[key] = deepClone(props[key]);
+    }
+  });
+  return selectedProps;
+});
 const localRules = computed(() => {
   return props.rules.concat(new InputRules(props).getRulesFromProps());
 });
@@ -65,15 +74,27 @@ const proxy = computed({
   },
 });
 const formatInternalValue = (updateValue: any) => {
-  const value = deepClone(updateValue);
+  const value = deepClone(Number(updateValue));
+  if (isNaN(Number(value))) {
+    emits('blur', 0);
+    emits('update:modelValue', 0);
+    return;
+  }
   emits('blur', Number(formatValue(value)));
   emits('update:modelValue', Number(formatValue(value)));
 };
 const updateParent = ($event: Event) => {
-  const value = deepClone($event.target.value);
+  const value = deepClone(Number($event.target.value));
+  if (isNaN(Number(value))) {
+    emits('update:value', 0);
+    emits('update:modelValue', 0);
+    emits('change', 0);
+    emits('input', 0);
+    return;
+  }
   emits('update:value', value);
   emits('update:modelValue', value);
-  emits('change');
+  emits('change', value);
   emits('input', value);
 };
 </script>
