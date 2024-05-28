@@ -105,8 +105,10 @@ onMounted(async () => {});
 .pagination :deep(.v-btn) {
   background-color: #ffffff;
   /* color: honeydew; */
+  width: 100%;
+  min-width: 26px;
   height: 26px;
-  width: 26px;
+  padding: 0 6px;
   box-shadow:
     0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 2px 2px 0 rgba(0, 0, 0, 0.14),
