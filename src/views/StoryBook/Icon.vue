@@ -19,9 +19,9 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import { useTestStore } from '@/stores/test';
-import { storeToRefs } from 'pinia';
-import { onMounted, reactive, ref } from 'vue';
+import { useTestStore } from '@/stores/test'
+import { storeToRefs } from 'pinia'
+import { onMounted, reactive, ref } from 'vue'
 const icons = reactive([
   { name: 'mdi-eye' },
   { name: 'mdi-eye-off' },
@@ -110,9 +110,9 @@ const icons = reactive([
   { name: 'mdi-link' },
   { name: 'mdi-cogs' },
   { name: 'mdi-server' },
-]);
+])
 
-onMounted(async () => {});
+onMounted(async () => {})
 </script>
 
 <style scoped lang="scss">

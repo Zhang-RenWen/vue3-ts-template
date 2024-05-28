@@ -35,18 +35,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs, computed, nextTick } from 'vue';
-import { Props, propsBase, InputRules, InputFormat } from '@/model/InputModel';
-import { deepClone } from '@/utils/deepClone';
-const props = withDefaults(defineProps<Props>(), propsBase);
+import { ref, toRefs, computed, nextTick } from 'vue'
+import { Props, propsBase, InputRules, InputFormat } from '@/model/InputModel'
+import { deepClone } from '@/utils/deepClone'
+const props = withDefaults(defineProps<Props>(), propsBase)
 const localRules = computed(() => {
-  return props.rules.concat(new InputRules(props).getRulesFromProps());
-});
+  return props.rules.concat(new InputRules(props).getRulesFromProps())
+})
 const localPlaceholder = computed(() => {
-  return props.placeholder || '請輸入';
-});
-const inputFormat = new InputFormat(props);
-const formatValue = inputFormat.formatValue;
+  return props.placeholder || '請輸入'
+})
+const inputFormat = new InputFormat(props)
+const formatValue = inputFormat.formatValue
 const emits = defineEmits([
   'update:value',
   'update:modelValue',
@@ -54,27 +54,27 @@ const emits = defineEmits([
   'format',
   'blur',
   'input',
-]);
-let internalValue = toRefs(props);
+])
+let internalValue = toRefs(props)
 const proxy = computed({
   get() {
-    return internalValue.modelValue.value;
+    return internalValue.modelValue.value
   },
   set(v) {
-    emits('update:modelValue', v);
+    emits('update:modelValue', v)
   },
-});
+})
 const formatInternalValue = ($event) => {
-  const value = deepClone($event.target.value);
-  emits('blur', formatValue(value));
-  emits('update:modelValue', formatValue(value));
-};
+  const value = deepClone($event.target.value)
+  emits('blur', formatValue(value))
+  emits('update:modelValue', formatValue(value))
+}
 const updateParent = ($event) => {
-  const value = deepClone($event.target.value);
-  emits('update:value', value);
-  emits('update:modelValue', value);
-  emits('change', value);
-  emits('input', value);
-};
+  const value = deepClone($event.target.value)
+  emits('update:value', value)
+  emits('update:modelValue', value)
+  emits('change', value)
+  emits('input', value)
+}
 </script>
 <style scoped lang="scss" src="@/assets/styles/inputBase.scss"></style>

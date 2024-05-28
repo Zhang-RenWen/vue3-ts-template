@@ -1,7 +1,7 @@
 // Composables
-import { createRouter, createWebHistory } from 'vue-router';
-import { getPage } from '@/utils/glob';
-import StoryBook from '@/views/StoryBook/index.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import { getPage } from '@/utils/glob'
+import StoryBook from '@/views/StoryBook/index.vue'
 const routes = [
   {
     path: '/',
@@ -137,11 +137,11 @@ const routes = [
       },
     ],
   },
-];
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
+})
 
-export default router;
+export default router

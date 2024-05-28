@@ -36,7 +36,7 @@ export function formatDownload(resData) {
     window.URL.revokeObjectURL(url)
     Vue.prototype.$notifier.showMessage({
       message: msg || '匯出成功:檔案下載中',
-      color: 'success'
+      color: 'success',
     })
     return true
   }
@@ -44,11 +44,11 @@ export function formatDownload(resData) {
   // 錯誤
   if (status === 504) {
     Vue.prototype.$notifier.showMessage({
-      message: '逾時'
+      message: '逾時',
     })
   } else {
     Vue.prototype.$notifier.showMessage({
-      message: '匯出失敗'
+      message: '匯出失敗',
     })
   }
 

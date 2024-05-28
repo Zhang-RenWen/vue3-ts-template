@@ -6,7 +6,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('ui', ['sideMenuOpen', 'linearLoading', 'circularLoading', 'overlayLoading'])
+    ...mapGetters('ui', ['sideMenuOpen', 'linearLoading', 'circularLoading', 'overlayLoading']),
   },
 
   mounted() {},
@@ -15,7 +15,7 @@ export default {
       'toggleSideMenuOpen',
       'toggleLinearLoading',
       'toggleCircularLoading',
-      'toggleLoading'
-    ])
-  }
+      'toggleLoading',
+    ]),
+  },
 }

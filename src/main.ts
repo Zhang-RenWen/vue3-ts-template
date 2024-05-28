@@ -3,22 +3,22 @@
  *
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
-import '@/assets/styles/main.scss';
-import App from '@/App.vue';
+import '@/assets/styles/main.scss'
+import App from '@/App.vue'
 // Plugins
-import { createApp } from 'vue';
-import { registerPlugins } from '@/plugins';
-import { registerComponents } from '@/components';
-import router from '@/router';
+import { createApp } from 'vue'
+import { registerPlugins } from '@/plugins'
+import { registerComponents } from '@/components'
+import router from '@/router'
 
-import pinia from '@/stores/index';
+import pinia from '@/stores/index'
 // import { useUserStore } from '@/stores/useUserStore';
 
-const app = createApp(App);
-registerPlugins(app);
-registerComponents(app);
-app.use(pinia);
-app.mount('#app');
+const app = createApp(App)
+registerPlugins(app)
+registerComponents(app)
+app.use(pinia)
+app.mount('#app')
 
 /**
  * 登入攔截器
@@ -35,8 +35,8 @@ router.beforeEach((to, from, next) => {
   // } else {
   //   next();
   // }
-  next();
-});
+  next()
+})
 
 router.afterEach((to, from) => {
   if (to.meta.scrollState == true) {
@@ -49,4 +49,4 @@ router.afterEach((to, from) => {
     //   document.documentElement.scrollTop = 0;
     // });
   }
-});
+})

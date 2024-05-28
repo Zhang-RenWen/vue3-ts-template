@@ -15,12 +15,12 @@
 </template>
 <script setup lang="ts">
 // import { onMounted, reactive, ref } from 'vue';
-import { useLoadingStore } from '@/stores/useLoadingStore';
-const loading = useLoadingStore();
+import { useLoadingStore } from '@/stores/useLoadingStore'
+const loading = useLoadingStore()
 function openLoading() {
-  loading.toggleLoading(true);
+  loading.toggleLoading(true)
   setTimeout(() => {
-    loading.toggleLoading(false);
-  }, 1000);
+    loading.toggleLoading(false)
+  }, 1000)
 }
 </script>

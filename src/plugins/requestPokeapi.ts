@@ -1,10 +1,10 @@
-import HttpRequest from '@/plugins/axios';
+import HttpRequest from '@/plugins/axios'
 import {
   requestInterceptor,
   requestInterceptorCatch,
   responseInterceptor,
   responseInterceptorCatch,
-} from '@/plugins/requestSettings';
+} from '@/plugins/requestSettings'
 /**
  *  為什麽我們要對axios進行封裝？
  * 1.外部依賴庫，有停止維護的風險，將項目中使用的方法邏輯封裝到一個文件/文件夾中同意導出，方便更換庫，有利於維護
@@ -35,6 +35,6 @@ const httpRequest = new HttpRequest({
     responseInterceptor,
     responseInterceptorCatch,
   },
-});
+})
 
-export default httpRequest;
+export default httpRequest

@@ -25,8 +25,8 @@
   </v-app-bar>
 </template>
 <script setup lang="ts">
-import { useUIStore } from '@/stores/useUIStore';
-import { reactive, mergeProps } from 'vue';
+import { useUIStore } from '@/stores/useUIStore'
+import { reactive, mergeProps } from 'vue'
 const accountItemList = reactive([
   {
     text: '個人檔案',
@@ -35,6 +35,6 @@ const accountItemList = reactive([
     text: '登出',
     eventHandler: () => {},
   },
-]);
-const uiStatus = useUIStore();
+])
+const uiStatus = useUIStore()
 </script>

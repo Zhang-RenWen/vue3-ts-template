@@ -6,20 +6,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs, computed } from 'vue';
+import { ref, toRefs, computed } from 'vue'
 interface Props {
-  name?: string;
-  width?: number | string;
-  units?: string;
+  name?: string
+  width?: number | string
+  units?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   // props
   name: '',
   width: 'auto',
   units: '%',
-});
+})
 
-const internalValue = toRefs(props);
+const internalValue = toRefs(props)
 </script>
 <style scoped lang="scss">
 .text-medium-emphasis {

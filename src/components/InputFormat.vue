@@ -68,65 +68,65 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, toRefs, computed, onMounted, onBeforeUnmount } from 'vue';
-import { Props, propsBase, InputFormat } from '@/model/InputModel';
+import { ref, toRefs, computed, onMounted, onBeforeUnmount } from 'vue'
+import { Props, propsBase, InputFormat } from '@/model/InputModel'
 
-const props = withDefaults(defineProps<Props>(), propsBase);
+const props = withDefaults(defineProps<Props>(), propsBase)
 const localPlaceholder = computed(() => {
-  return props.placeholder || '請輸入';
-});
+  return props.placeholder || '請輸入'
+})
 const localValue = computed(() => {
   if (!internalValue?.value?.value) {
-    return null;
+    return null
   }
   if (typeof internalValue?.value?.value?.value === 'object') {
-    return format(internalValue.value.value.value.value);
+    return format(internalValue.value.value.value.value)
   }
-  return format(internalValue.value.value);
-});
+  return format(internalValue.value.value)
+})
 
-let internalValue = toRefs(props);
-const inputFormat = new InputFormat(props);
-const formatValue = inputFormat.formatValue;
+let internalValue = toRefs(props)
+const inputFormat = new InputFormat(props)
+const formatValue = inputFormat.formatValue
 function format(value: any) {
-  return formatValue(value);
+  return formatValue(value)
 }
 
-const FormatInput = ref(null);
-const RealInput = ref(null);
-const displayFormat = ref(true);
+const FormatInput = ref(null)
+const RealInput = ref(null)
+const displayFormat = ref(true)
 
 function show() {
-  displayFormat.value = false;
+  displayFormat.value = false
 }
 
 function hide() {
-  displayFormat.value = true;
+  displayFormat.value = true
 }
 
 function addInputDisplayFormatListener() {
-  const elementInput = RealInput.value.querySelector('input');
+  const elementInput = RealInput.value.querySelector('input')
   if (elementInput) {
-    RealInput.value.querySelector('input').addEventListener('focus', show);
-    RealInput.value.querySelector('input').addEventListener('blur', hide);
+    RealInput.value.querySelector('input').addEventListener('focus', show)
+    RealInput.value.querySelector('input').addEventListener('blur', hide)
   }
 }
 
 function removeInputDisplayFormatListener() {
-  const elementInput = RealInput.value.querySelector('input');
+  const elementInput = RealInput.value.querySelector('input')
   if (elementInput) {
-    RealInput.value.querySelector('input').removeEventListener('focus', show);
-    RealInput.value.querySelector('input').removeEventListener('blur', hide);
+    RealInput.value.querySelector('input').removeEventListener('focus', show)
+    RealInput.value.querySelector('input').removeEventListener('blur', hide)
   }
 }
 
 onMounted(async () => {
-  addInputDisplayFormatListener();
-});
+  addInputDisplayFormatListener()
+})
 
 onBeforeUnmount(async () => {
-  removeInputDisplayFormatListener();
-});
+  removeInputDisplayFormatListener()
+})
 </script>
 <style scoped lang="scss" src="@/assets/styles/inputBase.scss"></style>
 <style scoped lang="scss">

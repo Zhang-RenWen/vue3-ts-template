@@ -21,15 +21,15 @@
 </template>
 <!--/********************************Script-Start*********************************************/-->
 <script setup lang="ts">
-import { toRaw, onMounted } from 'vue';
-import { useAlertsStore } from '@/stores/useAlertsStore';
-const alert = useAlertsStore();
+import { toRaw, onMounted } from 'vue'
+import { useAlertsStore } from '@/stores/useAlertsStore'
+const alert = useAlertsStore()
 
-import { useUIStore } from '@/stores/useUIStore';
-const uiStatus = useUIStore();
-const themes = toRaw(uiStatus.themes);
+import { useUIStore } from '@/stores/useUIStore'
+const uiStatus = useUIStore()
+const themes = toRaw(uiStatus.themes)
 
-onMounted(async () => {});
+onMounted(async () => {})
 </script>
 <!--/********************************Script-End*********************************************/-->
 <style scoped lang="scss">

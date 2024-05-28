@@ -1,8 +1,8 @@
 export interface ConfirmOption {
-  title?: string;
-  content?: string;
-  buttonText?: string;
-  buttonCancelText?: string;
+  title?: string
+  content?: string
+  buttonText?: string
+  buttonCancelText?: string
 }
 
 export const defaultOption = {
@@ -10,4 +10,4 @@ export const defaultOption = {
   content: '',
   buttonText: '確定',
   buttonCancelText: '取消',
-};
+}

@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia';
-import httpRequest from '@/plugins/requestPokeapi';
-import { Test } from '@/model/TestModel';
+import { defineStore } from 'pinia'
+import httpRequest from '@/plugins/requestPokeapi'
+import { Test } from '@/model/TestModel'
 
 export const useTestStore = defineStore('test', {
   state: () => ({
@@ -21,22 +21,22 @@ export const useTestStore = defineStore('test', {
           showLoading: true,
         })
         .then((test) => {
-          this.test = test.results ? test.results : [];
-          this.text = 'got API!!!!!!!';
-          return this.test;
-        });
+          this.test = test.results ? test.results : []
+          this.text = 'got API!!!!!!!'
+          return this.test
+        })
     },
     setText(value: string) {
-      this.text = value;
+      this.text = value
     },
     addItem(item: Test) {
-      this.test.push(item);
+      this.test.push(item)
     },
     deleteItem(item: Test) {
       this.test.splice(
         this.test.findIndex((o: Test) => o.name === item.name),
         1
-      );
+      )
     },
   },
-});
+})

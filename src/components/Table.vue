@@ -30,36 +30,36 @@
 </template>
 <!--/********************************Script-Start*********************************************/-->
 <script setup lang="ts">
-import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
-import { Props, propsBase } from '@/model/TableModel';
-import { deepClone } from '@/utils/deepClone';
-import { useAttrs } from 'vue';
-const attr = useAttrs();
-const props = withDefaults(defineProps<Props>(), propsBase);
-let expanded = ref([]); // 綁定資料在本組件;
-const emits = defineEmits(['updateExpanded', 'updateSortBy']);
+import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue'
+import { Props, propsBase } from '@/model/TableModel'
+import { deepClone } from '@/utils/deepClone'
+import { useAttrs } from 'vue'
+const attr = useAttrs()
+const props = withDefaults(defineProps<Props>(), propsBase)
+let expanded = ref([]) // 綁定資料在本組件;
+const emits = defineEmits(['updateExpanded', 'updateSortBy'])
 function expandedFn(newExpandedItem: any) {
-  emits('updateExpanded', newExpandedItem);
+  emits('updateExpanded', newExpandedItem)
 }
 
 function setExpanded() {
   // 設定 初始化 expanded 項目
-  expanded.value = deepClone(props.defaultExpanded);
+  expanded.value = deepClone(props.defaultExpanded)
 }
 function onSortConditionChanged(options: any) {
-  emits('updateSortBy', options);
+  emits('updateSortBy', options)
 }
 const expandedListener = computed(() => {
-  setExpanded();
-  return props.defaultExpanded;
-});
+  setExpanded()
+  return props.defaultExpanded
+})
 
 const sortByListener = computed(() => {
-  return deepClone(props.sortBy);
-});
+  return deepClone(props.sortBy)
+})
 onMounted(async () => {
-  setExpanded();
-});
+  setExpanded()
+})
 </script>
 <!--/********************************Script-End*********************************************/-->
 

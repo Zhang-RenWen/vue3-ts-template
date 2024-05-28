@@ -26,11 +26,11 @@
 </template>
 <!--/********************************Script-Start*********************************************/-->
 <script setup lang="ts">
-import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
-import { Props, propsBase } from '@/model/DialogModel';
-const props = withDefaults(defineProps<Props>(), propsBase);
-let internalValue = toRefs(props);
-onMounted(async () => {});
+import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue'
+import { Props, propsBase } from '@/model/DialogModel'
+const props = withDefaults(defineProps<Props>(), propsBase)
+let internalValue = toRefs(props)
+onMounted(async () => {})
 </script>
 <!--/********************************Script-End*********************************************/-->
 <style>

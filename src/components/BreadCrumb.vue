@@ -13,16 +13,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useUIStore } from '@/stores/useUIStore';
-import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router';
-import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
-import { deepClone } from '@/utils/deepClone';
-const uiStatus = useUIStore();
-const router = useRouter();
+import { useUIStore } from '@/stores/useUIStore'
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
+import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue'
+import { deepClone } from '@/utils/deepClone'
+const uiStatus = useUIStore()
+const router = useRouter()
 const routerListener = computed(() => {
-  return reactive(router.currentRoute);
-});
+  return reactive(router.currentRoute)
+})
 </script>
 <style lang="scss" scoped>
 .breadcrumb {

@@ -53,36 +53,36 @@
 </template>
 <!--/********************************Script-Start*********************************************/-->
 <script setup lang="ts">
-import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue';
-import { Props, propsBase } from '@/model/PaginationModel';
-import { deepClone } from '@/utils/deepClone';
-const props = withDefaults(defineProps<Props>(), propsBase);
-const page = ref(1); // 當前頁碼
-const itemsPerPage = ref(10); // 一頁幾筆
+import { ref, toRefs, computed, nextTick, onMounted, reactive } from 'vue'
+import { Props, propsBase } from '@/model/PaginationModel'
+import { deepClone } from '@/utils/deepClone'
+const props = withDefaults(defineProps<Props>(), propsBase)
+const page = ref(1) // 當前頁碼
+const itemsPerPage = ref(10) // 一頁幾筆
 const totalPageCount = computed(() => {
-  return Math.ceil(props.totalCount / (itemsPerPage.value || 0)); // 總頁數
-});
-let internalValue = toRefs(props);
-const emits = defineEmits(['input']);
+  return Math.ceil(props.totalCount / (itemsPerPage.value || 0)) // 總頁數
+})
+let internalValue = toRefs(props)
+const emits = defineEmits(['input'])
 function onPageChanged(page: number) {
-  emits('input', { ...internalValue.value.value, page, itemsPerPage: itemsPerPage.value });
+  emits('input', { ...internalValue.value.value, page, itemsPerPage: itemsPerPage.value })
 }
 function onItemsPerPageChanged(itemsPerPage: number) {
-  emits('input', { ...internalValue.value.value, page: page.value, itemsPerPage });
+  emits('input', { ...internalValue.value.value, page: page.value, itemsPerPage })
 }
 
 function setPagination() {
   // 設定 初始化 pagination 項目
-  const bindValue = deepClone(props.value);
-  page.value = bindValue.page;
-  itemsPerPage.value = bindValue.itemsPerPage;
+  const bindValue = deepClone(props.value)
+  page.value = bindValue.page
+  itemsPerPage.value = bindValue.itemsPerPage
 }
 const paginationListener = computed(() => {
-  setPagination();
-  return props.value;
-});
+  setPagination()
+  return props.value
+})
 
-onMounted(async () => {});
+onMounted(async () => {})
 </script>
 <!--/********************************Script-End*********************************************/-->
 

@@ -31,7 +31,7 @@ function getIsoDateObject(stringDate) {
   let dateObject = {
     year: '',
     month: '',
-    day: ''
+    day: '',
   }
 
   /**
@@ -50,7 +50,7 @@ function getIsoDateObject(stringDate) {
     dateObject = {
       year,
       month,
-      day
+      day,
     }
   }
 
@@ -67,7 +67,7 @@ function getIsoDateObject(stringDate) {
     dateObject = {
       year,
       month,
-      day
+      day,
     }
   }
 
@@ -124,7 +124,7 @@ function formatNumberToISO(dateString) {
   return {
     year,
     month,
-    day
+    day,
   }
 }
 
@@ -169,7 +169,7 @@ const formatDate = {
   getIsoDateObject,
   formatNumberToISO,
   padZeroStart,
-  rocToIS0
+  rocToIS0,
 }
 
 export default formatDate

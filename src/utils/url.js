@@ -14,6 +14,6 @@ const getUrlParams = () => {
 }
 const url = {
   searchParams,
-  getUrlParams
+  getUrlParams,
 }
 export default url

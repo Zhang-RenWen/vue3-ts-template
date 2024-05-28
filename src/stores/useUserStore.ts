@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia';
-import { LoginModel } from '@/model/LoginModel';
+import { defineStore } from 'pinia'
+import { LoginModel } from '@/model/LoginModel'
 
 /**
  * 登入狀態保存
@@ -9,28 +9,28 @@ export const useUserStore = defineStore('userInfo', {
     return {
       hasLogin: false,
       userInfo: <LoginModel>{},
-    };
+    }
   },
 
   getters: {
     getLoginState: (state) => {
-      return state.hasLogin;
+      return state.hasLogin
     },
     getUserInfo: (state) => {
-      return state.userInfo;
+      return state.userInfo
     },
   },
 
   actions: {
     setLoginState(loginState: boolean) {
-      this.hasLogin = loginState;
+      this.hasLogin = loginState
     },
 
     setUserInfo(userInfo: LoginModel | null) {
       if (userInfo) {
-        this.userInfo = userInfo;
+        this.userInfo = userInfo
       } else {
-        this.userInfo = <LoginModel>{};
+        this.userInfo = <LoginModel>{}
       }
     },
   },
@@ -38,4 +38,4 @@ export const useUserStore = defineStore('userInfo', {
   persist: {
     enabled: true,
   },
-});
+})

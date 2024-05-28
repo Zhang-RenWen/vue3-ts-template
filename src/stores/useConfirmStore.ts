@@ -1,15 +1,15 @@
-import { reactive } from 'vue';
-import { defineStore } from 'pinia';
-import { ConfirmOption, defaultOption } from '@/model/ConfirmModel';
+import { reactive } from 'vue'
+import { defineStore } from 'pinia'
+import { ConfirmOption, defaultOption } from '@/model/ConfirmModel'
 
 interface Message {
-  title: string;
-  content: string;
-  buttonText: string;
-  buttonCancelText: string;
-  visible: boolean;
-  result: boolean | null;
-  showCancelButton: boolean;
+  title: string
+  content: string
+  buttonText: string
+  buttonCancelText: string
+  visible: boolean
+  result: boolean | null
+  showCancelButton: boolean
 }
 
 const messageDefault: Message = {
@@ -20,34 +20,34 @@ const messageDefault: Message = {
   visible: false,
   result: null,
   showCancelButton: true,
-};
+}
 
 export const useConfirmsStore = defineStore('confirm', () => {
-  const message = reactive(messageDefault);
+  const message = reactive(messageDefault)
   const watcher = function (resolve: any) {
     setTimeout(() => {
       if (message.result !== true && message.result !== false) {
-        watcher(resolve);
+        watcher(resolve)
       } else {
-        resolve(message.result);
+        resolve(message.result)
       }
-    }, 300);
-  };
+    }, 300)
+  }
 
   function showMessage(option: ConfirmOption) {
-    setResult(null);
-    Object.assign(message, { ...defaultOption, ...option, visible: true });
+    setResult(null)
+    Object.assign(message, { ...defaultOption, ...option, visible: true })
     return new Promise((resolve) => {
-      watcher(resolve);
-    });
+      watcher(resolve)
+    })
   }
 
   function hideMessage() {
-    message.visible = false;
+    message.visible = false
   }
 
   function setResult(value: boolean | null) {
-    message.result = value;
+    message.result = value
   }
 
   return {
@@ -55,5 +55,5 @@ export const useConfirmsStore = defineStore('confirm', () => {
     showMessage,
     hideMessage,
     setResult,
-  };
-});
+  }
+})

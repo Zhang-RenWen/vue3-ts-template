@@ -72,41 +72,41 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import { toRaw, reactive, ref } from 'vue';
-import { useConfirmsStore } from '@/stores/useConfirmStore';
-const confirm = useConfirmsStore();
+import { toRaw, reactive, ref } from 'vue'
+import { useConfirmsStore } from '@/stores/useConfirmStore'
+const confirm = useConfirmsStore()
 
 async function openConfirm1() {
   const value = await confirm.showMessage({
     content: '測試',
-  });
-  console.log(value);
+  })
+  console.log(value)
 }
 async function openConfirm2() {
   const value = await confirm.showMessage({
     content: '上方 title 有更換',
     title: '這是 自定義 title',
-  });
-  console.log(value);
+  })
+  console.log(value)
 }
 async function openConfirm3() {
   const value = await confirm.showMessage({
     content: '下方按鈕文字有更換，預設是「確定」。',
     buttonText: 'ok',
-  });
-  console.log(value);
+  })
+  console.log(value)
 }
 
 async function openConfirm() {
   const value = await confirm.showMessage({
     content: '選擇下方任一按鈕點擊！',
-  });
+  })
   alert.showMessage({
     content: `您選擇的是：${value ? '確定' : '取消'}`,
     buttonText: 'ok',
-  });
+  })
 }
 
-import { useAlertsStore } from '@/stores/useAlertsStore';
-const alert = useAlertsStore();
+import { useAlertsStore } from '@/stores/useAlertsStore'
+const alert = useAlertsStore()
 </script>

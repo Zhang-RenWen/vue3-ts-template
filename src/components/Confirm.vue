@@ -28,25 +28,25 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import { ref, toRefs, computed, nextTick, onMounted, reactive, toRaw } from 'vue';
-import { useConfirmsStore } from '@/stores/useConfirmStore';
-const confirm = useConfirmsStore();
-import { useUIStore } from '@/stores/useUIStore';
-const uiStatus = useUIStore();
-const themes = toRaw(uiStatus.themes);
-const emits = defineEmits(['getConfirmResult']);
+import { ref, toRefs, computed, nextTick, onMounted, reactive, toRaw } from 'vue'
+import { useConfirmsStore } from '@/stores/useConfirmStore'
+const confirm = useConfirmsStore()
+import { useUIStore } from '@/stores/useUIStore'
+const uiStatus = useUIStore()
+const themes = toRaw(uiStatus.themes)
+const emits = defineEmits(['getConfirmResult'])
 function goAhead() {
-  emits('getConfirmResult', true);
-  confirm.setResult(true);
-  confirm.hideMessage();
+  emits('getConfirmResult', true)
+  confirm.setResult(true)
+  confirm.hideMessage()
 }
 
 function cancel() {
-  emits('getConfirmResult', false);
-  confirm.setResult(false);
-  confirm.hideMessage();
+  emits('getConfirmResult', false)
+  confirm.setResult(false)
+  confirm.hideMessage()
 }
-onMounted(async () => {});
+onMounted(async () => {})
 </script>
 <style scoped lang="scss">
 .confirm-title {

@@ -36,7 +36,7 @@ import {
   checkHttpUrl,
   checkRegURL,
   checkRegHttpUrl,
-} from '@/utils/validation';
+} from '@/utils/validation'
 
 // 註冊通用 format
 import {
@@ -49,80 +49,80 @@ import {
   toFullWidth,
   toUpperCase,
   toLowerCase,
-} from '@/utils/format';
+} from '@/utils/format'
 
 export interface Props {
-  value?: string | number | object;
-  modelValue?: string | number | object;
-  label?: string;
-  type?: string;
-  inputType?: string;
-  hasChanged?: boolean;
-  textEnd?: boolean;
-  textCenter?: boolean;
-  placeholder?: string;
-  rules?: Array<T>;
+  value?: string | number | object
+  modelValue?: string | number | object
+  label?: string
+  type?: string
+  inputType?: string
+  hasChanged?: boolean
+  textEnd?: boolean
+  textCenter?: boolean
+  placeholder?: string
+  rules?: Array<T>
   /*******************************Rules-Start**********************************************/
-  required?: boolean;
-  checkEnglish?: boolean;
-  checkChineseWords?: boolean;
-  checkTaiwanPhoneNumber?: boolean;
-  checkTaiwanTelephoneNumber?: boolean;
-  checkTaxNumber?: boolean;
-  checkEnglishIntegrate?: boolean;
+  required?: boolean
+  checkEnglish?: boolean
+  checkChineseWords?: boolean
+  checkTaiwanPhoneNumber?: boolean
+  checkTaiwanTelephoneNumber?: boolean
+  checkTaxNumber?: boolean
+  checkEnglishIntegrate?: boolean
   // checkNumberRange?: boolean;
-  checkTaiwanId?: boolean;
-  checkForeignerId?: boolean;
-  checkNewForeignerId?: boolean;
-  checkTaiwanAndForeignerId?: boolean;
-  checkNumberAndSymbol?: boolean;
-  checkNumber?: boolean;
-  checkDate?: boolean;
+  checkTaiwanId?: boolean
+  checkForeignerId?: boolean
+  checkNewForeignerId?: boolean
+  checkTaiwanAndForeignerId?: boolean
+  checkNumberAndSymbol?: boolean
+  checkNumber?: boolean
+  checkDate?: boolean
   // checkDateRange?: boolean;
   // checkStartDateRange?: boolean;
   // checkEndDateRange?: boolean;
   // checkIntAndDecimal?: boolean;
-  checkInteger?: boolean;
-  checkIntegerZeroToNinetyNine?: boolean;
+  checkInteger?: boolean
+  checkIntegerZeroToNinetyNine?: boolean
   // checkIntegerRange?: boolean;
   // check100WithFloat?: boolean;
   // checkIntegerDecimal?: boolean;
-  checkPositiveInteger?: boolean;
-  checkOver6Decimals?: boolean;
-  checkSymbol?: boolean;
-  checkEnglishInteger?: boolean;
-  checkEnglishNumberLength8To16?: boolean;
-  checkEmail?: boolean;
-  checkValidEmail?: boolean;
-  checkURL?: boolean;
-  checkHttpUrl?: boolean;
-  checkRegURL?: boolean;
-  checkRegHttpUrl?: boolean;
+  checkPositiveInteger?: boolean
+  checkOver6Decimals?: boolean
+  checkSymbol?: boolean
+  checkEnglishInteger?: boolean
+  checkEnglishNumberLength8To16?: boolean
+  checkEmail?: boolean
+  checkValidEmail?: boolean
+  checkURL?: boolean
+  checkHttpUrl?: boolean
+  checkRegURL?: boolean
+  checkRegHttpUrl?: boolean
   /*******************************Rules-End**********************************************/
   /*******************************Format-Start**********************************************/
-  toRocDate?: boolean;
-  toRound?: boolean;
-  toPad0AfterPoint?: boolean;
-  toClearPrefix0?: boolean;
-  toFixed?: boolean;
-  toCurrency?: boolean;
-  toTrim?: boolean;
-  toHalfWidth?: boolean;
-  toFullWidth?: boolean;
-  toUpperCase?: boolean;
-  toLowerCase?: boolean;
-  decimal?: number;
+  toRocDate?: boolean
+  toRound?: boolean
+  toPad0AfterPoint?: boolean
+  toClearPrefix0?: boolean
+  toFixed?: boolean
+  toCurrency?: boolean
+  toTrim?: boolean
+  toHalfWidth?: boolean
+  toFullWidth?: boolean
+  toUpperCase?: boolean
+  toLowerCase?: boolean
+  decimal?: number
   /*******************************Format-End**********************************************/
   /*******************************Limit-Start**********************************************/
-  maxLength?: number;
-  minLength?: number;
-  max?: number;
-  min?: number;
-  checkMinLength?: boolean;
-  checkMaxLength?: boolean;
+  maxLength?: number
+  minLength?: number
+  max?: number
+  min?: number
+  checkMinLength?: boolean
+  checkMaxLength?: boolean
   /*******************************Limit-End**********************************************/
   /*******************************InputAutoComplete-Start**********************************************/
-  items?: Array<T>;
+  items?: Array<T>
   /*******************************InputAutoComplete-Start**********************************************/
 }
 
@@ -136,59 +136,59 @@ export const propsBase = {
   rules: [],
   items: [],
   decimal: 0,
-};
+}
 
 export class InputRules {
-  inputProps?: Props;
+  inputProps?: Props
   constructor(props: Props) {
-    this.inputProps = props;
+    this.inputProps = props
   }
   required(value: any) {
-    return !!value || '請輸入!';
+    return !!value || '請輸入!'
   }
   checkMinLength(value: any) {
-    const minLength = this.inputProps['minLength'];
-    if (!value) return true;
-    if (!minLength) return true;
+    const minLength = this.inputProps['minLength']
+    if (!value) return true
+    if (!minLength) return true
 
-    return String(value).length >= minLength || `此欄位請輸入至少${minLength}個字`;
+    return String(value).length >= minLength || `此欄位請輸入至少${minLength}個字`
   }
 
   checkMaxLength(value: any) {
-    const maxLength = this.inputProps['maxLength'];
-    if (!value) return true;
-    if (!maxLength) return true;
-    return String(value).length <= maxLength || '此欄位值超過可輸入之長度';
+    const maxLength = this.inputProps['maxLength']
+    if (!value) return true
+    if (!maxLength) return true
+    return String(value).length <= maxLength || '此欄位值超過可輸入之長度'
   }
 
   checkEnglish(value: any) {
-    if (!value) return true;
-    return checkEnglish(value) || '請輸入英文';
+    if (!value) return true
+    return checkEnglish(value) || '請輸入英文'
   }
 
   checkChineseWords(value: any) {
-    if (!value) return true;
-    return checkChineseWords(value) || '請輸入中文字';
+    if (!value) return true
+    return checkChineseWords(value) || '請輸入中文字'
   }
 
   checkTaiwanPhoneNumber(value: any) {
-    if (!value) return true;
-    return checkTaiwanPhoneNumber(value) || '開頭必須為 09 且欄位長度限定10碼';
+    if (!value) return true
+    return checkTaiwanPhoneNumber(value) || '開頭必須為 09 且欄位長度限定10碼'
   }
 
   checkTaiwanTelephoneNumber(value: any) {
-    if (!value) return true;
-    return checkTaiwanTelephoneNumber(value) || '輸入區碼並檢視長度是否正確';
+    if (!value) return true
+    return checkTaiwanTelephoneNumber(value) || '輸入區碼並檢視長度是否正確'
   }
 
   checkTaxNumber(value: any) {
-    if (!value) return true;
-    return checkTaxNumber(value) || '統編錯誤（ 8 個數字）';
+    if (!value) return true
+    return checkTaxNumber(value) || '統編錯誤（ 8 個數字）'
   }
 
   checkEnglishIntegrate(value: any) {
-    if (!value) return true;
-    return checkEnglishIntegrate(value) || '限輸入英文數字';
+    if (!value) return true
+    return checkEnglishIntegrate(value) || '限輸入英文數字'
   }
 
   // checkNumberRange(value: any) {
@@ -199,18 +199,18 @@ export class InputRules {
   // ID
 
   checkTaiwanId(value: any) {
-    if (!value) return true;
-    return checkTaiwanId(value) || '身份證驗證錯誤';
+    if (!value) return true
+    return checkTaiwanId(value) || '身份證驗證錯誤'
   }
 
   checkForeignerId(value: any) {
-    if (!value) return true;
-    return checkForeignerId(value) || '居留證號碼驗證錯誤';
+    if (!value) return true
+    return checkForeignerId(value) || '居留證號碼驗證錯誤'
   }
 
   checkNewForeignerId(value: any) {
-    if (!value) return true;
-    return checkNewForeignerId(value) || '居留證號碼驗證錯誤';
+    if (!value) return true
+    return checkNewForeignerId(value) || '居留證號碼驗證錯誤'
   }
 
   // checkForeignerOtherId(otherId, id = '') {
@@ -232,19 +232,19 @@ export class InputRules {
   // }
 
   checkTaiwanAndForeignerId(value: any) {
-    if (!value) return true;
-    return checkTaiwanAndForeignerId(value) || '身分證字號與統一證號格式驗證錯誤';
+    if (!value) return true
+    return checkTaiwanAndForeignerId(value) || '身分證字號與統一證號格式驗證錯誤'
   }
 
   checkNumberAndSymbol(value: any) {
-    if (!value) return true;
-    return checkNumberAndSymbol(value) || '必須為數字或+#-的符號';
+    if (!value) return true
+    return checkNumberAndSymbol(value) || '必須為數字或+#-的符號'
   }
 
   // date
 
   checkDate(value: any) {
-    return checkDate(value) || '日期格式錯誤';
+    return checkDate(value) || '日期格式錯誤'
   }
 
   // checkDateRange(value, startDate, endDate, checkDateTimeFlag, text = '日期') {
@@ -270,18 +270,18 @@ export class InputRules {
   // }
 
   checkNumber(value: any) {
-    if (!value) return true;
-    return checkNumber(value) || '必須為數字';
+    if (!value) return true
+    return checkNumber(value) || '必須為數字'
   }
 
   checkInteger(value: any) {
-    if (!value) return true;
-    return checkInteger(value) || '必須為整數';
+    if (!value) return true
+    return checkInteger(value) || '必須為整數'
   }
 
   checkIntegerZeroToNinetyNine(value: any) {
-    if (!value) return true;
-    return checkIntegerZeroToNinetyNine(value) || '輸入範圍0~99';
+    if (!value) return true
+    return checkIntegerZeroToNinetyNine(value) || '輸入範圍0~99'
   }
 
   // checkIntegerRange(value, min, max) {
@@ -302,145 +302,145 @@ export class InputRules {
   // }
 
   checkPositiveInteger(value: any) {
-    if (!value) return true;
-    return checkPositiveInteger(value) || '請輸入正整數';
+    if (!value) return true
+    return checkPositiveInteger(value) || '請輸入正整數'
   }
 
   checkOver6Decimals(value: any) {
-    if (!value) return true;
-    return checkOver6Decimals(value) || '輸入小數位數需在 6 位以內';
+    if (!value) return true
+    return checkOver6Decimals(value) || '輸入小數位數需在 6 位以內'
   }
 
   // mix
 
   checkSymbol(value: any) {
-    if (!value) return true;
-    return checkSymbol(value) || '請輸入符號';
+    if (!value) return true
+    return checkSymbol(value) || '請輸入符號'
   }
 
   checkEnglishInteger(value: any) {
-    if (!value) return true;
-    return checkEnglishInteger(value) || '只能輸入半形英文正整數';
+    if (!value) return true
+    return checkEnglishInteger(value) || '只能輸入半形英文正整數'
   }
 
   checkEnglishNumberLength8To16(value: any) {
-    if (!value) return true;
-    return checkEnglishNumberLength8To16(value) || '請輸入8-16位英文數字';
+    if (!value) return true
+    return checkEnglishNumberLength8To16(value) || '請輸入8-16位英文數字'
   }
 
   // Email
   checkEmail(value: any) {
-    if (!value) return true;
-    return checkEmail(value) || '電子郵件格式有誤';
+    if (!value) return true
+    return checkEmail(value) || '電子郵件格式有誤'
   }
   checkValidEmail(value: any) {
-    if (!value) return true;
-    return checkValidEmail(value) || '電子郵件格式有誤';
+    if (!value) return true
+    return checkValidEmail(value) || '電子郵件格式有誤'
   }
   // 網址
   checkURL(value: any) {
-    if (!value) return true;
-    return checkURL(value) || '網址格式有誤';
+    if (!value) return true
+    return checkURL(value) || '網址格式有誤'
   }
   checkHttpUrl(value: any) {
-    if (!value) return true;
-    return checkHttpUrl(value) || '網址格式有誤';
+    if (!value) return true
+    return checkHttpUrl(value) || '網址格式有誤'
   }
   checkRegURL(value: any) {
-    if (!value) return true;
-    return checkRegURL(value) || '網址格式有誤';
+    if (!value) return true
+    return checkRegURL(value) || '網址格式有誤'
   }
   checkRegHttpUrl(value: any) {
-    if (!value) return true;
-    return checkRegHttpUrl(value) || '網址格式有誤';
+    if (!value) return true
+    return checkRegHttpUrl(value) || '網址格式有誤'
   }
 
   getRulesFromProps() {
-    const defaultRules = [];
+    const defaultRules = []
     Object.keys(this.inputProps).forEach((key) => {
       if (this[key] && this.inputProps[key]) {
-        defaultRules.push(this[key].bind(this));
+        defaultRules.push(this[key].bind(this))
       }
-    });
-    return defaultRules;
+    })
+    return defaultRules
   }
 }
 
 export class InputFormat {
-  inputProps?: Props;
+  inputProps?: Props
   constructor(props: Props) {
-    this.inputProps = props;
-    this.formatValue = this.formatValue.bind(this); // <- Add this
+    this.inputProps = props
+    this.formatValue = this.formatValue.bind(this) // <- Add this
   }
 
   toString(value: any) {
-    return typeof value === 'string' ? value : '';
+    return typeof value === 'string' ? value : ''
   }
   toTrim(value: any) {
-    return String(value).replaceAll(' ', '');
+    return String(value).replaceAll(' ', '')
   }
 
   toHalfWidth(value: any) {
-    return toHalfWidth(value);
+    return toHalfWidth(value)
   }
 
   toFullWidth(value: any) {
-    return toFullWidth(value);
+    return toFullWidth(value)
   }
 
   toRocDate() {
-    console.log(rocDate);
+    console.log(rocDate)
   }
 
   toRound(value: any) {
-    return toRound(value);
+    return toRound(value)
   }
 
   toFixed(value: any) {
     if (isNaN(value)) {
-      return Number(0).toFixed(this.inputProps?.decimal);
+      return Number(0).toFixed(this.inputProps?.decimal)
     }
-    return Number(value).toFixed(this.inputProps?.decimal);
+    return Number(value).toFixed(this.inputProps?.decimal)
   }
 
   toPad0AfterPoint(value: any) {
-    return toPad0AfterPoint(value, this.inputProps?.decimal);
+    return toPad0AfterPoint(value, this.inputProps?.decimal)
   }
 
   toClearPrefix0(value: any) {
-    return toClearPrefix0(value);
+    return toClearPrefix0(value)
   }
 
   toCurrency(value: any) {
-    return toCurrency(value, this.inputProps?.decimal);
+    return toCurrency(value, this.inputProps?.decimal)
   }
 
   toUpperCase(value: any) {
-    return toUpperCase(value);
+    return toUpperCase(value)
   }
 
   toLowerCase(value: any) {
-    return toLowerCase(value);
+    return toLowerCase(value)
   }
 
   getFormatFromProps() {
-    const defaultFormat = [];
+    const defaultFormat = []
     Object.keys(this.inputProps).forEach((key) => {
       if (this[key] && this.inputProps[key]) {
-        defaultFormat.push(this[key]);
+        defaultFormat.push(this[key])
       }
-    });
-    return defaultFormat;
+    })
+    return defaultFormat
   }
 
   formatValue(value: any) {
-    const defaultFormat = this.getFormatFromProps();
+    const defaultFormat = this.getFormatFromProps()
     const result = defaultFormat.reduce((curResult, fn) => {
-      if (!fn) return curResult;
-      fn = fn.bind(this);
-      return fn(curResult);
-    }, value);
+      if (!fn) return curResult
+      fn = fn.bind(this)
+      return fn(curResult)
+    }, value)
 
-    return result;
+    return result
   }
 }

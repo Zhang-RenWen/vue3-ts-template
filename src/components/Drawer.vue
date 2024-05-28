@@ -67,34 +67,34 @@
   </v-navigation-drawer>
 </template>
 <script setup lang="ts">
-import { useUIStore } from '@/stores/useUIStore';
-import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router';
-import { ref, toRefs, computed, nextTick, onMounted, reactive, mergeProps } from 'vue';
-import { deepClone } from '@/utils/deepClone';
+import { useUIStore } from '@/stores/useUIStore'
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
+import { ref, toRefs, computed, nextTick, onMounted, reactive, mergeProps } from 'vue'
+import { deepClone } from '@/utils/deepClone'
 
-const uiStatus = useUIStore();
-const router = useRouter();
+const uiStatus = useUIStore()
+const router = useRouter()
 
-let menus = toRefs(reactive([]));
+let menus = toRefs(reactive([]))
 function getAllRouteList() {
   if (router?.options?.routes) {
-    const routes = router.options.routes;
+    const routes = router.options.routes
     if (routes) {
-      menus = reactive(routes);
+      menus = reactive(routes)
     }
   }
 }
 
 function setDrawerStatus(value: boolean) {
-  uiStatus.setDrawerStatus(value);
+  uiStatus.setDrawerStatus(value)
 }
 
 onMounted(async () => {
-  getAllRouteList();
-});
+  getAllRouteList()
+})
 
-const { getDrawer } = storeToRefs(uiStatus);
+const { getDrawer } = storeToRefs(uiStatus)
 </script>
 <style lang="scss" scoped>
 @import '@/assets/styles/main.scss';

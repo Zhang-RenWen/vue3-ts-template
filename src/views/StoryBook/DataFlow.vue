@@ -15,12 +15,12 @@
 
 <!--/*******************************Script-Start**********************************************/-->
 <script setup lang="ts">
-import { useTestStore } from '@/stores/test';
-import { storeToRefs } from 'pinia';
-import { onMounted, reactive, ref } from 'vue';
+import { useTestStore } from '@/stores/test'
+import { storeToRefs } from 'pinia'
+import { onMounted, reactive, ref } from 'vue'
 
-const test = useTestStore();
-const { testNames } = storeToRefs(test);
+const test = useTestStore()
+const { testNames } = storeToRefs(test)
 </script>
 <!--/********************************Script-End*********************************************/-->
 

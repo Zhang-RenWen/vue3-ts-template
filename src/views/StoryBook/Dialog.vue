@@ -230,12 +230,12 @@
 
 <!--/*******************************Script-Start**********************************************/-->
 <script setup lang="ts">
-import { toRaw, ref } from 'vue';
-import { useUIStore } from '@/stores/useUIStore';
-const uiStatus = useUIStore();
-const themes = toRaw(uiStatus.themes);
-const dialog1 = ref(false);
-const dialog2 = ref(false);
+import { toRaw, ref } from 'vue'
+import { useUIStore } from '@/stores/useUIStore'
+const uiStatus = useUIStore()
+const themes = toRaw(uiStatus.themes)
+const dialog1 = ref(false)
+const dialog2 = ref(false)
 </script>
 <!--/********************************Script-End*********************************************/-->
 

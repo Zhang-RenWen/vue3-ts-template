@@ -306,67 +306,67 @@
 </template>
 
 <script setup lang="ts">
-import { useTestStore } from '@/stores/test';
-import { storeToRefs } from 'pinia';
-import { onMounted, reactive, ref } from 'vue';
-const test = useTestStore();
-import { useAlertsStore } from '@/stores/useAlertsStore';
-const alert = useAlertsStore();
-const disabled = ref(false);
-const required = ref(false);
-const hasChange = ref(false);
-const valid = ref(false);
-const Form = ref();
-const inputAutoCompleteValue = ref('');
-const items = reactive([{ text: '選項1', value: '1' }]);
+import { useTestStore } from '@/stores/test'
+import { storeToRefs } from 'pinia'
+import { onMounted, reactive, ref } from 'vue'
+const test = useTestStore()
+import { useAlertsStore } from '@/stores/useAlertsStore'
+const alert = useAlertsStore()
+const disabled = ref(false)
+const required = ref(false)
+const hasChange = ref(false)
+const valid = ref(false)
+const Form = ref()
+const inputAutoCompleteValue = ref('')
+const items = reactive([{ text: '選項1', value: '1' }])
 function inputEventTest($event: Event) {
-  console.log(test.text, $event);
-  alert.showMessage({ content: test.text, title: 'inputEventTest' });
+  console.log(test.text, $event)
+  alert.showMessage({ content: test.text, title: 'inputEventTest' })
 }
 
 function blurEventTest($event: Event) {
-  alert.showMessage({ content: test.text, title: 'blurEventTest' });
-  console.log(test.text, $event);
+  alert.showMessage({ content: test.text, title: 'blurEventTest' })
+  console.log(test.text, $event)
 }
 function changeEventTest($event: Event) {
-  alert.showMessage({ content: test.text, title: 'changed' });
-  console.log(test.text, $event);
+  alert.showMessage({ content: test.text, title: 'changed' })
+  console.log(test.text, $event)
 }
 function toggleHasChange() {
-  hasChange.value = !hasChange.value;
-  submit();
+  hasChange.value = !hasChange.value
+  submit()
 }
 function toggleDisabled() {
-  disabled.value = !disabled.value;
-  submit();
+  disabled.value = !disabled.value
+  submit()
 }
 function toggleRequired() {
-  required.value = !required.value;
-  submit();
+  required.value = !required.value
+  submit()
 }
 function submit() {
-  Form.value?.validate;
+  Form.value?.validate
 }
 function reset() {
-  Form.value?.reset();
+  Form.value?.reset()
 }
 function clear() {
-  test.setText('');
+  test.setText('')
 }
 function format() {
-  test.setText('10,080');
+  test.setText('10,080')
 }
 
-const inputTextFieldBindData = ref(null);
-const inputTextAreaBindData = ref(null);
-const inputNumberBindData = ref(null);
-const inputNumberSteppersBindData = ref(null);
+const inputTextFieldBindData = ref(null)
+const inputTextAreaBindData = ref(null)
+const inputNumberBindData = ref(null)
+const inputNumberSteppersBindData = ref(null)
 
-const formatToTrim = ref(null);
-const formatToUpperCase = ref(null);
-const formatToLowerCase = ref(null);
-const formatToHalfWidth = ref(null);
-const formatToFullWidth = ref(null);
+const formatToTrim = ref(null)
+const formatToUpperCase = ref(null)
+const formatToLowerCase = ref(null)
+const formatToHalfWidth = ref(null)
+const formatToFullWidth = ref(null)
 </script>
 
 <style scoped lang="scss">

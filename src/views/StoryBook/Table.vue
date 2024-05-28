@@ -228,13 +228,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useTestStore } from '@/stores/test';
-import { SortByOptions } from '@/model/TableModel';
+import { onMounted, reactive, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useTestStore } from '@/stores/test'
+import { SortByOptions } from '@/model/TableModel'
 
-const test = useTestStore();
-const { testNames } = storeToRefs(test);
+const test = useTestStore()
+const { testNames } = storeToRefs(test)
 
 const headers = reactive([
   {
@@ -256,27 +256,27 @@ const headers = reactive([
     className: 'text-left',
     style: '',
   },
-]);
+])
 
 /*******************************Table Expanded-Start**********************************************/
-const defaultExpanded = ref(['electrode']);
-const showExpand = ref(true);
+const defaultExpanded = ref(['electrode'])
+const showExpand = ref(true)
 
 function setExpanded() {
-  const testItemName = 'exeggcute';
+  const testItemName = 'exeggcute'
   if (!defaultExpanded.value.includes(testItemName)) {
-    defaultExpanded.value.push(testItemName);
+    defaultExpanded.value.push(testItemName)
   } else {
-    const index = defaultExpanded.value.find((key: string) => key === testItemName);
-    defaultExpanded.value.splice(index, 1);
+    const index = defaultExpanded.value.find((key: string) => key === testItemName)
+    defaultExpanded.value.splice(index, 1)
   }
 }
 
 function setAllExpanded() {
-  defaultExpanded.value = test.testNames.map((o: any) => o.name);
+  defaultExpanded.value = test.testNames.map((o: any) => o.name)
 }
 function clearAllExpanded() {
-  defaultExpanded.value = [];
+  defaultExpanded.value = []
 }
 /*******************************Table Expanded-End**********************************************/
 /*******************************Table Pagination binding-Start**********************************************/
@@ -284,17 +284,17 @@ function clearAllExpanded() {
 const paginationDefault = {
   itemsPerPage: 10, // 一頁幾筆
   page: 1, // 當前頁數
-};
+}
 
 // 預設分頁
-const pagination = ref(deepClone(paginationDefault));
+const pagination = ref(deepClone(paginationDefault))
 
 function setPagination() {
-  pagination.value = deepClone(paginationDefault);
+  pagination.value = deepClone(paginationDefault)
 }
 
 function updatePagination(value: any) {
-  pagination.value = value;
+  pagination.value = value
   // 由 pagination 負責觸發請求
   // 重新呼叫 API 記得在此綁上 sort 條件。
   // table sort 邏輯不要跟 pagination 混到。
@@ -307,21 +307,21 @@ const sortBy1 = [
     key: 'name',
     order: 'asc',
   },
-];
+]
 const sortBy2 = [
   {
     key: 'url',
     order: 'asc',
   },
-];
-const sortBy = reactive(deepClone(sortBy1));
+]
+const sortBy = reactive(deepClone(sortBy1))
 
 function setSortBy(newOptions: Array<SortByOptions>) {
-  Object.assign(sortBy, reactive(deepClone(newOptions)));
+  Object.assign(sortBy, reactive(deepClone(newOptions)))
 }
 
 function updateSortBy(options: any) {
-  console.log(options);
+  console.log(options)
   // 由 table sort 負責觸發請求
   // 重新呼叫 API 記得在此綁上 pagination 條件。
   // table sort 邏輯不要跟 pagination 混到。
@@ -329,20 +329,20 @@ function updateSortBy(options: any) {
 }
 /*******************************Table Sortby End**********************************************/
 
-import { useLoadingStore } from '@/stores/useLoadingStore';
-import { deepClone } from '@/utils/deepClone';
-const loading = useLoadingStore();
+import { useLoadingStore } from '@/stores/useLoadingStore'
+import { deepClone } from '@/utils/deepClone'
+const loading = useLoadingStore()
 
 onMounted(async () => {
   try {
-    loading.toggleLoading(true);
-    await test.getApiData();
+    loading.toggleLoading(true)
+    await test.getApiData()
   } catch (error) {
-    console.log(error);
+    console.log(error)
   } finally {
-    loading.toggleLoading(false);
+    loading.toggleLoading(false)
   }
-});
+})
 </script>
 
 <style lang="scss" scoped>

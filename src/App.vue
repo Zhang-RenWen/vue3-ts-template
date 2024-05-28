@@ -20,9 +20,9 @@
   </v-app>
 </template>
 <script setup>
-import { RouterView, useRoute, useRouter } from 'vue-router';
-const route = useRoute();
-const router = useRouter();
+import { RouterView, useRoute, useRouter } from 'vue-router'
+const route = useRoute()
+const router = useRouter()
 </script>
 <style lang="scss" scoped>
 main {

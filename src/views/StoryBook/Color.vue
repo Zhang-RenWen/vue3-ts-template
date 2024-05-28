@@ -15,8 +15,8 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import { toRaw } from 'vue';
-import { useUIStore } from '@/stores/useUIStore';
-const uiState = useUIStore();
-const themes = toRaw(uiState.themes);
+import { toRaw } from 'vue'
+import { useUIStore } from '@/stores/useUIStore'
+const uiState = useUIStore()
+const themes = toRaw(uiState.themes)
 </script>

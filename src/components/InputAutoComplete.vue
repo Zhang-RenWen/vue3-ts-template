@@ -21,27 +21,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs, computed, watch, nextTick } from 'vue';
-import { Props, propsBase, InputRules, InputFormat } from '@/model/InputModel';
-const props = withDefaults(defineProps<Props>(), propsBase);
+import { ref, toRefs, computed, watch, nextTick } from 'vue'
+import { Props, propsBase, InputRules, InputFormat } from '@/model/InputModel'
+const props = withDefaults(defineProps<Props>(), propsBase)
 const proxy = computed({
   get() {
-    return internalValue.modelValue.value;
+    return internalValue.modelValue.value
   },
   set(v) {
-    emits('update:modelValue', v);
+    emits('update:modelValue', v)
   },
-});
+})
 const localRules = computed(() => {
-  return props.rules.concat(new InputRules(props).getRulesFromProps());
-});
+  return props.rules.concat(new InputRules(props).getRulesFromProps())
+})
 const localPlaceholder = computed(() => {
-  return props.placeholder || '請選擇';
-});
+  return props.placeholder || '請選擇'
+})
 const localItems = computed(() => {
-  return props.items;
-});
-let internalValue = toRefs(props);
+  return props.items
+})
+let internalValue = toRefs(props)
 const emits = defineEmits([
   'update:value',
   'update:modelValue',
@@ -49,6 +49,6 @@ const emits = defineEmits([
   'format',
   'blur',
   'input',
-]);
+])
 </script>
 <style scoped lang="scss" src="@/assets/styles/inputBase.scss"></style>

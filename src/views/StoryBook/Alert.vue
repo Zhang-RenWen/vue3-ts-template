@@ -75,6 +75,6 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import { useAlertsStore } from '@/stores/useAlertsStore';
-const alert = useAlertsStore();
+import { useAlertsStore } from '@/stores/useAlertsStore'
+const alert = useAlertsStore()
 </script>
