@@ -119,6 +119,47 @@
     <v-btn class="mr-1" @click="setPagination">重設分頁</v-btn>
     <v-btn class="mr-1" @click="setSortBy(sortBy1)">重設排序1</v-btn>
     <v-btn @click="setSortBy(sortBy2)">重設排序2</v-btn>
+    <v-data-table
+      :headers="headers"
+      :items="testNames"
+      :items-length="testNames.length"
+      :items-per-page="pagination.itemsPerPage"
+      :sort-by="sortBy"
+      :item-value="'name'"
+      :show-expand="showExpand"
+      :default-expanded="defaultExpanded"
+      :style="'max-height:300px'"
+      @updateSortBy="updateSortBy"
+    >
+      <template #top>
+        <Pagination :value="pagination" :total-count="testNames.length" @input="updatePagination" />
+      </template>
+      <template #[`header.action`]>
+        <div class="d-flex justify-center">
+          <v-btn :color="'success'" class="btn" @click="test.addItem({ name: 'unknown' })">
+            <v-icon icon="mdi-plus-thick"></v-icon>
+          </v-btn>
+        </div>
+      </template>
+      <template #[`item.action`]="{ item }">
+        <div class="d-flex justify-center">
+          <v-btn :color="'error'" class="btn mr-1" @click="test.deleteItem(item)">
+            <v-icon icon="mdi-trash-can"></v-icon>
+          </v-btn>
+          <v-btn :color="'info'" class="btn">
+            <v-icon icon="mdi-square-edit-outline"></v-icon>
+          </v-btn>
+        </div>
+      </template>
+      <template #expanded-row="{ columns, index, item, isExpanded }">
+        <td class="pa-4 py-6" :colspan="columns.length">
+          <div>{{ columns }}</div>
+          <div>{{ index }}</div>
+          <div>{{ item }}</div>
+          <div>{{ isExpanded(item) }}</div>
+        </td>
+      </template>
+    </v-data-table>
     <Table
       :headers="headers"
       :items="testNames"
