@@ -3,7 +3,7 @@
     <h1>Loading</h1>
     <p>按下按鈕一秒後關閉</p>
     <v-btn class="mb-6" color="primary" @click="openLoading">打開 loading</v-btn>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;script setup lang="ts" &gt;</div>
       <div>&nbsp; import { useLoadingStore } from '@/stores/useLoadingStore';</div>
       <div>&nbsp; const loading = useLoadingStore();</div>

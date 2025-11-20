@@ -1,7 +1,7 @@
 <template>
   <v-card class="main-section">
     <h1>Import Images</h1>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>&nbsp;&lt;v-img</div>
       <div>&nbsp;&nbsp;src="@/assets/images/logo.png"</div>

@@ -9,7 +9,7 @@
     <h2>Type1: v-data-table-server</h2>
     <p class="mb-3">資料數量、分頁、排序、篩選完全由後端回傳值控制。</p>
     <h3>v-data-table-server :Table + Pagination 綁定方法如下：</h3>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&nbsp;&lt;template&gt;</div>
       <div>&nbsp;&nbsp;&lt;Table</div>
       <div>&nbsp;&nbsp;&nbsp;...</div>
@@ -53,7 +53,7 @@
       為控制頁碼/每頁筆數用。
     </p>
     <h3>排序綁定方法如下：</h3>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>&nbsp;&nbsp;&lt;Table</div>
       <div>&nbsp;&nbsp;&nbsp;...</div>

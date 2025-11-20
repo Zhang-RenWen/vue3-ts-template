@@ -5,9 +5,7 @@
     <p class="mb-6">如需其他更多種類的icon 可已造訪連結搜尋：</p>
     <a href="https://pictogrammers.com/library/mdi/">Material Design Icons page.</a>
     <h3>使用方式</h3>
-    <code class="storybook-demo-code mb-3">
-      &lt;v-icon&gt;{{ `{\{icon-name}\}` }}&lt;/v-icon&gt;
-    </code>
+    <code class="demo-code-block mb-3">&lt;v-icon&gt;{{ `{\{icon-name}\}` }}&lt;/v-icon&gt;</code>
     <div class="container">
       <v-card v-for="(icon, index) in icons" :key="index" class="icon-card">
         <v-card-title class="icon d-flex">

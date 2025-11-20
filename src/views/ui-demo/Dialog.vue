@@ -2,7 +2,7 @@
   <v-card class="main-section">
     <h1 class="mb-6">Dialog</h1>
     <h3>資料綁定</h3>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>
         &nbsp; &lt;v-btn class="mb-3" color="primary" @click="dialog1 =
@@ -116,7 +116,7 @@
     </p>
     <p>如需針對 drag 或 resize 行為做其他設定，可參考 vue-draggable-resizable 官方文件。</p>
     <p>將所需設定的往 Dialog 元件的 vue-draggable-resizable-options props 送即可。</p>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>
         &nbsp; &lt;v-btn class="mb-3" color="primary" @click="dialog2 =

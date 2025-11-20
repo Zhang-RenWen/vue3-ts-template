@@ -3,7 +3,7 @@
     <h1>Confirm</h1>
     <h3>引入/使用範例</h3>
     <v-btn class="mb-6" color="primary" @click="openConfirm1">打開 Confirm</v-btn>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>&nbsp; &lt;v-btn @click="@click="confirm.showMessage({ content: '測試' })"&gt;</div>
       <div>&lt;/template&gt;</div>
@@ -14,7 +14,7 @@
     </code>
     <h3>自定義 Title</h3>
     <v-btn class="mb-6" color="primary" @click="openConfirm2">打開 Confirm</v-btn>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>
         &nbsp; &lt;v-btn @click="confirm.showMessage({content:'上方 title 有更換',title:'這是 自定義
@@ -28,7 +28,7 @@
     </code>
     <h3>自定義 buttonText</h3>
     <v-btn class="mb-6" color="primary" @click="openConfirm3">打開 Confirm</v-btn>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>
         &nbsp; &lt;v-btn @click="confirm.showMessage({content:
@@ -42,7 +42,7 @@
     </code>
     <h3>獲取使用者操作結果值</h3>
     <v-btn class="mb-6" color="primary" @click="openConfirm">打開 Confirm</v-btn>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>&nbsp; &lt;v-btn "@click="openConfirm"&gt;</div>
       <div>&lt;/template&gt;</div>

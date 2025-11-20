@@ -5,6 +5,7 @@
     <v-btn
       class="mb-6"
       color="primary"
+      demo-code-block
       @click="
         alert.showMessage({
           content: '測試',
@@ -13,7 +14,7 @@
     >
       打開 Alert
     </v-btn>
-    <code class="storybook-demo-code">
+    <code class="">
       <div>&lt;template&gt;</div>
       <div>&nbsp; &lt;v-btn @click="alert.showMessage({content:'測試'})"&gt;</div>
       <div>&lt;/template&gt;</div>
@@ -35,7 +36,7 @@
     >
       打開 Alert
     </v-btn>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>
         &nbsp; &lt;v-btn @click="alert.showMessage({content:'上方 title 有更換',title:'這是 自定義
@@ -60,7 +61,7 @@
     >
       打開 Alert
     </v-btn>
-    <code class="storybook-demo-code">
+    <code class="demo-code-block">
       <div>&lt;template&gt;</div>
       <div>
         &nbsp; &lt;v-btn @click="alert.showMessage({content:

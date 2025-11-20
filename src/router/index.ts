@@ -1,7 +1,7 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
 import { getPage } from '@/utils/glob'
-import StoryBook from '@/views/StoryBook/index.vue'
+import uiDemo from '@/views/ui-demo/index.vue'
 const routes = [
   {
     path: '/',
@@ -15,14 +15,14 @@ const routes = [
   },
   {
     path: '/',
-    name: 'storyBook',
+    name: 'uiDemo',
     meta: {
       hidden: true,
       icon: 'mdi-view-dashboard',
-      title: 'storyBook',
+      title: 'uiDemo',
       isOpened: false,
     },
-    component: StoryBook,
+    component: uiDemo,
     children: [
       {
         path: '/icon',
